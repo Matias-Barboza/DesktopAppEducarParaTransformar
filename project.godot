@@ -1,0 +1,90 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "JWT",
+"language": "GDScript",
+"path": "res://addons/jwt/src/JWT.gd"
+}, {
+"base": "Reference",
+"class": "JWTAlgorithm",
+"language": "GDScript",
+"path": "res://addons/jwt/src/JWTAlgorithm.gd"
+}, {
+"base": "Reference",
+"class": "JWTAlgorithmBuilder",
+"language": "GDScript",
+"path": "res://addons/jwt/src/JWTAlgorithmBuilder.gd"
+}, {
+"base": "Reference",
+"class": "JWTBaseBuilder",
+"language": "GDScript",
+"path": "res://addons/jwt/src/JWTBaseBuilder.gd"
+}, {
+"base": "JWTBaseBuilder",
+"class": "JWTBuilder",
+"language": "GDScript",
+"path": "res://addons/jwt/src/JWTBuilder.gd"
+}, {
+"base": "Reference",
+"class": "JWTClaims",
+"language": "GDScript",
+"path": "res://addons/jwt/src/JWTClaims.gd"
+}, {
+"base": "Reference",
+"class": "JWTDecoder",
+"language": "GDScript",
+"path": "res://addons/jwt/src/JWTDecoder.gd"
+}, {
+"base": "Reference",
+"class": "JWTUtils",
+"language": "GDScript",
+"path": "res://addons/jwt/src/JWTUtils.gd"
+}, {
+"base": "Reference",
+"class": "JWTVerifier",
+"language": "GDScript",
+"path": "res://addons/jwt/src/JWTVerifier.gd"
+}, {
+"base": "JWTBaseBuilder",
+"class": "JWTVerifierBuilder",
+"language": "GDScript",
+"path": "res://addons/jwt/src/JWTVerifierBuilder.gd"
+} ]
+_global_script_class_icons={
+"JWT": "",
+"JWTAlgorithm": "",
+"JWTAlgorithmBuilder": "",
+"JWTBaseBuilder": "",
+"JWTBuilder": "",
+"JWTClaims": "",
+"JWTDecoder": "",
+"JWTUtils": "",
+"JWTVerifier": "",
+"JWTVerifierBuilder": ""
+}
+
+[application]
+
+config/name="Sistema de autogestion de educar para transformar"
+config/icon="res://icon.png"
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

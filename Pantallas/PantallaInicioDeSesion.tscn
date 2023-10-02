@@ -1,0 +1,139 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Recursos/Montserrat-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Contenedores/VBoxContainerDatos.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Recursos/Montserrat-Light.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=2]
+size = 35
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.184314, 0.211765, 0.25098, 1 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 3 )
+
+[node name="PantallaInicioDeSesion" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRectFondo" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.184314, 0.823529, 1, 1 )
+
+[node name="PanelSuperior" type="Panel" parent="."]
+anchor_right = 1.0
+margin_bottom = 124.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="HSeparatorSuperior" type="HSeparator" parent="PanelSuperior"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_bottom = 2.0
+
+[node name="LabelSistema" type="Label" parent="PanelSuperior"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -261.5
+margin_top = -54.0
+margin_right = 261.5
+margin_bottom = 54.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Sistema de gestión
+Educar para Transformar"
+align = 1
+valign = 1
+
+[node name="PanelInicioDeSesion" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -270.0
+margin_top = -142.0
+margin_right = 270.0
+margin_bottom = 199.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="HSeparator" type="HSeparator" parent="PanelInicioDeSesion"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+margin_top = 57.0
+margin_bottom = 61.0
+
+[node name="LabelIS" type="Label" parent="PanelInicioDeSesion"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -122.0
+margin_top = 5.0
+margin_right = 124.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Iniciar Sesión"
+align = 1
+valign = 1
+
+[node name="VBoxContainerDatos" parent="PanelInicioDeSesion" instance=ExtResource( 2 )]
+margin_top = -97.0
+margin_bottom = 141.0
+
+[node name="PanelInferior" type="Panel" parent="."]
+self_modulate = Color( 1, 0.968627, 0.968627, 1 )
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -64.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="HSeparatorInferior" type="HSeparator" parent="PanelInferior"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+margin_top = -1.0
+margin_bottom = 3.0
+
+[node name="LabelDerechos" type="Label" parent="PanelInferior"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -43.0
+margin_top = 35.0
+margin_right = 58.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 6 )
+text = "Team Ozono"
+align = 1
+valign = 1
+
+[node name="LabelTeam" type="Label" parent="PanelInferior"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -275.0
+margin_top = 11.0
+margin_right = 275.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 6 )
+text = " Educar para Transformar 2001-2023 | Todos los derechos Reservados."
+align = 1
+valign = 1

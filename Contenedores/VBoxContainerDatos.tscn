@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Contenedores/VBoxContainerDatos.gd" type="Script" id=2]
+[ext_resource path="res://Contenedores/TextEditContrasenha.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -57,7 +57,6 @@ margin_top = -132.0
 margin_right = 178.0
 margin_bottom = 43.0
 custom_constants/separation = 10
-script = ExtResource( 2 )
 
 [node name="LabelCE" type="Label" parent="."]
 margin_right = 356.0
@@ -93,6 +92,7 @@ rect_min_size = Vector2( 0, 39 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 6 )
 custom_styles/normal = SubResource( 7 )
+script = ExtResource( 3 )
 
 [node name="HSeparator" type="HSeparator" parent="."]
 margin_top = 182.0
@@ -107,4 +107,4 @@ rect_min_size = Vector2( 0, 35 )
 custom_fonts/font = SubResource( 3 )
 text = "Iniciar sesión"
 
-[connection signal="text_changed" from="TextEditContrasenha" to="." method="_on_TextEditContrasea_text_changed"]
+[connection signal="text_changed" from="TextEditContrasenha" to="TextEditContrasenha" method="_on_text_changed"]

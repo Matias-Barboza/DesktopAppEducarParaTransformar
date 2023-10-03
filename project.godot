@@ -77,6 +77,10 @@ _global_script_class_icons={
 config/name="Sistema de autogestion de educar para transformar"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globals="*res://autoload/Globals.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

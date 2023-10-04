@@ -1,0 +1,218 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Pantallas/PantallaEstudiantes.gd" type="Script" id=2]
+[ext_resource path="res://MoverDespues/VBoxContainerDatos.tscn" type="PackedScene" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = SubResource( 6 )
+
+[sub_resource type="DynamicFontData" id=8]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=9]
+size = 20
+font_data = SubResource( 8 )
+
+[sub_resource type="DynamicFontData" id=10]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=11]
+size = 20
+font_data = SubResource( 10 )
+
+[node name="PantallaEstudiantes" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+alum = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.184314, 0.823529, 1, 1 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+margin_bottom = 76.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="HSeparator" type="HSeparator" parent="Panel"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_bottom = 2.0
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Estudiantes"
+align = 1
+valign = 1
+
+[node name="PanelDatos" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 70.0
+margin_top = 76.0
+margin_right = -63.0
+margin_bottom = 1.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="HSeparator2" type="HSeparator" parent="PanelDatos"]
+anchor_left = 0.0875421
+anchor_top = 0.0763359
+anchor_right = 0.925926
+anchor_bottom = 0.0839695
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HSeparator3" type="HSeparator" parent="PanelDatos"]
+anchor_left = 0.0875421
+anchor_top = 0.152672
+anchor_right = 0.925926
+anchor_bottom = 0.160305
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HSeparator4" type="HSeparator" parent="PanelDatos"]
+anchor_left = 0.0875421
+anchor_top = 0.917939
+anchor_right = 0.925926
+anchor_bottom = 0.925573
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Legajo" type="Label" parent="PanelDatos"]
+anchor_left = 0.0875421
+anchor_top = 0.0782443
+anchor_right = 0.200898
+anchor_bottom = 0.15458
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Legajo"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Nombre" type="Label" parent="PanelDatos"]
+anchor_left = 0.200898
+anchor_top = 0.0782443
+anchor_right = 0.386083
+anchor_bottom = 0.15458
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Nombre"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Apellido" type="Label" parent="PanelDatos"]
+anchor_left = 0.386083
+anchor_top = 0.0780952
+anchor_right = 0.739618
+anchor_bottom = 0.154286
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "Apellido"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Nota" type="Label" parent="PanelDatos"]
+anchor_left = 0.739618
+anchor_top = 0.0782443
+anchor_right = 0.924804
+anchor_bottom = 0.15458
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Nota"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VSeparator" type="VSeparator" parent="PanelDatos"]
+anchor_left = 0.0864198
+anchor_top = 0.0782443
+anchor_right = 0.0909091
+anchor_bottom = 0.921756
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VSeparator3" type="VSeparator" parent="PanelDatos"]
+anchor_left = 0.200898
+anchor_top = 0.0782443
+anchor_right = 0.205387
+anchor_bottom = 0.919847
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VSeparator5" type="VSeparator" parent="PanelDatos"]
+anchor_left = 0.737374
+anchor_top = 0.0820611
+anchor_right = 0.741863
+anchor_bottom = 0.921756
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VSeparator4" type="VSeparator" parent="PanelDatos"]
+anchor_left = 0.384961
+anchor_top = 0.0801527
+anchor_right = 0.38945
+anchor_bottom = 0.921756
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VSeparator2" type="VSeparator" parent="PanelDatos"]
+anchor_left = 0.923681
+anchor_top = 0.0782443
+anchor_right = 0.928171
+anchor_bottom = 0.921756
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Alumnos" type="Node" parent="."]
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://MoverDespues/VBoxContainerDatos.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Contenedores/Contenedor Docente/VBoxContainerDatos.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Pantallas/PantallaDocente.gd" type="Script" id=3]
 

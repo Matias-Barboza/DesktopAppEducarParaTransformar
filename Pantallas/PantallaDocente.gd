@@ -7,7 +7,10 @@ export var alum: PackedScene
 
 
 var alumnos = 0
-var listaAlumnos = {}
+var listaLegajoAlumnos = {}
+var listaNombreAlumnos = {}
+var listaApellidoAlumnos = {}
+var listaNotaAlumnos = {}
 var headers = ["Content-Type: application/json"]
 var URL = "https://educar-para-transformar.onrender.com/api/students"
 
@@ -22,7 +25,10 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		print("todo ok pa")
 		print(json.result)
 		for alumno in json.result:
-			listaAlumnos[i] = alumno.file_number
+			listaLegajoAlumnos[i] = alumno.file_number
+			listaNombreAlumnos[i] = alumno.firstname
+			listaApellidoAlumnos[i] = alumno.lastname
+			#listaNotaAlumnos[i] = alumno.id
 			alumnos += 1
 			i+= 1
 		instanciarAlumnos()
@@ -51,5 +57,8 @@ func darValores():
 	var i = 0
 	while i < alumnos:
 		var hijo = conjuntoAlumnos.get_child(i)
-		hijo.get_node("LabelLegajo").text = listaAlumnos[i]
+		hijo.get_node("LabelLegajo").text = listaLegajoAlumnos[i]
+		hijo.get_node("LabelNombre").text = listaNombreAlumnos[i]
+		hijo.get_node("LabelApellido").text = listaApellidoAlumnos[i]
+		#hijo.get_node("LabelNota").text = "%s" % listaNotaAlumnos[i]
 		i += 1

@@ -1,0 +1,329 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+font_data = SubResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 29
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFontData" id=8]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=9]
+size = 19
+font_data = SubResource( 8 )
+
+[sub_resource type="DynamicFontData" id=10]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=11]
+size = 19
+font_data = SubResource( 10 )
+
+[sub_resource type="DynamicFontData" id=12]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=13]
+size = 19
+font_data = SubResource( 12 )
+
+[sub_resource type="DynamicFont" id=14]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFontData" id=15]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=16]
+font_data = SubResource( 15 )
+
+[sub_resource type="DynamicFontData" id=17]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=18]
+font_data = SubResource( 17 )
+
+[sub_resource type="DynamicFontData" id=19]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=20]
+font_data = SubResource( 19 )
+
+[node name="BoletinDeNotas" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.184314, 0.823529, 1, 1 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.127
+margin_bottom = -0.200005
+custom_styles/panel = SubResource( 3 )
+
+[node name="HSeparator" type="HSeparator" parent="Panel"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_bottom = 2.0
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Alumno"
+align = 1
+valign = 1
+
+[node name="Panel2" type="Panel" parent="."]
+anchor_left = 0.064
+anchor_top = 0.127
+anchor_right = 0.935
+anchor_bottom = 1.0
+margin_left = 0.463997
+margin_top = -0.200005
+margin_right = -0.440063
+margin_bottom = 1.0
+custom_styles/panel = SubResource( 6 )
+
+[node name="HSeparator" type="HSeparator" parent="Panel2"]
+anchor_left = 0.087
+anchor_top = 0.076
+anchor_right = 0.926
+anchor_bottom = 0.084
+margin_left = 0.482994
+margin_top = 0.0999985
+margin_right = -0.06604
+margin_bottom = -0.100002
+
+[node name="HSeparator3" type="HSeparator" parent="Panel2"]
+anchor_left = 0.087
+anchor_top = 0.192
+anchor_right = 0.926
+anchor_bottom = 0.2
+margin_left = 0.482994
+margin_top = 0.199997
+margin_right = -0.06604
+
+[node name="HSeparator2" type="HSeparator" parent="Panel2"]
+anchor_left = 0.088
+anchor_top = 0.922
+anchor_right = 0.926
+anchor_bottom = 0.926
+margin_left = -0.408005
+margin_top = -2.05002
+margin_right = -0.06604
+margin_bottom = -0.150024
+
+[node name="VSeparator" type="VSeparator" parent="Panel2"]
+anchor_left = 0.086
+anchor_top = 0.078
+anchor_right = 0.091
+anchor_bottom = 0.922
+margin_left = 0.374001
+margin_top = 0.0499992
+margin_right = -0.0810013
+margin_bottom = -0.0500183
+
+[node name="VSeparator3" type="VSeparator" parent="Panel2"]
+anchor_left = 0.29
+anchor_top = 0.078
+anchor_right = 0.294
+anchor_bottom = 0.922
+margin_left = -0.390015
+margin_top = 0.0499992
+margin_right = 0.04599
+margin_bottom = -0.0500183
+
+[node name="VSeparator4" type="VSeparator" parent="Panel2"]
+anchor_left = 0.489
+anchor_top = 0.078
+anchor_right = 0.494
+anchor_bottom = 0.922
+margin_left = 0.300995
+margin_top = 0.0499992
+margin_right = -0.154022
+margin_bottom = -0.0500183
+
+[node name="VSeparator5" type="VSeparator" parent="Panel2"]
+anchor_left = 0.71
+anchor_top = 0.078
+anchor_right = 0.715
+anchor_bottom = 0.922
+margin_left = 0.389954
+margin_top = 0.0499992
+margin_right = -0.0650024
+margin_bottom = -0.0500183
+
+[node name="VSeparator2" type="VSeparator" parent="Panel2"]
+anchor_left = 0.924
+anchor_top = 0.078
+anchor_right = 0.928
+anchor_bottom = 1.0
+margin_left = -0.283997
+margin_top = 0.0499992
+margin_right = 0.151978
+margin_bottom = -41.0
+
+[node name="Label" type="Label" parent="Panel2"]
+anchor_left = 0.088
+anchor_top = 0.079
+anchor_right = 0.29
+anchor_bottom = 0.196
+margin_left = 5.592
+margin_top = 6.525
+margin_right = -16.39
+margin_bottom = -6.9
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Materias"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label2" type="Label" parent="Panel2"]
+anchor_left = 0.291
+anchor_top = 0.079
+anchor_right = 0.491
+anchor_bottom = 0.195
+margin_left = 4.71899
+margin_top = 6.525
+margin_right = -15.481
+margin_bottom = -6.37501
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "Primer
+ cuatrimestre"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label3" type="Label" parent="Panel2"]
+anchor_left = 0.492
+anchor_top = 0.08
+anchor_right = 0.711
+anchor_bottom = 0.195
+margin_left = 9.62799
+margin_top = 6.0
+margin_right = -27.501
+margin_bottom = -3.37501
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Segundo
+ cuatrimestre"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label4" type="Label" parent="Panel2"]
+anchor_left = 0.712
+anchor_top = 0.079
+anchor_right = 0.925
+anchor_bottom = 0.194
+margin_left = 3.60797
+margin_top = 6.525
+margin_right = -28.175
+margin_bottom = -2.85001
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "Tercer
+ cuatrimestre"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Materias" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Materia1" type="Control" parent="Materias"]
+anchor_left = 0.147
+anchor_top = 0.31
+anchor_right = 0.863
+anchor_bottom = 0.353
+margin_left = 0.472
+margin_right = 0.287964
+margin_bottom = 0.199997
+
+[node name="Label" type="Label" parent="Materias/Materia1"]
+anchor_left = -0.008
+anchor_top = -0.254
+anchor_right = 0.237
+anchor_bottom = 1.0
+margin_left = 5.864
+margin_top = 6.604
+margin_right = -4.72101
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 14 )
+text = "Nombre"
+valign = 1
+
+[node name="Label2" type="Label" parent="Materias/Materia1"]
+anchor_left = 0.24
+anchor_top = -0.254
+anchor_right = 0.48
+anchor_bottom = 1.0
+margin_left = 3.07999
+margin_top = 6.604
+margin_right = -3.84003
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 16 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Materias/Materia1"]
+anchor_left = 0.482
+anchor_top = -0.26
+anchor_right = 0.749
+anchor_bottom = 1.0
+margin_left = 12.694
+margin_top = 6.76
+margin_right = -14.017
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 18 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Materias/Materia1"]
+anchor_left = 0.751
+anchor_top = -0.269
+anchor_right = 1.008
+anchor_bottom = 1.0
+margin_left = 9.51697
+margin_top = 6.994
+margin_right = -9.86401
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 20 )
+text = "8"
+align = 1
+valign = 1

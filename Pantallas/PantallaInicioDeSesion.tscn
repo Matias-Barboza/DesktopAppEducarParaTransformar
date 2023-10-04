@@ -142,7 +142,4 @@ valign = 1
 
 [node name="LoginRequest" type="HTTPRequest" parent="."]
 
-[connection signal="pressed" from="PanelInicioDeSesion/VBoxContainerDatos/ButtonIS" to="." method="_on_ButtonIS_pressed"]
 [connection signal="request_completed" from="LoginRequest" to="." method="_on_LoginRequest_request_completed"]
-
-[editable path="PanelInicioDeSesion/VBoxContainerDatos"]

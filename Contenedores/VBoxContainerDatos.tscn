@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Contenedores/TextEditContrasenha.gd" type="Script" id=3]
@@ -47,19 +47,28 @@ border_color = Color( 0.603922, 0.564706, 0.564706, 1 )
 size = 20
 font_data = ExtResource( 1 )
 
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.0431373, 0.368627, 0.843137, 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.0392157, 0.345098, 0.792157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.0509804, 0.431373, 0.992157, 1 )
+
 [node name="VBoxContainerDatos" type="VBoxContainer"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -178.0
-margin_top = -132.0
-margin_right = 178.0
-margin_bottom = 43.0
+margin_left = -222.0
+margin_top = -115.5
+margin_right = 222.0
+margin_bottom = 115.5
 custom_constants/separation = 10
 
 [node name="LabelCE" type="Label" parent="."]
-margin_right = 356.0
+margin_right = 444.0
 margin_bottom = 32.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
@@ -68,7 +77,7 @@ valign = 1
 
 [node name="TextEditCE" type="TextEdit" parent="."]
 margin_top = 42.0
-margin_right = 356.0
+margin_right = 444.0
 margin_bottom = 81.0
 rect_min_size = Vector2( 0, 39 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -77,7 +86,7 @@ custom_styles/normal = SubResource( 5 )
 
 [node name="LabelContraseña" type="Label" parent="."]
 margin_top = 91.0
-margin_right = 356.0
+margin_right = 444.0
 margin_bottom = 123.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
@@ -86,7 +95,7 @@ valign = 1
 
 [node name="TextEditContrasenha" type="TextEdit" parent="."]
 margin_top = 133.0
-margin_right = 356.0
+margin_right = 444.0
 margin_bottom = 172.0
 rect_min_size = Vector2( 0, 39 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -96,15 +105,18 @@ script = ExtResource( 3 )
 
 [node name="HSeparator" type="HSeparator" parent="."]
 margin_top = 182.0
-margin_right = 356.0
+margin_right = 444.0
 margin_bottom = 186.0
 
 [node name="ButtonIS" type="Button" parent="."]
 margin_top = 196.0
-margin_right = 356.0
+margin_right = 444.0
 margin_bottom = 231.0
 rect_min_size = Vector2( 0, 35 )
 custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/normal = SubResource( 9 )
 text = "Iniciar sesión"
 
 [connection signal="text_changed" from="TextEditContrasenha" to="TextEditContrasenha" method="_on_text_changed"]

@@ -14,19 +14,19 @@ font_path = "res://Recursos/Montserrat-SemiBold.ttf"
 size = 40
 font_data = SubResource( 4 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=26]
 size = 29
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFontData" id=8]
+[sub_resource type="DynamicFontData" id=27]
 font_path = "res://Recursos/Montserrat-SemiBold.ttf"
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=28]
 size = 19
-font_data = SubResource( 8 )
+font_data = SubResource( 27 )
 
 [sub_resource type="DynamicFontData" id=10]
 font_path = "res://Recursos/Montserrat-SemiBold.ttf"
@@ -95,7 +95,7 @@ text = "Alumno"
 align = 1
 valign = 1
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="PanelNotas" type="Panel" parent="."]
 anchor_left = 0.064
 anchor_top = 0.127
 anchor_right = 0.935
@@ -104,9 +104,9 @@ margin_left = 0.463997
 margin_top = -0.200005
 margin_right = -0.440063
 margin_bottom = 1.0
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = SubResource( 25 )
 
-[node name="HSeparator" type="HSeparator" parent="Panel2"]
+[node name="HSeparator" type="HSeparator" parent="PanelNotas"]
 anchor_left = 0.087
 anchor_top = 0.076
 anchor_right = 0.926
@@ -116,7 +116,7 @@ margin_top = 0.0999985
 margin_right = -0.06604
 margin_bottom = -0.100002
 
-[node name="HSeparator3" type="HSeparator" parent="Panel2"]
+[node name="HSeparator3" type="HSeparator" parent="PanelNotas"]
 anchor_left = 0.087
 anchor_top = 0.192
 anchor_right = 0.926
@@ -125,7 +125,7 @@ margin_left = 0.482994
 margin_top = 0.199997
 margin_right = -0.06604
 
-[node name="HSeparator2" type="HSeparator" parent="Panel2"]
+[node name="HSeparator2" type="HSeparator" parent="PanelNotas"]
 anchor_left = 0.088
 anchor_top = 0.922
 anchor_right = 0.926
@@ -135,7 +135,7 @@ margin_top = -2.05002
 margin_right = -0.06604
 margin_bottom = -0.150024
 
-[node name="VSeparator" type="VSeparator" parent="Panel2"]
+[node name="VSeparator" type="VSeparator" parent="PanelNotas"]
 anchor_left = 0.086
 anchor_top = 0.078
 anchor_right = 0.091
@@ -145,7 +145,7 @@ margin_top = 0.0499992
 margin_right = -0.0810013
 margin_bottom = -0.0500183
 
-[node name="VSeparator3" type="VSeparator" parent="Panel2"]
+[node name="VSeparator3" type="VSeparator" parent="PanelNotas"]
 anchor_left = 0.29
 anchor_top = 0.078
 anchor_right = 0.294
@@ -155,7 +155,7 @@ margin_top = 0.0499992
 margin_right = 0.04599
 margin_bottom = -0.0500183
 
-[node name="VSeparator4" type="VSeparator" parent="Panel2"]
+[node name="VSeparator4" type="VSeparator" parent="PanelNotas"]
 anchor_left = 0.489
 anchor_top = 0.078
 anchor_right = 0.494
@@ -165,7 +165,7 @@ margin_top = 0.0499992
 margin_right = -0.154022
 margin_bottom = -0.0500183
 
-[node name="VSeparator5" type="VSeparator" parent="Panel2"]
+[node name="VSeparator5" type="VSeparator" parent="PanelNotas"]
 anchor_left = 0.71
 anchor_top = 0.078
 anchor_right = 0.715
@@ -175,7 +175,7 @@ margin_top = 0.0499992
 margin_right = -0.0650024
 margin_bottom = -0.0500183
 
-[node name="VSeparator2" type="VSeparator" parent="Panel2"]
+[node name="VSeparator2" type="VSeparator" parent="PanelNotas"]
 anchor_left = 0.924
 anchor_top = 0.078
 anchor_right = 0.928
@@ -185,7 +185,7 @@ margin_top = 0.0499992
 margin_right = 0.151978
 margin_bottom = -41.0
 
-[node name="Label" type="Label" parent="Panel2"]
+[node name="LabelMateria" type="Label" parent="PanelNotas"]
 anchor_left = 0.088
 anchor_top = 0.079
 anchor_right = 0.29
@@ -195,7 +195,7 @@ margin_top = 6.525
 margin_right = -16.39
 margin_bottom = -6.9
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 26 )
 text = "Materias"
 align = 1
 valign = 1
@@ -203,7 +203,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label2" type="Label" parent="Panel2"]
+[node name="LabelPrimerTri" type="Label" parent="PanelNotas"]
 anchor_left = 0.291
 anchor_top = 0.079
 anchor_right = 0.491
@@ -213,16 +213,16 @@ margin_top = 6.525
 margin_right = -15.481
 margin_bottom = -6.37501
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 28 )
 text = "Primer
- cuatrimestre"
+ trimestre"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label3" type="Label" parent="Panel2"]
+[node name="LabelSegundoTri" type="Label" parent="PanelNotas"]
 anchor_left = 0.492
 anchor_top = 0.08
 anchor_right = 0.711
@@ -234,14 +234,14 @@ margin_bottom = -3.37501
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 11 )
 text = "Segundo
- cuatrimestre"
+ trimestre"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label4" type="Label" parent="Panel2"]
+[node name="LabelTercerTri" type="Label" parent="PanelNotas"]
 anchor_left = 0.712
 anchor_top = 0.079
 anchor_right = 0.925
@@ -253,7 +253,7 @@ margin_bottom = -2.85001
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 13 )
 text = "Tercer
- cuatrimestre"
+ trimestre"
 align = 1
 valign = 1
 __meta__ = {

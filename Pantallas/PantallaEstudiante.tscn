@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Recursos/IconoMenuDesplegable9.png" type="Texture" id=1]
 [ext_resource path="res://Pantallas/PantallaEstudiante.gd" type="Script" id=2]
@@ -11,7 +11,7 @@ resource_name = "despliegue_menu_lateral"
 length = 0.3
 step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("PanelLateral:rect_size")
+tracks/0/path = NodePath("PanelLateral:rect_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -20,55 +20,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 524 ), Vector2( 258, 524 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PanelLateral/VBoxContainer:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.12 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("PanelLateral/VBoxContainer:rect_size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.12, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 66, 130 ), Vector2( 254, 130 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("PanelLateral/ButtonSalir:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.12 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("PanelLateral/ButtonSalir:rect_size")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.12, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 66, 40 ), Vector2( 254, 40 ) ]
+"values": [ Vector2( -260, 76 ), Vector2( 0, 76 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -76,7 +28,7 @@ resource_name = "repliegue_menu_lateral"
 length = 0.3
 step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("PanelLateral:rect_size")
+tracks/0/path = NodePath("PanelLateral:rect_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -85,55 +37,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 258, 524 ), Vector2( 0, 524 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PanelLateral/VBoxContainer:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.18 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("PanelLateral/VBoxContainer:rect_size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.18 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 254, 130 ), Vector2( 66, 130 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("PanelLateral/ButtonSalir:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.18 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("PanelLateral/ButtonSalir:rect_size")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.18 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 254, 40 ), Vector2( 66, 40 ) ]
+"values": [ Vector2( 0, 76 ), Vector2( -260, 76 ) ]
 }
 
 [sub_resource type="StyleBoxFlat" id=4]
@@ -183,7 +87,35 @@ bg_color = Color( 0.184314, 0.823529, 1, 1 )
 size = 30
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=26]
+size = 29
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFontData" id=27]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=28]
+size = 19
+font_data = SubResource( 27 )
+
+[sub_resource type="DynamicFontData" id=10]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=11]
+size = 19
+font_data = SubResource( 10 )
+
+[sub_resource type="DynamicFontData" id=12]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=13]
+size = 19
+font_data = SubResource( 12 )
+
+[sub_resource type="StyleBoxFlat" id=29]
 bg_color = Color( 0.0666667, 0.376471, 0.439216, 0.823529 )
 
 [sub_resource type="DynamicFont" id=23]
@@ -202,7 +134,7 @@ border_width_bottom = 3
 border_color = Color( 0.0666667, 0.376471, 0.439216, 0.823529 )
 border_blend = true
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=30]
 bg_color = Color( 0.0666667, 0.376471, 0.439216, 0.823529 )
 
 [sub_resource type="StyleBoxFlat" id=17]
@@ -217,7 +149,7 @@ border_width_bottom = 5
 border_color = Color( 0.054902, 0.294118, 0.341176, 0.823529 )
 border_blend = true
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=31]
 bg_color = Color( 0.0666667, 0.376471, 0.439216, 0.823529 )
 
 [sub_resource type="StyleBoxFlat" id=15]
@@ -232,7 +164,7 @@ border_width_bottom = 3
 border_color = Color( 0.054902, 0.294118, 0.341176, 0.823529 )
 border_blend = true
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id=32]
 bg_color = Color( 0.0666667, 0.376471, 0.439216, 0.823529 )
 
 [sub_resource type="DynamicFont" id=24]
@@ -257,6 +189,8 @@ bg_color = Color( 0.827451, 0.141176, 0.141176, 1 )
 [node name="PantallaEstudiante" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource( 2 )
 
 [node name="ColorRectFondo" type="ColorRect" parent="."]
@@ -274,10 +208,10 @@ margin_bottom = 76.0
 custom_styles/panel = SubResource( 4 )
 
 [node name="ButtonMenuDesplegable" type="Button" parent="PanelSuperior"]
-margin_left = 13.0
-margin_top = 4.0
-margin_right = 89.0
-margin_bottom = 74.0
+margin_left = 20.0
+margin_top = 3.0
+margin_right = 96.0
+margin_bottom = 73.0
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )
@@ -304,14 +238,12 @@ margin_top = 74.0
 margin_bottom = 78.0
 
 [node name="PanelBienvenida" type="Panel" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -511.0
-margin_top = -224.0
-margin_right = 511.0
-margin_bottom = 300.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 449.0
+margin_top = 316.0
+margin_right = -449.0
+margin_bottom = -240.0
 custom_styles/panel = SubResource( 8 )
 
 [node name="LabelBienvenida" type="Label" parent="PanelBienvenida"]
@@ -330,14 +262,12 @@ valign = 1
 
 [node name="PanelHorarios" type="Panel" parent="."]
 visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -511.0
-margin_top = -224.0
-margin_right = 511.0
-margin_bottom = 300.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 449.0
+margin_top = 316.0
+margin_right = -449.0
+margin_bottom = -240.0
 custom_styles/panel = SubResource( 8 )
 
 [node name="LabelHorarios" type="Label" parent="PanelHorarios"]
@@ -356,40 +286,176 @@ valign = 1
 
 [node name="PanelNotas" type="Panel" parent="."]
 visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -511.0
-margin_top = -224.0
-margin_right = 511.0
-margin_bottom = 300.0
-custom_styles/panel = SubResource( 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 123.344
+margin_top = 115.0
+margin_right = -125.24
+margin_bottom = -20.96
+custom_styles/panel = SubResource( 25 )
 
-[node name="LabelNotas" type="Label" parent="PanelNotas"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -174.0
-margin_top = -49.0
-margin_right = 174.0
-margin_bottom = -11.0
-custom_fonts/font = SubResource( 9 )
-text = "Tus notas estarán aquí"
+[node name="HSeparator" type="HSeparator" parent="PanelNotas"]
+anchor_left = 0.087
+anchor_top = 0.076
+anchor_right = 0.926
+anchor_bottom = 0.084
+margin_left = 0.482994
+margin_top = 0.0999985
+margin_right = -0.06604
+margin_bottom = -0.100002
+
+[node name="HSeparator3" type="HSeparator" parent="PanelNotas"]
+anchor_left = 0.087
+anchor_top = 0.192
+anchor_right = 0.926
+anchor_bottom = 0.2
+margin_left = 0.482994
+margin_top = 0.199997
+margin_right = -0.06604
+
+[node name="HSeparator2" type="HSeparator" parent="PanelNotas"]
+anchor_left = 0.088
+anchor_top = 0.922
+anchor_right = 0.926
+anchor_bottom = 0.926
+margin_left = -0.408005
+margin_top = -2.05002
+margin_right = -0.06604
+margin_bottom = -0.150024
+
+[node name="VSeparator" type="VSeparator" parent="PanelNotas"]
+anchor_left = 0.086
+anchor_top = 0.078
+anchor_right = 0.091
+anchor_bottom = 0.922
+margin_left = 0.374001
+margin_top = 0.0499992
+margin_right = -0.0810013
+margin_bottom = -0.0500183
+
+[node name="VSeparator3" type="VSeparator" parent="PanelNotas"]
+anchor_left = 0.29
+anchor_top = 0.078
+anchor_right = 0.294
+anchor_bottom = 0.922
+margin_left = -0.390015
+margin_top = 0.0499992
+margin_right = 0.04599
+margin_bottom = -0.0500183
+
+[node name="VSeparator4" type="VSeparator" parent="PanelNotas"]
+anchor_left = 0.489
+anchor_top = 0.078
+anchor_right = 0.494
+anchor_bottom = 0.922
+margin_left = 0.300995
+margin_top = 0.0499992
+margin_right = -0.154022
+margin_bottom = -0.0500183
+
+[node name="VSeparator5" type="VSeparator" parent="PanelNotas"]
+anchor_left = 0.71
+anchor_top = 0.078
+anchor_right = 0.715
+anchor_bottom = 0.922
+margin_left = 0.389954
+margin_top = 0.0499992
+margin_right = -0.0650024
+margin_bottom = -0.0500183
+
+[node name="VSeparator2" type="VSeparator" parent="PanelNotas"]
+anchor_left = 0.924
+anchor_top = 0.078
+anchor_right = 0.928
+anchor_bottom = 1.0
+margin_left = -0.283997
+margin_top = 0.0499992
+margin_right = 0.151978
+margin_bottom = -41.0
+
+[node name="LabelMateria" type="Label" parent="PanelNotas"]
+anchor_left = 0.088
+anchor_top = 0.079
+anchor_right = 0.29
+anchor_bottom = 0.196
+margin_left = 5.592
+margin_top = 6.525
+margin_right = -16.39
+margin_bottom = -6.9
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 26 )
+text = "Materias"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LabelPrimerTri" type="Label" parent="PanelNotas"]
+anchor_left = 0.291
+anchor_top = 0.079
+anchor_right = 0.491
+anchor_bottom = 0.195
+margin_left = 4.71899
+margin_top = 6.525
+margin_right = -15.481
+margin_bottom = -6.37501
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 28 )
+text = "Primer
+ trimestre"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LabelSegundoTri" type="Label" parent="PanelNotas"]
+anchor_left = 0.492
+anchor_top = 0.08
+anchor_right = 0.711
+anchor_bottom = 0.195
+margin_left = 9.62799
+margin_top = 6.0
+margin_right = -27.501
+margin_bottom = -3.37501
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Segundo
+ trimestre"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LabelTercerTri" type="Label" parent="PanelNotas"]
+anchor_left = 0.712
+anchor_top = 0.079
+anchor_right = 0.925
+anchor_bottom = 0.194
+margin_left = 3.60797
+margin_top = 6.525
+margin_right = -28.175
+margin_bottom = -2.85001
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "Tercer
+ trimestre"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="PanelAsistencia" type="Panel" parent="."]
 visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -511.0
-margin_top = -224.0
-margin_right = 511.0
-margin_bottom = 300.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 449.0
+margin_top = 316.0
+margin_right = -449.0
+margin_bottom = -240.0
 custom_styles/panel = SubResource( 8 )
 
 [node name="LabelAsistencia" type="Label" parent="PanelAsistencia"]
@@ -407,21 +473,23 @@ align = 1
 valign = 1
 
 [node name="PanelLateral" type="Panel" parent="."]
-anchor_bottom = 1.0
+anchor_right = 0.132
+anchor_bottom = 0.886
 margin_top = 76.0
-margin_bottom = -480.0
-custom_styles/panel = SubResource( 11 )
+margin_right = 0.559998
+margin_bottom = 123.12
+custom_styles/panel = SubResource( 29 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelLateral"]
-visible = false
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 103.0
-margin_bottom = 132.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_right = -3.0
+margin_bottom = -222.0
 custom_constants/separation = 5
 
 [node name="ButtonHorarios" type="Button" parent="PanelLateral/VBoxContainer"]
-margin_right = 101.0
+margin_right = 247.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -430,13 +498,13 @@ custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 23 )
 custom_styles/hover = SubResource( 16 )
 custom_styles/pressed = SubResource( 19 )
-custom_styles/normal = SubResource( 10 )
+custom_styles/normal = SubResource( 30 )
 text = " Horarios"
 align = 0
 
 [node name="ButtonNotas" type="Button" parent="PanelLateral/VBoxContainer"]
 margin_top = 45.0
-margin_right = 101.0
+margin_right = 247.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -445,13 +513,13 @@ custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 23 )
 custom_styles/hover = SubResource( 17 )
 custom_styles/pressed = SubResource( 20 )
-custom_styles/normal = SubResource( 12 )
+custom_styles/normal = SubResource( 31 )
 text = " Notas"
 align = 0
 
 [node name="ButtonAsistencia" type="Button" parent="PanelLateral/VBoxContainer"]
 margin_top = 90.0
-margin_right = 101.0
+margin_right = 247.0
 margin_bottom = 130.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -460,16 +528,19 @@ custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 23 )
 custom_styles/hover = SubResource( 15 )
 custom_styles/pressed = SubResource( 21 )
-custom_styles/normal = SubResource( 13 )
+custom_styles/normal = SubResource( 32 )
 text = " Asistencia"
 align = 0
 
-[node name="ButtonSalir" type="Button" parent="PanelLateral"]
-visible = false
-margin_left = 2.0
-margin_top = 477.0
-margin_right = 102.182
-margin_bottom = 517.0
+[node name="HSeparator" type="HSeparator" parent="PanelLateral/VBoxContainer"]
+margin_top = 135.0
+margin_right = 247.0
+margin_bottom = 139.0
+
+[node name="ButtonSalir" type="Button" parent="PanelLateral/VBoxContainer"]
+margin_top = 144.0
+margin_right = 247.0
+margin_bottom = 184.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )

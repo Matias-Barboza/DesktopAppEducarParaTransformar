@@ -1,7 +1,7 @@
 extends Control
 
 onready var request = $HTTPRequest
-onready var conjuntoAlumnos = $Alumnos
+onready var conjuntoAlumnos = $PanelDatos/Alumnos
 
 export var alum: PackedScene
 

@@ -1,10 +1,13 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Recursos/IconoMenuDesplegable9.png" type="Texture" id=1]
 [ext_resource path="res://Pantallas/PantallaEstudiante.gd" type="Script" id=2]
 [ext_resource path="res://Recursos/Montserrat-Bold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Pantallas/Panels.gd" type="Script" id=6]
+[ext_resource path="res://Contenedores/TablaHorarios.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Contenedores/TextoTabla.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=5]
 resource_name = "despliegue_menu_lateral"
@@ -86,6 +89,21 @@ bg_color = Color( 0.184314, 0.823529, 1, 1 )
 [sub_resource type="DynamicFont" id=9]
 size = 30
 font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=34]
+size = 30
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=35]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 2
+border_width_top = 1
+border_width_right = 2
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 1, 1, 1, 1 )
@@ -192,6 +210,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource( 2 )
+texto_tabla = ExtResource( 8 )
 
 [node name="ColorRectFondo" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -240,11 +259,9 @@ margin_bottom = 78.0
 [node name="PanelBienvenida" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 449.0
-margin_top = 316.0
-margin_right = -449.0
-margin_bottom = -240.0
+margin_top = 76.0
 custom_styles/panel = SubResource( 8 )
+script = ExtResource( 6 )
 
 [node name="LabelBienvenida" type="Label" parent="PanelBienvenida"]
 anchor_left = 0.5
@@ -261,26 +278,81 @@ align = 1
 valign = 1
 
 [node name="PanelHorarios" type="Panel" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 449.0
-margin_top = 316.0
-margin_right = -449.0
-margin_bottom = -240.0
+margin_top = 76.0
 custom_styles/panel = SubResource( 8 )
+script = ExtResource( 6 )
 
-[node name="LabelHorarios" type="Label" parent="PanelHorarios"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -194.5
-margin_top = -49.0
-margin_right = 194.5
-margin_bottom = -11.0
-custom_fonts/font = SubResource( 9 )
-text = "Tus horarios estarán aquí"
+[node name="PanelTabla" type="Panel" parent="PanelHorarios"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 265.0
+margin_top = 85.0
+margin_right = -265.0
+margin_bottom = -85.0
+custom_styles/panel = SubResource( 33 )
+
+[node name="ScrollContainer" parent="PanelHorarios/PanelTabla" instance=ExtResource( 7 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.0
+margin_top = 84.0
+margin_right = 0.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 0, 754 )
+
+[node name="VBoxContainerSuperior" type="VBoxContainer" parent="PanelHorarios/PanelTabla"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -754.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelHorarios/PanelTabla/VBoxContainerSuperior"]
+margin_right = 1390.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LabelMateria" type="Label" parent="PanelHorarios/PanelTabla/VBoxContainerSuperior/HBoxContainer"]
+margin_right = 460.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 34 )
+custom_styles/normal = SubResource( 35 )
+text = "Materia"
+align = 1
+valign = 1
+
+[node name="LabelHorario" type="Label" parent="PanelHorarios/PanelTabla/VBoxContainerSuperior/HBoxContainer"]
+margin_left = 464.0
+margin_right = 925.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 34 )
+custom_styles/normal = SubResource( 35 )
+text = "Horario"
+align = 1
+valign = 1
+
+[node name="LabelAulaAsignada" type="Label" parent="PanelHorarios/PanelTabla/VBoxContainerSuperior/HBoxContainer"]
+margin_left = 929.0
+margin_right = 1390.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 34 )
+custom_styles/normal = SubResource( 35 )
+text = "Aula asignada"
 align = 1
 valign = 1
 
@@ -288,11 +360,12 @@ valign = 1
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 123.344
-margin_top = 115.0
-margin_right = -125.24
-margin_bottom = -20.96
+margin_left = 123.0
+margin_top = 112.0
+margin_right = -125.584
+margin_bottom = -23.96
 custom_styles/panel = SubResource( 25 )
+script = ExtResource( 6 )
 
 [node name="HSeparator" type="HSeparator" parent="PanelNotas"]
 anchor_left = 0.087
@@ -452,11 +525,9 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 449.0
-margin_top = 316.0
-margin_right = -449.0
-margin_bottom = -240.0
+margin_top = 76.0
 custom_styles/panel = SubResource( 8 )
+script = ExtResource( 6 )
 
 [node name="LabelAsistencia" type="Label" parent="PanelAsistencia"]
 anchor_left = 0.5
@@ -475,8 +546,9 @@ valign = 1
 [node name="PanelLateral" type="Panel" parent="."]
 anchor_right = 0.132
 anchor_bottom = 0.886
+margin_left = -260.0
 margin_top = 76.0
-margin_right = 0.559998
+margin_right = -259.44
 margin_bottom = 123.12
 custom_styles/panel = SubResource( 29 )
 
@@ -485,7 +557,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_right = -3.0
-margin_bottom = -222.0
+margin_bottom = -820.0
 custom_constants/separation = 5
 
 [node name="ButtonHorarios" type="Button" parent="PanelLateral/VBoxContainer"]
@@ -551,7 +623,14 @@ custom_styles/pressed = SubResource( 22 )
 custom_styles/normal = SubResource( 14 )
 text = "Salir"
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="PanelSuperior/ButtonMenuDesplegable" to="." method="_on_ButtonMenuDesplegable_pressed"]
+[connection signal="gui_input" from="PanelBienvenida" to="PanelBienvenida" method="_on_gui_input"]
+[connection signal="gui_input" from="PanelHorarios" to="PanelHorarios" method="_on_gui_input"]
+[connection signal="gui_input" from="PanelNotas" to="PanelNotas" method="_on_gui_input"]
+[connection signal="gui_input" from="PanelAsistencia" to="PanelAsistencia" method="_on_gui_input"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonHorarios" to="." method="_on_ButtonHorarios_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonNotas" to="." method="_on_ButtonNotas_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonAsistencia" to="." method="_on_ButtonAsistencia_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

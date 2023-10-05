@@ -65,7 +65,7 @@ margin_left = -222.0
 margin_top = -115.5
 margin_right = 222.0
 margin_bottom = 115.5
-custom_constants/separation = 10
+custom_constants/separation = 20
 
 [node name="LabelCE" type="Label" parent="."]
 margin_right = 444.0
@@ -76,27 +76,27 @@ text = "Correo electrónico:"
 valign = 1
 
 [node name="TextEditCE" type="TextEdit" parent="."]
-margin_top = 42.0
+margin_top = 52.0
 margin_right = 444.0
-margin_bottom = 81.0
+margin_bottom = 91.0
 rect_min_size = Vector2( 0, 39 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 
 [node name="LabelContraseña" type="Label" parent="."]
-margin_top = 91.0
+margin_top = 111.0
 margin_right = 444.0
-margin_bottom = 123.0
+margin_bottom = 143.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Contraseña:"
 valign = 1
 
 [node name="TextEditContrasenha" type="TextEdit" parent="."]
-margin_top = 133.0
+margin_top = 163.0
 margin_right = 444.0
-margin_bottom = 172.0
+margin_bottom = 202.0
 rect_min_size = Vector2( 0, 39 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 6 )
@@ -104,15 +104,15 @@ custom_styles/normal = SubResource( 7 )
 script = ExtResource( 3 )
 
 [node name="HSeparator" type="HSeparator" parent="."]
-margin_top = 182.0
+margin_top = 222.0
 margin_right = 444.0
-margin_bottom = 186.0
+margin_bottom = 226.0
 
 [node name="ButtonIS" type="Button" parent="."]
-margin_top = 196.0
+margin_top = 246.0
 margin_right = 444.0
-margin_bottom = 231.0
-rect_min_size = Vector2( 0, 35 )
+margin_bottom = 286.0
+rect_min_size = Vector2( 0, 40 )
 custom_fonts/font = SubResource( 3 )
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 10 )

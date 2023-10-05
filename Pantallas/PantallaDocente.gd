@@ -50,7 +50,6 @@ func espaciarAlumnos():
 		var hijo = conjuntoAlumnos.get_child(i)
 		posicionInicial = conjuntoAlumnos.get_child(i-1).get_position()
 		hijo.rect_position.y = posicionInicial.y + 35 
-		print(i)
 		i += 1
 		
 func darValores():

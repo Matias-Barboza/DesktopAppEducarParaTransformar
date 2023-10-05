@@ -20,19 +20,19 @@ bg_color = Color( 1, 1, 1, 1 )
 size = 20
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFontData" id=6]
-font_path = "res://Recursos/Montserrat-SemiBold.ttf"
-
-[sub_resource type="DynamicFont" id=7]
-size = 20
-font_data = SubResource( 6 )
-
 [sub_resource type="DynamicFontData" id=8]
 font_path = "res://Recursos/Montserrat-SemiBold.ttf"
 
 [sub_resource type="DynamicFont" id=9]
 size = 20
 font_data = SubResource( 8 )
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = SubResource( 6 )
 
 [sub_resource type="DynamicFontData" id=10]
 font_path = "res://Recursos/Montserrat-SemiBold.ttf"
@@ -127,20 +127,6 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Nombre" type="Label" parent="PanelDatos"]
-anchor_left = 0.200898
-anchor_top = 0.0782443
-anchor_right = 0.386083
-anchor_bottom = 0.15458
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 7 )
-text = "Nombre"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
 [node name="Apellido" type="Label" parent="PanelDatos"]
 anchor_left = 0.386083
 anchor_top = 0.0780952
@@ -149,6 +135,20 @@ anchor_bottom = 0.154286
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 9 )
 text = "Apellido"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Nombre" type="Label" parent="PanelDatos"]
+anchor_left = 0.200898
+anchor_top = 0.0782443
+anchor_right = 0.386083
+anchor_bottom = 0.15458
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Nombre"
 align = 1
 valign = 1
 __meta__ = {

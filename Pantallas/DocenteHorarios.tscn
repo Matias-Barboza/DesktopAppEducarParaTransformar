@@ -1,7 +1,7 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Recursos/Montserrat-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Pantallas/PantallaDocente.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Recursos/IconoMenuDesplegable9.png" type="Texture" id=3]
 [ext_resource path="res://Pantallas/DocenteHorarios.gd" type="Script" id=4]
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=5]
@@ -126,11 +126,14 @@ font_data = ExtResource( 1 )
 [sub_resource type="StyleBoxFlat" id=35]
 bg_color = Color( 0.184314, 0.823529, 1, 1 )
 
-[sub_resource type="DynamicFont" id=44]
-size = 30
-font_data = ExtResource( 2 )
+[sub_resource type="DynamicFontData" id=49]
+font_path = "res://Recursos/Montserrat-Bold.ttf"
 
-[sub_resource type="StyleBoxFlat" id=45]
+[sub_resource type="DynamicFont" id=50]
+size = 20
+font_data = SubResource( 49 )
+
+[sub_resource type="StyleBoxFlat" id=51]
 bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=48]
@@ -211,6 +214,7 @@ bg_color = Color( 0.827451, 0.141176, 0.141176, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
+escenaMateria = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -262,7 +266,6 @@ align = 1
 valign = 1
 
 [node name="PanelHorario" type="Panel" parent="."]
-visible = false
 anchor_left = 0.068
 anchor_top = 0.127
 anchor_right = 0.938
@@ -531,6 +534,7 @@ align = 1
 valign = 1
 
 [node name="PanelMaterias" type="Panel" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 449.0
@@ -564,12 +568,15 @@ margin_top = -170.0
 margin_right = 180.5
 margin_bottom = -130.0
 
-[node name="MenuButton" type="MenuButton" parent="PanelMaterias/Panel"]
+[node name="OptionButton" type="OptionButton" parent="PanelMaterias/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 44 )
-custom_styles/normal = SubResource( 45 )
-text = "Seleccionar"
+custom_fonts/font = SubResource( 50 )
+custom_styles/normal = SubResource( 51 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="PanelNotas" type="Panel" parent="."]
 visible = false
@@ -677,7 +684,7 @@ text = "Salir"
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [connection signal="pressed" from="Panel/ButtonMenuDesplegable" to="." method="_on_ButtonMenuDesplegable_pressed"]
-[connection signal="pressed" from="PanelMaterias/Panel/MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="item_selected" from="PanelMaterias/Panel/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonHorarios" to="." method="_on_ButtonHorarios_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonNotas" to="." method="_on_ButtonNotas_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonMaterias" to="." method="_on_ButtonMaterias_pressed"]

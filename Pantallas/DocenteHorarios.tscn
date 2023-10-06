@@ -570,7 +570,6 @@ anchor_bottom = 1.0
 custom_fonts/font = SubResource( 44 )
 custom_styles/normal = SubResource( 45 )
 text = "Seleccionar"
-items = [ "Materia 1", null, 0, false, false, 0, 0, null, "", false, "Materia 2", null, 0, false, false, 1, 0, null, "", false ]
 
 [node name="PanelNotas" type="Panel" parent="."]
 visible = false
@@ -613,7 +612,7 @@ margin_bottom = -222.0
 custom_constants/separation = 5
 
 [node name="ButtonHorarios" type="Button" parent="PanelLateral/VBoxContainer"]
-margin_right = 247.0
+margin_right = 246.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -628,7 +627,7 @@ align = 0
 
 [node name="ButtonNotas" type="Button" parent="PanelLateral/VBoxContainer"]
 margin_top = 45.0
-margin_right = 247.0
+margin_right = 246.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -643,7 +642,7 @@ align = 0
 
 [node name="ButtonMaterias" type="Button" parent="PanelLateral/VBoxContainer"]
 margin_top = 90.0
-margin_right = 247.0
+margin_right = 246.0
 margin_bottom = 130.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -658,12 +657,12 @@ align = 0
 
 [node name="HSeparator" type="HSeparator" parent="PanelLateral/VBoxContainer"]
 margin_top = 135.0
-margin_right = 247.0
+margin_right = 246.0
 margin_bottom = 139.0
 
 [node name="ButtonSalir" type="Button" parent="PanelLateral/VBoxContainer"]
 margin_top = 144.0
-margin_right = 247.0
+margin_right = 246.0
 margin_bottom = 184.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -675,7 +674,11 @@ custom_styles/pressed = SubResource( 22 )
 custom_styles/normal = SubResource( 14 )
 text = "Salir"
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="Panel/ButtonMenuDesplegable" to="." method="_on_ButtonMenuDesplegable_pressed"]
+[connection signal="pressed" from="PanelMaterias/Panel/MenuButton" to="." method="_on_MenuButton_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonHorarios" to="." method="_on_ButtonHorarios_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonNotas" to="." method="_on_ButtonNotas_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonMaterias" to="." method="_on_ButtonMaterias_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

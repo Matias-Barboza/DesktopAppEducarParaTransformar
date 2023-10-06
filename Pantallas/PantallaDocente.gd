@@ -12,10 +12,10 @@ var listaNombreAlumnos = {}
 var listaApellidoAlumnos = {}
 var listaNotaAlumnos = {}
 var headers = ["Content-Type: application/json"]
-var URL = "https://educar-para-transformar.onrender.com/api/students"
+var endpoint = Globals.URL + "/api/students"
 
 func _ready():
-	request.request(URL)
+	request.request(endpoint)
 
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
@@ -23,7 +23,6 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		var i = 0
 		var json = JSON.parse(body.get_string_from_utf8())
 		print("todo ok pa")
-		print(json.result)
 		for alumno in json.result:
 			listaLegajoAlumnos[i] = alumno.file_number
 			listaNombreAlumnos[i] = alumno.firstname

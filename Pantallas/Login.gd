@@ -1,6 +1,6 @@
 extends Control
 
-var URL = "https://educar-para-transformar.onrender.com/auth/login"
+var endpoint = Globals.URL + "/auth/login"
 var headers = ["Content-Type: application/json"]
 
 
@@ -12,6 +12,7 @@ func _on_LoginRequest_request_completed(result, response_code, headers, body):
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
 		decodeJWT(json.result.token)
+		print(json.result.token)
 		print("iniciaste sesion capo")
 	else:
 		print("error")
@@ -29,7 +30,7 @@ func loginRequest() -> void:
 		"username" : correo.text,
 		"password" : Globals.password
 		}
-	request.request(URL, headers, true, HTTPClient.METHOD_POST, to_json(body))
+	request.request(endpoint, headers, true, HTTPClient.METHOD_POST, to_json(body))
 	Globals.password = ""
 
 

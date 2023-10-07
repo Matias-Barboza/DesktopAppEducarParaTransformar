@@ -2,6 +2,7 @@ extends Control
 
 onready var request = $HTTPRequest
 onready var conjuntoAlumnos = $PanelDatos/Alumnos
+onready var labelMateria = $Panel/LabelNombreMateria
 
 export var alum: PackedScene
 
@@ -12,18 +13,18 @@ var listaNombreAlumnos = {}
 var listaApellidoAlumnos = {}
 var listaNotaAlumnos = {}
 var headers = ["Content-Type: application/json"]
-var URL = "https://educar-para-transformar.onrender.com/api/students"
+var endpoint = Globals.URL + "/api/students"
 
 func _ready():
-	request.request(URL)
+	request.request(endpoint)
 
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	if response_code == 200:
+		labelMateria.text = Globals.materiaSeleccionada
 		var i = 0
 		var json = JSON.parse(body.get_string_from_utf8())
 		print("todo ok pa")
-		print(json.result)
 		for alumno in json.result:
 			listaLegajoAlumnos[i] = alumno.file_number
 			listaNombreAlumnos[i] = alumno.firstname

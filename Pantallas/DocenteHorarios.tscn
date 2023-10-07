@@ -1,10 +1,11 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Recursos/Montserrat-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Pantallas/PantallaDocente.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Recursos/IconoMenuDesplegable9.png" type="Texture" id=3]
 [ext_resource path="res://Pantallas/DocenteHorarios.gd" type="Script" id=4]
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Contenedores/Contenedor Docente/Mat.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -51,10 +52,6 @@ font_data = ExtResource( 1 )
 [sub_resource type="StyleBoxFlat" id=46]
 bg_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="DynamicFont" id=5]
-size = 20
-font_data = ExtResource( 1 )
-
 [sub_resource type="DynamicFontData" id=6]
 font_path = "res://Recursos/Montserrat-SemiBold.ttf"
 
@@ -75,12 +72,6 @@ font_path = "res://Recursos/Montserrat-SemiBold.ttf"
 [sub_resource type="DynamicFont" id=11]
 size = 20
 font_data = SubResource( 10 )
-
-[sub_resource type="DynamicFontData" id=12]
-font_path = "res://Recursos/Montserrat-SemiBold.ttf"
-
-[sub_resource type="DynamicFont" id=13]
-font_data = SubResource( 12 )
 
 [sub_resource type="Animation" id=33]
 resource_name = "despliegue_menu_lateral"
@@ -126,11 +117,14 @@ font_data = ExtResource( 1 )
 [sub_resource type="StyleBoxFlat" id=35]
 bg_color = Color( 0.184314, 0.823529, 1, 1 )
 
-[sub_resource type="DynamicFont" id=44]
-size = 30
-font_data = ExtResource( 2 )
+[sub_resource type="DynamicFontData" id=49]
+font_path = "res://Recursos/Montserrat-Bold.ttf"
 
-[sub_resource type="StyleBoxFlat" id=45]
+[sub_resource type="DynamicFont" id=50]
+size = 20
+font_data = SubResource( 49 )
+
+[sub_resource type="StyleBoxFlat" id=51]
 bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=48]
@@ -211,6 +205,7 @@ bg_color = Color( 0.827451, 0.141176, 0.141176, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
+escenaMateria = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -262,7 +257,6 @@ align = 1
 valign = 1
 
 [node name="PanelHorario" type="Panel" parent="."]
-visible = false
 anchor_left = 0.068
 anchor_top = 0.127
 anchor_right = 0.938
@@ -300,24 +294,10 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Año" type="Label" parent="PanelHorario"]
-anchor_left = 0.0875421
-anchor_top = 0.0782443
-anchor_right = 0.200898
-anchor_bottom = 0.15458
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 5 )
-text = "Año"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
 [node name="Materia" type="Label" parent="PanelHorario"]
-anchor_left = 0.201434
+anchor_left = 0.0886571
 anchor_top = 0.0784314
-anchor_right = 0.383312
+anchor_right = 0.28292
 anchor_bottom = 0.154556
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 7 )
@@ -329,10 +309,12 @@ __meta__ = {
 }
 
 [node name="Comision" type="Label" parent="PanelHorario"]
-anchor_left = 0.384615
+anchor_left = 0.283572
 anchor_top = 0.0784314
-anchor_right = 0.540417
+anchor_right = 0.539765
 anchor_bottom = 0.154556
+margin_left = 3.05176e-05
+margin_right = 6.10352e-05
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 9 )
 text = "Comision"
@@ -379,15 +361,6 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="VSeparator3" type="VSeparator" parent="PanelHorario"]
-anchor_left = 0.200898
-anchor_top = 0.0782443
-anchor_right = 0.205387
-anchor_bottom = 0.919847
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
 [node name="VSeparator5" type="VSeparator" parent="PanelHorario"]
 anchor_left = 0.538462
 anchor_top = 0.0784314
@@ -398,9 +371,9 @@ __meta__ = {
 }
 
 [node name="VSeparator4" type="VSeparator" parent="PanelHorario"]
-anchor_left = 0.382008
+anchor_left = 0.281617
 anchor_top = 0.0784314
-anchor_right = 0.386497
+anchor_right = 0.286106
 anchor_bottom = 0.920035
 __meta__ = {
 "_edit_use_anchors_": true
@@ -434,73 +407,7 @@ margin_top = -0.114182
 margin_right = -0.127075
 margin_bottom = -1.04004
 
-[node name="Mat" type="Control" parent="PanelHorario/Materias"]
-anchor_left = 0.152002
-anchor_top = 0.274252
-anchor_right = 0.9381
-anchor_bottom = 0.314583
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label" type="Label" parent="PanelHorario/Materias/Mat"]
-anchor_right = 0.111833
-anchor_bottom = 1.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 13 )
-text = "Null"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label2" type="Label" parent="PanelHorario/Materias/Mat"]
-anchor_left = 0.122655
-anchor_right = 0.31241
-anchor_bottom = 1.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 13 )
-text = "Null"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label3" type="Label" parent="PanelHorario/Materias/Mat"]
-anchor_left = 0.324675
-anchor_right = 0.486291
-anchor_bottom = 1.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 13 )
-text = "Null"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label4" type="Label" parent="PanelHorario/Materias/Mat"]
-anchor_left = 0.497114
-anchor_right = 0.691919
-anchor_bottom = 1.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 13 )
-text = "Null"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label5" type="Label" parent="PanelHorario/Materias/Mat"]
-anchor_left = 0.701299
-anchor_right = 0.911977
-anchor_bottom = 1.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 13 )
-text = "Null"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="Mat" parent="PanelHorario/Materias" instance=ExtResource( 6 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/despliegue_menu_lateral = SubResource( 33 )
@@ -565,13 +472,15 @@ margin_top = -170.0
 margin_right = 180.5
 margin_bottom = -130.0
 
-[node name="MenuButton" type="MenuButton" parent="PanelMaterias/Panel"]
+[node name="OptionButton" type="OptionButton" parent="PanelMaterias/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 44 )
-custom_styles/normal = SubResource( 45 )
-text = "Seleccionar"
-items = [ "Materia 1", null, 0, false, false, 0, 0, null, "", false, "Materia 2", null, 0, false, false, 1, 0, null, "", false ]
+custom_fonts/font = SubResource( 50 )
+custom_styles/normal = SubResource( 51 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="PanelNotas" type="Panel" parent="."]
 visible = false
@@ -676,7 +585,13 @@ custom_styles/pressed = SubResource( 22 )
 custom_styles/normal = SubResource( 14 )
 text = "Salir"
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="Panel/ButtonMenuDesplegable" to="." method="_on_ButtonMenuDesplegable_pressed"]
+[connection signal="item_selected" from="PanelMaterias/Panel/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonHorarios" to="." method="_on_ButtonHorarios_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonNotas" to="." method="_on_ButtonNotas_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonMaterias" to="." method="_on_ButtonMaterias_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+
+[editable path="PanelHorario/Materias/Mat"]

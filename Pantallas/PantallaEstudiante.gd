@@ -86,40 +86,40 @@ func replegar_panel():
 		desplegado = not desplegado
 
 
-func _on_HTTPRequest_request_completed(result, response_code, headers, body):
-	if response_code == 200:
-		var i = 0
-		var json = JSON.parse(body.get_string_from_utf8())
-		print("todo ok pa")
-		for alumno in json.result:
-			listaLegajoAlumnos[i] = alumno.file_number
-			listaNombreAlumnos[i] = alumno.firstname
-			listaApellidoAlumnos[i] = alumno.lastname
-			alumnos += 1
-			i+= 1
-		
-		emit_signal("rellenar_tabla")
-	else:
-		print("error")
+#func _on_HTTPRequest_request_completed(result, response_code, headers, body):
+#	if response_code == 200:
+#		var i = 0
+#		var json = JSON.parse(body.get_string_from_utf8())
+#		print("todo ok pa")
+#		for alumno in json.result:
+#			listaLegajoAlumnos[i] = alumno.file_number
+#			listaNombreAlumnos[i] = alumno.firstname
+#			listaApellidoAlumnos[i] = alumno.lastname
+#			alumnos += 1
+#			i+= 1
+#
+#		emit_signal("rellenar_tabla")
+#	else:
+#		print("error")
 
-func rellenar_tabla():
-	var i = 0
-	
-	for legajo in listaLegajoAlumnos:
-		vbox_materias.add_child(texto_tabla.instance())
-		vbox_horarios.add_child(texto_tabla.instance())
-		vbox_aula_asig.add_child(texto_tabla.instance())
-	
-	for legajo in listaLegajoAlumnos:
-		vbox_materias.add_child(texto_tabla.instance())
-		vbox_horarios.add_child(texto_tabla.instance())
-		vbox_aula_asig.add_child(texto_tabla.instance())
-	
-	for legajo in listaLegajoAlumnos:
-		var hijo = vbox_materias.get_child(i)
-		var hijo2 = vbox_horarios.get_child(i)
-		var hijo3 = vbox_aula_asig.get_child(i)
-		hijo.get_node("LabelTabla").text = "%s" %listaLegajoAlumnos[i]
-		hijo2.get_node("LabelTabla").text = "%s" %listaNombreAlumnos[i]
-		hijo3.get_node("LabelTabla").text = "%s" %listaApellidoAlumnos[i]
-		i += 1
+#func rellenar_tabla():
+#	var i = 0
+#
+#	for legajo in listaLegajoAlumnos:
+#		vbox_materias.add_child(texto_tabla.instance())
+#		vbox_horarios.add_child(texto_tabla.instance())
+#		vbox_aula_asig.add_child(texto_tabla.instance())
+#
+#	for legajo in listaLegajoAlumnos:
+#		vbox_materias.add_child(texto_tabla.instance())
+#		vbox_horarios.add_child(texto_tabla.instance())
+#		vbox_aula_asig.add_child(texto_tabla.instance())
+#
+#	for legajo in listaLegajoAlumnos:
+#		var hijo = vbox_materias.get_child(i)
+#		var hijo2 = vbox_horarios.get_child(i)
+#		var hijo3 = vbox_aula_asig.get_child(i)
+#		hijo.get_node("LabelTabla").text = "%s" %listaLegajoAlumnos[i]
+#		hijo2.get_node("LabelTabla").text = "%s" %listaNombreAlumnos[i]
+#		hijo3.get_node("LabelTabla").text = "%s" %listaApellidoAlumnos[i]
+#		i += 1

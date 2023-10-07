@@ -37,7 +37,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		var json = JSON.parse(body.get_string_from_utf8())
 		for materia in json.result:
 			if(materia.teacher.id == ID):
-				listaMaterias[i] = materia.id
+				listaMaterias[i] = materia["class_name"]
 				menu_materias.get_popup().add_item(materia["class_name"], i)
 				i += 1
 		print("todo ok pa")
@@ -74,9 +74,8 @@ func _on_ButtonMaterias_pressed():
 	activar_panel(panel_materias)
 	
 
-#No funciona hasta que alejo cree la tabla materia x profesor
 func _on_OptionButton_item_selected(index):
 	Globals.materiaSeleccionada = listaMaterias[index]
-	print(listaMaterias[index])
+	print(Globals.materiaSeleccionada)
 	get_tree().change_scene_to(escenaMateria)
 	

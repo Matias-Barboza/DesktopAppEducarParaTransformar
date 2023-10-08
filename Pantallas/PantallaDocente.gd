@@ -8,15 +8,17 @@ onready var labelMateria = $Panel/LabelNombreMateria
 
 export var alum: PackedScene
 
-
 var alumnos = 0
 var listaLegajoAlumnos = {}
 var listaNombreAlumnos = {}
 var listaApellidoAlumnos = {}
 var listaNotaAlumnos = {}
-var headers = ["Content-Type: application/json"]
 var endpoint = Globals.URL + "/api/students"
 
+<<<<<<< HEAD
+=======
+var students
+>>>>>>> 2e987fe6d9ec988f4fc1bed70f3db8197b4857dd
 
 func _ready():
 	request.request(endpoint)
@@ -24,10 +26,12 @@ func _ready():
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	if response_code == 200:
+		
 		labelMateria.text = Globals.materiaSeleccionada
-		var i = 0
 		var json = JSON.parse(body.get_string_from_utf8())
-		print("todo ok pa")
+		students = json
+		
+		var i = 0
 		for alumno in json.result:
 			listaLegajoAlumnos[i] = alumno.file_number
 			listaNombreAlumnos[i] = alumno.firstname
@@ -35,6 +39,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 			#listaNotaAlumnos[i] = alumno.id
 			alumnos += 1
 			i+= 1
+		
 		instanciarAlumnos()
 		espaciarAlumnos()
 		darValores()
@@ -68,3 +73,30 @@ func darValores():
 		hijo.get_node("LabelApellido").text = listaApellidoAlumnos[i]
 		#hijo.get_node("LabelNota").text = "%s" % listaNotaAlumnos[i]
 		i += 1
+
+
+func _on_Imprimir_PDF_request_completed(result, response_code, headers, body):
+	if response_code == 201:
+		var json = JSON.parse(body.get_string_from_utf8())
+		OS.shell_open(json.result.response)
+	else:
+		print("Error en la solicitud. Código de respuesta:", response_code)
+
+
+func _on_Button_pressed():
+	var header = [ "content-type: application/json" , "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMThiZWVhMjdmZDgxMzA5ZWFhZTA5NGFkMmU1NjQyOTU4NmMwNzBmMGY5MDdmYzM1ZTI0NWI3NjEwYTY4ODgzIiwic3ViIjoiYWxlam9vY3p0d2l0Y2hAZ21haWwuY29tIiwiZXhwIjo5OTk5OTk5OTk5fQ._-fbaWRNvua_SmCWQ48U2apGTdc_2_PW-Nga9IG1qxQ" ]
+	var URL = "https://us1.pdfgeneratorapi.com/api/v4/documents/generate"
+	
+	var json_data = {
+		"template": {
+			"id": 808188,
+			"data": {
+				"students": students.result
+			}
+		},
+		"format": "pdf",
+		"output": "url",
+		"name": "Listado Alumnos"
+	}
+	print(JSON.print(json_data))
+	$"Imprimir PDF".request(URL, header, true, HTTPClient.METHOD_POST, JSON.print(json_data))

@@ -41,8 +41,9 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 				menu_materias.get_popup().add_item(materia["class_name"], i)
 				i += 1
 		print("todo ok pa")
+		print(json.result)
 	else:
-		print("error")
+		print(body)
 
 
 func _on_ButtonMenuDesplegable_pressed():
@@ -51,8 +52,8 @@ func _on_ButtonMenuDesplegable_pressed():
 	else:
 		animation_player.play("repliegue_menu_lateral")
 	desplegado = not desplegado
-	
-	
+
+
 func activar_panel(panel_a_visibilizar):
 	for panel in paneles:
 		if panel != panel_a_visibilizar:

@@ -223,4 +223,15 @@ margin_bottom = -1.04004
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[node name="Imprimir PDF" type="HTTPRequest" parent="."]
+
+[node name="Button" type="Button" parent="."]
+margin_left = 1578.0
+margin_top = 944.0
+margin_right = 1728.0
+margin_bottom = 986.0
+text = "ImprimirPDF"
+
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="request_completed" from="Imprimir PDF" to="." method="_on_Imprimir_PDF_request_completed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

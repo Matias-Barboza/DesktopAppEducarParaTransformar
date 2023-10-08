@@ -54,7 +54,7 @@ bg_color = Color( 0.0431373, 0.368627, 0.843137, 1 )
 bg_color = Color( 0.0392157, 0.345098, 0.792157, 1 )
 
 [sub_resource type="StyleBoxFlat" id=45]
-bg_color = Color( 0, 0, 0, 1 )
+bg_color = Color( 0.0509804, 0.431373, 0.992157, 1 )
 
 [node name="VBoxContainerDatos" type="VBoxContainer"]
 anchor_left = 0.5

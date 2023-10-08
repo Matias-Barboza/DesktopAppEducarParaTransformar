@@ -1,8 +1,10 @@
 extends Control
 
+
 onready var request = $HTTPRequest
 onready var conjuntoAlumnos = $PanelDatos/Alumnos
 onready var labelMateria = $Panel/LabelNombreMateria
+
 
 export var alum: PackedScene
 
@@ -14,6 +16,7 @@ var listaApellidoAlumnos = {}
 var listaNotaAlumnos = {}
 var headers = ["Content-Type: application/json"]
 var endpoint = Globals.URL + "/api/students"
+
 
 func _ready():
 	request.request(endpoint)
@@ -38,11 +41,13 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	else:
 		print("error")
 
+
 func instanciarAlumnos():
 	var x = alumnos
 	while x > 0:
 		conjuntoAlumnos.add_child(alum.instance())
 		x -= 1
+
 
 func espaciarAlumnos():
 	var posicionInicial = Vector2.ZERO
@@ -52,7 +57,8 @@ func espaciarAlumnos():
 		posicionInicial = conjuntoAlumnos.get_child(i-1).get_position()
 		hijo.rect_position.y = posicionInicial.y + 35 
 		i += 1
-		
+
+
 func darValores():
 	var i = 0
 	while i < alumnos:

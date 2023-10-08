@@ -1,0 +1,170 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Contenedores/Tablas/FilaPrueba.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Recursos/Montserrat-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 2 )
+
+[node name="TablaPrueba" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 64.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1913.0
+margin_bottom = 57.0
+
+[node name="1" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+margin_right = 632.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Materia"
+align = 1
+valign = 1
+
+[node name="2" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+margin_left = 636.0
+margin_right = 1269.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Horario"
+align = 1
+valign = 1
+
+[node name="3" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+margin_left = 1273.0
+margin_right = 1906.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Aula asignada"
+align = 1
+valign = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 68.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1913.0
+margin_bottom = 1005.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer2/ScrollContainer"]
+margin_right = 1906.0
+margin_bottom = 998.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FilaPrueba" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_right = 1906.0
+margin_bottom = 34.0
+
+[node name="FilaPrueba2" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 38.0
+margin_right = 1906.0
+margin_bottom = 72.0
+
+[node name="FilaPrueba3" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 76.0
+margin_right = 1906.0
+margin_bottom = 110.0
+
+[node name="FilaPrueba4" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 114.0
+margin_right = 1906.0
+margin_bottom = 148.0
+
+[node name="FilaPrueba5" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 152.0
+margin_right = 1906.0
+margin_bottom = 186.0
+
+[node name="FilaPrueba6" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 190.0
+margin_right = 1906.0
+margin_bottom = 224.0
+
+[node name="FilaPrueba7" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 228.0
+margin_right = 1906.0
+margin_bottom = 262.0
+
+[node name="FilaPrueba8" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 266.0
+margin_right = 1906.0
+margin_bottom = 300.0
+
+[node name="FilaPrueba9" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 304.0
+margin_right = 1906.0
+margin_bottom = 338.0
+
+[node name="FilaPrueba10" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 342.0
+margin_right = 1906.0
+margin_bottom = 376.0
+
+[node name="FilaPrueba11" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 380.0
+margin_right = 1906.0
+margin_bottom = 414.0
+
+[node name="FilaPrueba12" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 418.0
+margin_right = 1906.0
+margin_bottom = 452.0
+
+[node name="FilaPrueba13" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 456.0
+margin_right = 1906.0
+margin_bottom = 490.0
+
+[node name="FilaPrueba14" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 494.0
+margin_right = 1906.0
+margin_bottom = 528.0
+
+[node name="FilaPrueba15" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 532.0
+margin_right = 1906.0
+margin_bottom = 566.0
+
+[node name="FilaPrueba16" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 570.0
+margin_right = 1906.0
+margin_bottom = 604.0
+
+[node name="FilaPrueba17" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 608.0
+margin_right = 1906.0
+margin_bottom = 642.0
+
+[node name="FilaPrueba18" parent="VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 646.0
+margin_right = 1906.0
+margin_bottom = 680.0
+
+[node name="VSeparator" type="VSeparator" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -321.0
+margin_right = -317.0

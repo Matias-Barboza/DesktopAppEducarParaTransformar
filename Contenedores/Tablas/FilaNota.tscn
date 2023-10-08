@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 5.0
+bg_color = Color( 1, 1, 1, 1 )
+
+[node name="FilaNota" type="HBoxContainer"]
+margin_right = 1917.0
+margin_bottom = 52.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1917.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1917.0
+margin_bottom = 26.0
+
+[node name="1" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_right = 380.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Materia"
+
+[node name="2" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 384.0
+margin_right = 764.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "1er trimestre"
+
+[node name="3" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 768.0
+margin_right = 1148.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "2do trimestre"
+
+[node name="4" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 1152.0
+margin_right = 1532.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "3er trimestre"
+
+[node name="5" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 1536.0
+margin_right = 1917.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Promedio"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 30.0
+margin_right = 1917.0
+margin_bottom = 34.0

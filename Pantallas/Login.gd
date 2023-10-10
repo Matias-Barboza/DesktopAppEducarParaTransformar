@@ -2,8 +2,12 @@ extends Control
 
 
 var endpoint = Globals.URL + "/auth/login"
+var endpointrole = Globals.URL + "/api/role/"
 var headers = ["Content-Type: application/json"]
+var rol = ""
 
+export var escenaDocente : PackedScene
+export var escenaEstudiante : PackedScene
 
 onready var request = $LoginRequest
 onready var correo = $PanelInicioDeSesion/VBoxContainerDatos/TextEditCE
@@ -18,7 +22,7 @@ func _on_LoginRequest_request_completed(result, response_code, headers, body):
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
 		decodeJWT(json.result.token)
-		print("iniciaste sesion capo")
+		getRole()
 	else:
 		label_datos_invalidos.visible = not label_datos_invalidos.visible
 		print("error")
@@ -63,3 +67,24 @@ func mail_valido(correo):
 	regex.compile(expresion_regular)
 	
 	return regex.search(correo, 0, correo.length() - 1) != null
+
+
+func _on_GetRole_request_completed(result, response_code, headers, body):
+	if response_code == 200:
+		var json = JSON.parse(body.get_string_from_utf8())
+		rol = json.result
+		cambiarEscena()
+	else:
+		print("error")
+	
+func getRole():
+	endpointrole += "%s" % Globals.userId
+	$GetRole.request(endpointrole)
+
+func cambiarEscena():
+	if rol == "Docente":
+		get_tree().change_scene_to(escenaDocente)
+	elif rol == "Estudiante":
+		get_tree().change_scene_to(escenaEstudiante)
+	else:
+		print("Ni idea pibe")

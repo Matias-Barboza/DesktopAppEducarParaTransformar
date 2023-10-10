@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Pantallas/PantallaDocente.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Pantallas/DocenteHorarios.gd" type="Script" id=4]
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Contenedores/Contenedor Docente/Mat.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Pantallas/PanelHorararioDocente.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -268,7 +267,6 @@ margin_top = 34.84
 margin_right = -73.9601
 margin_bottom = -41.0
 custom_styles/panel = SubResource( 46 )
-script = ExtResource( 7 )
 
 [node name="HSeparator2" type="HSeparator" parent="PanelHorario"]
 anchor_left = 0.0875421

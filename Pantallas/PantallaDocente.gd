@@ -15,10 +15,8 @@ var listaApellidoAlumnos = {}
 var listaNotaAlumnos = {}
 var endpoint = Globals.URL + "/api/students"
 
-<<<<<<< HEAD
-=======
 var students
->>>>>>> 2e987fe6d9ec988f4fc1bed70f3db8197b4857dd
+
 
 func _ready():
 	request.request(endpoint)

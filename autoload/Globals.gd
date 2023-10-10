@@ -2,7 +2,7 @@ extends Node
 
 
 var username : String = ""
-var userId : String = ""
+var userId : int = 0
 var jwt : String = ""
 var password : String = ""
 var URL : String = "https://educar-para-transformar.onrender.com"

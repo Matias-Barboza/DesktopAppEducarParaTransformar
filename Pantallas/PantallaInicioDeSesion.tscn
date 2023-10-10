@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Contenedores/VBoxContainerDatos.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Recursos/Montserrat-Light.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Pantallas/Login.gd" type="Script" id=4]
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Pantallas/PantallaEstudiante.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Pantallas/DocenteHorarios.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 1, 1, 1, 1 )
@@ -41,6 +43,8 @@ font_data = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
+escenaDocente = ExtResource( 7 )
+escenaEstudiante = ExtResource( 6 )
 
 [node name="ColorRectFondo" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -185,7 +189,10 @@ valign = 1
 
 [node name="LoginRequest" type="HTTPRequest" parent="."]
 
+[node name="GetRole" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="PanelInicioDeSesion/VBoxContainerDatos/ButtonIS" to="." method="_on_ButtonIS_pressed"]
 [connection signal="request_completed" from="LoginRequest" to="." method="_on_LoginRequest_request_completed"]
+[connection signal="request_completed" from="GetRole" to="." method="_on_GetRole_request_completed"]
 
 [editable path="PanelInicioDeSesion/VBoxContainerDatos"]

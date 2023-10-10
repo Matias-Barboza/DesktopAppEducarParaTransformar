@@ -6,23 +6,29 @@ signal rellenar_tabla
 
 var desplegado = false
 var paneles = []
-#PRUEBA!!!
-var headers = ["Content-Type: application/json"]
-var URL = "https://educar-para-transformar.onrender.com/api/students"
-var datos_alumno = []
+var datos_materia = []
+var arreglo_materias = []
+var datos_horario = []
+var arreglo_horarios = []
+
+var endpoint_notas = Globals.URL + "/api/notes/student/" + Globals.userId
 
 
 onready var panel_bienvenida = $PanelBienvenida
 onready var panel_horarios = $PanelHorarios
 onready var panel_notas = $PanelNotas
 onready var tabla_horarios = $PanelHorarios/TablaHorarios
+onready var tabla_notas = $PanelNotas/TablaNotasBoletin
 onready var animation_player = $AnimationPlayer
 
-onready var request = $HTTPRequest
+onready var http_request = $HTTPRequestNotas
+#onready var http_request_horarios = $HTTPRequestHorarios
 
 
 func _ready():
-	request.request(URL)
+	
+	http_request.request(endpoint_notas)
+	#http_request_horarios.request()
 	
 	panel_bienvenida.visible = true
 	panel_horarios.visible = false
@@ -35,6 +41,7 @@ func _ready():
 
 
 func _on_ButtonMenuDesplegable_pressed():
+	
 	if not desplegado:
 		animation_player.play("despliegue_menu_lateral")
 	else:
@@ -44,14 +51,17 @@ func _on_ButtonMenuDesplegable_pressed():
 
 
 func _on_ButtonHorarios_pressed():
+	
 	activar_panel(panel_horarios)
 
 
 func _on_ButtonNotas_pressed():
+	
 	activar_panel(panel_notas)
 
 
 func activar_panel(panel_a_visibilizar):
+	
 	for panel in paneles:
 		if panel != panel_a_visibilizar:
 			panel.visible = false
@@ -64,19 +74,36 @@ func activar_panel(panel_a_visibilizar):
 
 
 func replegar_panel():
+	
 	if desplegado:
 		animation_player.play("repliegue_menu_lateral")
 		desplegado = not desplegado
 
 
-func _on_HTTPRequest_request_completed(result, response_code, headers, body):
+func _on_HTTPRequestNotas_request_completed(result, response_code, headers, body):
+	
 	if response_code == 200:
-		var i = 0
 		var json = JSON.parse(body.get_string_from_utf8())
-		print("todo ok pa")
-		for alumno in json.result:
-			datos_alumno.insert(0, alumno.file_number)
-			datos_alumno.insert(1, alumno.firstname)
-			datos_alumno.insert(2, alumno.lastname)
+		for nota in json.result:
+			datos_materia.insert(0, nota["class_name"])
+			datos_materia.insert(1, nota.numeric_note1)
+			#datos_materia.insert(2, nota.numeric_note2)
+			#datos_materia.insert(3, nota.numeric_note3)
+			#datos_materia.insert(4, )
+			arreglo_materias.append(datos_materia)
+			datos_materia= []
+		
+		tabla_notas.set_data(arreglo_materias)
 	else:
 		print("error")
+
+
+#func _on_HTTPRequestHorarios_request_completed(result, response_code, headers, body):
+#	if response_code == 200:
+#		var json = JSON.parse(body.get_string_from_utf8())
+#		for horario in json.result:
+#
+#
+#		tabla_horarios.set_data(arreglo_horarios)
+#	else:
+#		print("error")

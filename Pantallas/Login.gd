@@ -3,6 +3,7 @@ extends Control
 
 var endpoint = Globals.URL + "/auth/login"
 var endpointrole = Globals.URL + "/api/role/"
+var endpointFullname = Globals.URL + "/api/fullname/"
 var headers = ["Content-Type: application/json"]
 var rol = ""
 
@@ -80,6 +81,8 @@ func _on_GetRole_request_completed(result, response_code, headers, body):
 func getRole():
 	endpointrole += "%s" % Globals.userId
 	$GetRole.request(endpointrole)
+	endpointFullname += str(Globals.userId)
+	$GetFullName.request(endpointFullname)
 
 func cambiarEscena():
 	if rol == "Docente":
@@ -88,3 +91,12 @@ func cambiarEscena():
 		get_tree().change_scene_to(escenaEstudiante)
 	else:
 		print("Ni idea pibe")
+
+
+func _on_GetFullName_request_completed(result, response_code, headers, body):
+	if response_code == 200:
+		var json = JSON.parse(body.get_string_from_utf8())
+		print("Re cheto")
+		Globals.nombreCompleto = json.result.firstname + ", " + json.result.lastname
+	else:
+		print("error")

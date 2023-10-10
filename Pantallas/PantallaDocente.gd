@@ -20,6 +20,7 @@ var students
 
 func _ready():
 	request.request(endpoint)
+	
 
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):

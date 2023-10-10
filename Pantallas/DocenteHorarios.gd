@@ -7,9 +7,6 @@ var endpoint = Globals.URL + "/api/teachers/classes/" + "%s" % Globals.userId
 var listaMaterias = {}
 
 
-export var escenaMateria : PackedScene
-export var escenaInicioSesion : PackedScene
-
 
 onready var request = $HTTPRequest
 onready var animation_player = $AnimationPlayer
@@ -18,6 +15,9 @@ onready var panel_bienvenida = $PanelBienvenida
 onready var panel_notas = $PanelNotas
 onready var panel_materias = $PanelMaterias
 onready var menu_materias = $PanelMaterias/Panel/OptionButton
+onready var panel_materias_especificas = $PanelMateriaEspecifica
+onready var label_nombre_materias = $PanelMateriaEspecifica/NombreMateria
+onready var label_bienvenida = $PanelBienvenida/LabelBienvenida
 
 func _ready():
 	request.request(endpoint)
@@ -25,8 +25,10 @@ func _ready():
 	panel_horario.visible = false
 	panel_notas.visible = false
 	panel_materias.visible = false
+	panel_materias_especificas.visible = false
+	label_bienvenida.text = "Bienvenido " + Globals.nombreCompleto
 	
-	paneles = [panel_bienvenida, panel_horario, panel_notas, panel_materias]
+	paneles = [panel_bienvenida, panel_horario, panel_notas, panel_materias, panel_materias_especificas]
 	
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
@@ -34,8 +36,8 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		var i = 0
 		var json = JSON.parse(body.get_string_from_utf8())
 		for materia in json.result:
-			listaMaterias[i] = materia["class_name"]
-			menu_materias.get_popup().add_item(materia["class_name"], i)
+			listaMaterias[i] = materia["class_name"] + " ("+ materia.division.division_name + ")"
+			menu_materias.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")", i)
 			i += 1
 	else:
 		print(body)
@@ -71,9 +73,9 @@ func _on_ButtonMaterias_pressed():
 	
 
 func _on_OptionButton_item_selected(index):
-	Globals.materiaSeleccionada = listaMaterias[index]
-	print(Globals.materiaSeleccionada)
-	get_tree().change_scene_to(escenaMateria)
+	label_nombre_materias.text = listaMaterias[index]
+	activar_panel(panel_materias_especificas)
+	menu_materias.selected = -1
 	
 
 
@@ -81,5 +83,5 @@ func _on_ButtonSalir_pressed():
 	Globals.userId = 0
 	Globals.jwt = ""
 	Globals.password = ""
-	Globals.materiaSeleccionada = ""
+	Globals.nombreCompleto = ""
 	get_tree().change_scene("res://Pantallas/PantallaInicioDeSesion.tscn")

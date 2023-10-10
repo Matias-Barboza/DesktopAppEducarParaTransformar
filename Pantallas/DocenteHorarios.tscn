@@ -1,7 +1,6 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Pantallas/PantallaDocente.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Recursos/IconoMenuDesplegable9.png" type="Texture" id=3]
 [ext_resource path="res://Pantallas/DocenteHorarios.gd" type="Script" id=4]
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=5]
@@ -47,6 +46,13 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="DynamicFont" id=3]
 size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0.184314, 0.823529, 1, 1 )
+
+[sub_resource type="DynamicFont" id=36]
+size = 30
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=46]
@@ -106,13 +112,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, 76 ), Vector2( -260, 76 ) ]
 }
-
-[sub_resource type="StyleBoxFlat" id=47]
-bg_color = Color( 0.184314, 0.823529, 1, 1 )
-
-[sub_resource type="DynamicFont" id=36]
-size = 30
-font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=35]
 bg_color = Color( 0.184314, 0.823529, 1, 1 )
@@ -205,7 +204,6 @@ bg_color = Color( 0.827451, 0.141176, 0.141176, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
-escenaMateria = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -253,6 +251,29 @@ theme = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "Educar para Transformar"
+align = 1
+valign = 1
+
+[node name="PanelBienvenida" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 449.0
+margin_top = 316.0
+margin_right = -449.0
+margin_bottom = -240.0
+custom_styles/panel = SubResource( 47 )
+
+[node name="LabelBienvenida" type="Label" parent="PanelBienvenida"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -49.0
+margin_right = 260.0
+margin_bottom = -11.0
+custom_fonts/font = SubResource( 36 )
+text = "Bienvenido, @Nombre @Apellido"
 align = 1
 valign = 1
 
@@ -410,32 +431,154 @@ margin_bottom = -1.04004
 
 [node name="Mat" parent="PanelHorario/Materias" instance=ExtResource( 6 )]
 
+[node name="PanelMateriaEspecifica" type="Panel" parent="."]
+visible = false
+anchor_left = 0.068
+anchor_top = 0.127
+anchor_right = 0.938
+anchor_bottom = 1.0
+margin_left = 62.44
+margin_top = 34.84
+margin_right = -73.9601
+margin_bottom = -41.0
+custom_styles/panel = SubResource( 46 )
+
+[node name="HSeparator2" type="HSeparator" parent="PanelMateriaEspecifica"]
+anchor_left = 0.0875421
+anchor_top = 0.0763359
+anchor_right = 0.925926
+anchor_bottom = 0.0839695
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HSeparator3" type="HSeparator" parent="PanelMateriaEspecifica"]
+anchor_left = 0.0875421
+anchor_top = 0.152672
+anchor_right = 0.925926
+anchor_bottom = 0.160305
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HSeparator4" type="HSeparator" parent="PanelMateriaEspecifica"]
+anchor_left = 0.0875421
+anchor_top = 0.917939
+anchor_right = 0.925926
+anchor_bottom = 0.925573
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Legajo" type="Label" parent="PanelMateriaEspecifica"]
+anchor_left = 0.0886571
+anchor_top = 0.0784314
+anchor_right = 0.265319
+anchor_bottom = 0.154556
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Legajo"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="NombreMateria" type="Label" parent="PanelMateriaEspecifica"]
+anchor_left = 0.411669
+anchor_top = -0.0011534
+anchor_right = 0.588331
+anchor_bottom = 0.0749712
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Materia"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Apellido" type="Label" parent="PanelMateriaEspecifica"]
+anchor_left = 0.269882
+anchor_top = 0.0784314
+anchor_right = 0.653194
+anchor_bottom = 0.154556
+margin_left = -8.99942
+margin_top = -2.28882e-05
+margin_right = -8.99939
+margin_bottom = -3.05176e-05
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "Apellido"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Nombre" type="Label" parent="PanelMateriaEspecifica"]
+anchor_left = 0.647979
+anchor_top = 0.0784314
+anchor_right = 0.925685
+anchor_bottom = 0.154556
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Nombre"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VSeparator" type="VSeparator" parent="PanelMateriaEspecifica"]
+anchor_left = 0.0864198
+anchor_top = 0.0782443
+anchor_right = 0.0909091
+anchor_bottom = 0.921756
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VSeparator5" type="VSeparator" parent="PanelMateriaEspecifica"]
+anchor_left = 0.646023
+anchor_top = 0.0784314
+anchor_right = 0.650511
+anchor_bottom = 0.918126
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VSeparator4" type="VSeparator" parent="PanelMateriaEspecifica"]
+anchor_left = 0.264016
+anchor_top = 0.0784314
+anchor_right = 0.268505
+anchor_bottom = 0.920035
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VSeparator2" type="VSeparator" parent="PanelMateriaEspecifica"]
+anchor_left = 0.923681
+anchor_top = 0.0782443
+anchor_right = 0.928171
+anchor_bottom = 0.921756
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Alumnos" type="Control" parent="PanelMateriaEspecifica"]
+anchor_left = -0.078
+anchor_top = -0.145
+anchor_right = 1.071
+anchor_bottom = 1.0
+margin_left = -0.699432
+margin_top = -0.114182
+margin_right = -0.127075
+margin_bottom = -1.04004
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/despliegue_menu_lateral = SubResource( 33 )
 anims/repliegue_menu_lateral = SubResource( 34 )
-
-[node name="PanelBienvenida" type="Panel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 449.0
-margin_top = 316.0
-margin_right = -449.0
-margin_bottom = -240.0
-custom_styles/panel = SubResource( 47 )
-
-[node name="LabelBienvenida" type="Label" parent="PanelBienvenida"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -49.0
-margin_right = 260.0
-margin_bottom = -11.0
-custom_fonts/font = SubResource( 36 )
-text = "Bienvenido, @Nombre @Apellido"
-align = 1
-valign = 1
 
 [node name="PanelMaterias" type="Panel" parent="."]
 visible = false

@@ -328,5 +328,6 @@ icon = ExtResource( 11 )
 [connection signal="gui_input" from="PanelNotas" to="PanelNotas" method="_on_gui_input"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonHorarios" to="." method="_on_ButtonHorarios_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonNotas" to="." method="_on_ButtonNotas_pressed"]
+[connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonSalir" to="." method="_on_ButtonSalir_pressed"]
 [connection signal="request_completed" from="HTTPRequestNotas" to="." method="_on_HTTPRequestNotas_request_completed"]
 [connection signal="request_completed" from="HTTPRequestHorarios" to="." method="_on_HTTPRequestHorarios_request_completed"]

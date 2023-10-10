@@ -20,6 +20,7 @@ onready var panel_notas = $PanelNotas
 onready var tabla_horarios = $PanelHorarios/TablaHorarios
 onready var tabla_notas = $PanelNotas/TablaNotasBoletin
 onready var animation_player = $AnimationPlayer
+onready var label_bienvenida = $PanelBienvenida/LabelBienvenida
 
 onready var http_request = $HTTPRequestNotas
 #onready var http_request_horarios = $HTTPRequestHorarios
@@ -30,11 +31,14 @@ func _ready():
 	http_request.request(endpoint_notas)
 	#http_request_horarios.request()
 	
+	
 	panel_bienvenida.visible = true
 	panel_horarios.visible = false
 	panel_notas.visible = false
 	
 	paneles = [panel_bienvenida, panel_horarios, panel_notas]
+	
+	label_bienvenida.text = "Bienvenido " + Globals.nombreCompleto
 	
 	for panel in paneles:
 		panel.connect("replegar_panel", self, "replegar_panel")
@@ -107,3 +111,11 @@ func _on_HTTPRequestNotas_request_completed(result, response_code, headers, body
 #		tabla_horarios.set_data(arreglo_horarios)
 #	else:
 #		print("error")
+
+
+func _on_ButtonSalir_pressed():
+	Globals.userId = 0
+	Globals.jwt = ""
+	Globals.password = ""
+	Globals.nombreCompleto = ""
+	get_tree().change_scene("res://Pantallas/PantallaInicioDeSesion.tscn")

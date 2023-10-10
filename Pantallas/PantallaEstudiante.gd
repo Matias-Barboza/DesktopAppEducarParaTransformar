@@ -11,7 +11,7 @@ var arreglo_materias = []
 var datos_horario = []
 var arreglo_horarios = []
 
-var endpoint_notas = Globals.URL + "/api/notes/student/" + Globals.userId
+var endpoint_notas = Globals.URL + "/api/notes/student/" + str(Globals.userId)
 
 
 onready var panel_bienvenida = $PanelBienvenida
@@ -86,10 +86,10 @@ func _on_HTTPRequestNotas_request_completed(result, response_code, headers, body
 		var json = JSON.parse(body.get_string_from_utf8())
 		for nota in json.result:
 			datos_materia.insert(0, nota["class_name"])
-			datos_materia.insert(1, nota.numeric_note1)
-			#datos_materia.insert(2, nota.numeric_note2)
-			#datos_materia.insert(3, nota.numeric_note3)
-			#datos_materia.insert(4, )
+			datos_materia.insert(1, nota.numeric_note)
+			datos_materia.insert(2, "1")
+			datos_materia.insert(3, "1")
+			datos_materia.insert(4, "1")
 			arreglo_materias.append(datos_materia)
 			datos_materia= []
 		

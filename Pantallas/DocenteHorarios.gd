@@ -8,6 +8,7 @@ var listaMaterias = {}
 
 
 export var escenaMateria : PackedScene
+export var escenaInicioSesion : PackedScene
 
 
 onready var request = $HTTPRequest
@@ -74,3 +75,11 @@ func _on_OptionButton_item_selected(index):
 	print(Globals.materiaSeleccionada)
 	get_tree().change_scene_to(escenaMateria)
 	
+
+
+func _on_ButtonSalir_pressed():
+	Globals.userId = 0
+	Globals.jwt = ""
+	Globals.password = ""
+	Globals.materiaSeleccionada = ""
+	get_tree().change_scene("res://Pantallas/PantallaInicioDeSesion.tscn")

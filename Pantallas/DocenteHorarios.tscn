@@ -592,6 +592,7 @@ text = "Salir"
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonHorarios" to="." method="_on_ButtonHorarios_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonNotas" to="." method="_on_ButtonNotas_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonMaterias" to="." method="_on_ButtonMaterias_pressed"]
+[connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonSalir" to="." method="_on_ButtonSalir_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 
 [editable path="PanelHorario/Materias/Mat"]

@@ -6,7 +6,7 @@
 [ext_resource path="res://Pantallas/Login.gd" type="Script" id=4]
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Pantallas/PantallaEstudiante.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Pantallas/DocenteHorarios.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Pantallas/PantallaDocente.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 1, 1, 1, 1 )

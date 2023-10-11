@@ -1,6 +1,7 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Contenedores/Tablas/TablaAlumnos.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Recursos/IconoMenuDesplegable9.png" type="Texture" id=3]
 [ext_resource path="res://Pantallas/PantallaDocente.gd" type="Script" id=4]
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=5]
@@ -420,7 +421,6 @@ __meta__ = {
 }
 
 [node name="PanelMateriaEspecifica" type="Panel" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 193.0
@@ -429,125 +429,27 @@ margin_right = -193.0
 margin_bottom = -41.0
 custom_styles/panel = SubResource( 46 )
 
-[node name="HSeparator2" type="HSeparator" parent="PanelMateriaEspecifica"]
-anchor_left = 0.0875421
-anchor_top = 0.0763359
-anchor_right = 0.925926
-anchor_bottom = 0.0839695
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="HSeparator3" type="HSeparator" parent="PanelMateriaEspecifica"]
-anchor_left = 0.0875421
-anchor_top = 0.152672
-anchor_right = 0.925926
-anchor_bottom = 0.160305
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="HSeparator4" type="HSeparator" parent="PanelMateriaEspecifica"]
-anchor_left = 0.0875421
-anchor_top = 0.917939
-anchor_right = 0.925926
-anchor_bottom = 0.925573
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Legajo" type="Label" parent="PanelMateriaEspecifica"]
-anchor_left = 0.0886571
-anchor_top = 0.0784314
-anchor_right = 0.265319
-anchor_bottom = 0.154556
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 7 )
-text = "Legajo"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
 [node name="NombreMateria" type="Label" parent="PanelMateriaEspecifica"]
-anchor_left = 0.411669
-anchor_top = -0.0011534
-anchor_right = 0.588331
-anchor_bottom = 0.0749712
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -135.5
+margin_top = -69.0
+margin_right = 135.5
+margin_bottom = -2.99997
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 7 )
 text = "Materia"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
-[node name="Apellido" type="Label" parent="PanelMateriaEspecifica"]
-anchor_left = 0.269882
-anchor_top = 0.0784314
-anchor_right = 0.653194
-anchor_bottom = 0.154556
-margin_left = -8.99942
-margin_top = -2.28882e-05
-margin_right = -8.99939
-margin_bottom = -3.05176e-05
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 9 )
-text = "Apellido"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="TablaAlumnos" parent="PanelMateriaEspecifica" instance=ExtResource( 2 )]
 
-[node name="Nombre" type="Label" parent="PanelMateriaEspecifica"]
-anchor_left = 0.647979
-anchor_top = 0.0784314
-anchor_right = 0.925685
-anchor_bottom = 0.154556
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 11 )
-text = "Nombre"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="VSeparator" type="VSeparator" parent="PanelMateriaEspecifica"]
-anchor_left = 0.0864198
-anchor_top = 0.0782443
-anchor_right = 0.0909091
-anchor_bottom = 0.921756
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="VSeparator5" type="VSeparator" parent="PanelMateriaEspecifica"]
-anchor_left = 0.646023
-anchor_top = 0.0784314
-anchor_right = 0.650511
-anchor_bottom = 0.918126
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="VSeparator4" type="VSeparator" parent="PanelMateriaEspecifica"]
-anchor_left = 0.264016
-anchor_top = 0.0784314
-anchor_right = 0.268505
-anchor_bottom = 0.920035
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="VSeparator2" type="VSeparator" parent="PanelMateriaEspecifica"]
-anchor_left = 0.923681
-anchor_top = 0.0782443
-anchor_right = 0.928171
-anchor_bottom = 0.921756
+[node name="Button" type="Button" parent="PanelMateriaEspecifica"]
+anchor_left = 1.00847
+anchor_top = 0.94925
+anchor_right = 1.11549
+anchor_bottom = 0.997693
+text = "ImprimirPDF"
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -557,6 +459,7 @@ anims/despliegue_menu_lateral = SubResource( 33 )
 anims/repliegue_menu_lateral = SubResource( 34 )
 
 [node name="PanelMaterias" type="Panel" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 449.0
@@ -709,14 +612,8 @@ text = "Salir"
 
 [node name="Imprimir PDF" type="HTTPRequest" parent="."]
 
-[node name="Button" type="Button" parent="."]
-anchor_left = 0.815625
-anchor_top = 0.914815
-anchor_right = 0.89375
-anchor_bottom = 0.953704
-text = "ImprimirPDF"
-
 [connection signal="pressed" from="Panel/ButtonMenuDesplegable" to="." method="_on_ButtonMenuDesplegable_pressed"]
+[connection signal="pressed" from="PanelMateriaEspecifica/Button" to="." method="_on_Button_pressed"]
 [connection signal="item_selected" from="PanelMaterias/Panel/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonHorarios" to="." method="_on_ButtonHorarios_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonNotas" to="." method="_on_ButtonNotas_pressed"]
@@ -724,3 +621,4 @@ text = "ImprimirPDF"
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonSalir" to="." method="_on_ButtonSalir_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="request_completed" from="GetAlumnos" to="." method="_on_GetAlumnos_request_completed"]
+[connection signal="request_completed" from="Imprimir PDF" to="." method="_on_Imprimir_PDF_request_completed"]

@@ -5,9 +5,12 @@ var desplegado = false
 var paneles = []
 var headers = ["Content-Type: application/json"]
 var endpoint = Globals.URL + "/api/teachers/classes/" + str(Globals.userId)
-var endpointAlumnos = Globals.URL + "/api/divisions/" + str(division) + "/students"
+var endpointAlumnos = Globals.URL + "/api/divisions/students/" + str(division)
 var listaMaterias = {}
 var listaDivisiones = {}
+var arreglo_alumnos = []
+var datos_alumno = []
+var students
 
 
 
@@ -22,6 +25,8 @@ onready var menu_materias = $PanelMaterias/Panel/OptionButton
 onready var panel_materias_especificas = $PanelMateriaEspecifica
 onready var label_nombre_materias = $PanelMateriaEspecifica/NombreMateria
 onready var label_bienvenida = $PanelBienvenida/LabelBienvenida
+onready var tabla_alumno = $PanelMateriaEspecifica/TablaAlumnos
+
 
 func _ready():
 	request.request(endpoint)
@@ -45,15 +50,24 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 			menu_materias.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")", i)
 			i += 1
 	else:
-		print(body)
+		print("Error en el primer request")
 
 
 func _on_GetAlumnos_request_completed(result, response_code, headers, body):
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
+		students = json
+		for alumno in json.result:
+			datos_alumno.insert(0,alumno.file_number)
+			datos_alumno.insert(1,alumno.lastname)
+			datos_alumno.insert(2,alumno.firstname)
+			arreglo_alumnos.append(datos_alumno)
+			datos_alumno = []
+		tabla_alumno.set_data(arreglo_alumnos)
+		
 		print("Mostrando alumnos de la division " + str(division))
 	else:
-		print("error")
+		print("Error en la request alumnos")
 
 
 
@@ -103,3 +117,30 @@ func _on_ButtonSalir_pressed():
 	get_tree().change_scene("res://Pantallas/PantallaInicioDeSesion.tscn")
 
 
+
+
+func _on_Button_pressed():
+	var header = [ "content-type: application/json" , "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMThiZWVhMjdmZDgxMzA5ZWFhZTA5NGFkMmU1NjQyOTU4NmMwNzBmMGY5MDdmYzM1ZTI0NWI3NjEwYTY4ODgzIiwic3ViIjoiYWxlam9vY3p0d2l0Y2hAZ21haWwuY29tIiwiZXhwIjo5OTk5OTk5OTk5fQ._-fbaWRNvua_SmCWQ48U2apGTdc_2_PW-Nga9IG1qxQ" ]
+	var URL = "https://us1.pdfgeneratorapi.com/api/v4/documents/generate"
+	
+	var json_data = {
+		"template": {
+			"id": 808188,
+			"data": {
+				"students": students.result
+			}
+		},
+		"format": "pdf",
+		"output": "url",
+		"name": "Listado Alumnos"
+	}
+	print(JSON.print(json_data))
+	$"Imprimir PDF".request(URL, header, true, HTTPClient.METHOD_POST, JSON.print(json_data))
+
+
+func _on_Imprimir_PDF_request_completed(result, response_code, headers, body):
+	if response_code == 201:
+		var json = JSON.parse(body.get_string_from_utf8())
+		OS.shell_open(json.result.response)
+	else:
+		print("Error en la solicitud. Código de respuesta:", response_code)

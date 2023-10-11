@@ -52,7 +52,7 @@ font_data = ExtResource( 1 )
 bg_color = Color( 0.184314, 0.823529, 1, 1 )
 
 [sub_resource type="DynamicFont" id=36]
-size = 30
+size = 50
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=46]
@@ -255,6 +255,7 @@ align = 1
 valign = 1
 
 [node name="PanelBienvenida" type="Panel" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 449.0
@@ -433,13 +434,11 @@ margin_bottom = -1.04004
 
 [node name="PanelMateriaEspecifica" type="Panel" parent="."]
 visible = false
-anchor_left = 0.068
-anchor_top = 0.127
-anchor_right = 0.938
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 62.44
-margin_top = 34.84
-margin_right = -73.9601
+margin_left = 193.0
+margin_top = 172.0
+margin_right = -193.0
 margin_bottom = -41.0
 custom_styles/panel = SubResource( 46 )
 
@@ -566,22 +565,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Alumnos" type="Control" parent="PanelMateriaEspecifica"]
-anchor_left = -0.078
-anchor_top = -0.145
-anchor_right = 1.071
-anchor_bottom = 1.0
-margin_left = -0.699432
-margin_top = -0.114182
-margin_right = -0.127075
-margin_bottom = -1.04004
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/despliegue_menu_lateral = SubResource( 33 )
 anims/repliegue_menu_lateral = SubResource( 34 )
 
 [node name="PanelMaterias" type="Panel" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 449.0
@@ -595,10 +583,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -220.0
-margin_right = 260.0
-margin_bottom = -182.0
+margin_left = -310.0
+margin_top = -241.0
+margin_right = 292.0
+margin_bottom = -179.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 36 )
 text = "Seleccione una materia"
@@ -610,10 +598,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -180.5
-margin_top = -170.0
-margin_right = 180.5
-margin_bottom = -130.0
+margin_left = -219.0
+margin_top = -178.0
+margin_right = 203.0
+margin_bottom = -107.0
 
 [node name="OptionButton" type="OptionButton" parent="PanelMaterias/Panel"]
 anchor_right = 1.0
@@ -730,6 +718,8 @@ text = "Salir"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[node name="GetAlumnos" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="Panel/ButtonMenuDesplegable" to="." method="_on_ButtonMenuDesplegable_pressed"]
 [connection signal="item_selected" from="PanelMaterias/Panel/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonHorarios" to="." method="_on_ButtonHorarios_pressed"]
@@ -737,5 +727,6 @@ text = "Salir"
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonMaterias" to="." method="_on_ButtonMaterias_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonSalir" to="." method="_on_ButtonSalir_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="request_completed" from="GetAlumnos" to="." method="_on_GetAlumnos_request_completed"]
 
 [editable path="PanelHorario/Materias/Mat"]

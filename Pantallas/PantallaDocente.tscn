@@ -211,25 +211,26 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Alumnos" type="Control" parent="PanelDatos"]
-anchor_left = -0.078
-anchor_top = -0.145
-anchor_right = 1.071
-anchor_bottom = 1.0
-margin_left = -0.699432
-margin_top = -0.114182
-margin_right = -0.127075
-margin_bottom = -1.04004
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelDatos"]
+anchor_left = 0.0938722
+anchor_top = 0.16263
+anchor_right = 0.91721
+anchor_bottom = 0.912341
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelDatos/ScrollContainer"]
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="Imprimir PDF" type="HTTPRequest" parent="."]
 
 [node name="Button" type="Button" parent="."]
-margin_left = 1578.0
-margin_top = 944.0
-margin_right = 1728.0
-margin_bottom = 986.0
+anchor_left = 0.815625
+anchor_top = 0.914815
+anchor_right = 0.89375
+anchor_bottom = 0.953704
 text = "ImprimirPDF"
 
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

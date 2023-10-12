@@ -11,6 +11,8 @@ var listaMaterias = {}
 var listaDivisiones = {}
 var arreglo_alumnos = []
 var datos_alumno = []
+var arreglo_materias = []
+var datos_materia = []
 var students
 
 
@@ -26,6 +28,7 @@ onready var panel_materias_especificas = $PanelMateriaEspecifica
 onready var label_nombre_materias = $PanelMateriaEspecifica/NombreMateria
 onready var label_bienvenida = $PanelBienvenida/LabelBienvenida
 onready var tabla_alumno = $PanelMateriaEspecifica/TablaAlumnos
+onready var tabla_materias = $PanelHorario/TablaHorariosDocente
 
 
 func _ready():
@@ -52,6 +55,13 @@ func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
 			listaDivisiones[i] = materia.division.id
 			menu_materias.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")", i)
 			i += 1
+			datos_materia.insert(0, materia["class_name"])
+			datos_materia.insert(1, materia.division.division_name)
+			datos_materia.insert(2, materia.classroom.room_type)
+			datos_materia.insert(3, "Horario XD")
+			arreglo_materias.append(datos_materia)
+			datos_materia = []
+		tabla_materias.set_data(arreglo_materias)
 	else:
 		print("Error en el primer request")
 

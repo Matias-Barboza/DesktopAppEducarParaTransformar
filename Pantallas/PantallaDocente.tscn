@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Contenedores/Tablas/TablaAlumnos.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Pantallas/PantallaDocente.gd" type="Script" id=4]
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Recursos/Iconos/bxs-file-pdf-icon.png" type="Texture" id=6]
+[ext_resource path="res://Contenedores/Tablas/TablaHorariosDocente.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -66,19 +67,17 @@ font_path = "res://Recursos/Montserrat-SemiBold.ttf"
 size = 20
 font_data = SubResource( 6 )
 
-[sub_resource type="DynamicFontData" id=8]
-font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+[sub_resource type="DynamicFont" id=52]
+font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=9]
-size = 20
-font_data = SubResource( 8 )
+[sub_resource type="StyleBoxFlat" id=53]
+bg_color = Color( 0.0431373, 0.368627, 0.843137, 1 )
 
-[sub_resource type="DynamicFontData" id=10]
-font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+[sub_resource type="StyleBoxFlat" id=54]
+bg_color = Color( 0.0392157, 0.345098, 0.792157, 1 )
 
-[sub_resource type="DynamicFont" id=11]
-size = 20
-font_data = SubResource( 10 )
+[sub_resource type="StyleBoxFlat" id=55]
+bg_color = Color( 0.0509804, 0.431373, 0.992157, 1 )
 
 [sub_resource type="Animation" id=33]
 resource_name = "despliegue_menu_lateral"
@@ -288,137 +287,10 @@ margin_right = -73.9601
 margin_bottom = -41.0
 custom_styles/panel = SubResource( 46 )
 
-[node name="HSeparator2" type="HSeparator" parent="PanelHorario"]
-anchor_left = 0.0875421
-anchor_top = 0.0763359
-anchor_right = 0.925926
-anchor_bottom = 0.0839695
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="HSeparator3" type="HSeparator" parent="PanelHorario"]
-anchor_left = 0.0875421
-anchor_top = 0.152672
-anchor_right = 0.925926
-anchor_bottom = 0.160305
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="HSeparator4" type="HSeparator" parent="PanelHorario"]
-anchor_left = 0.0875421
-anchor_top = 0.917939
-anchor_right = 0.925926
-anchor_bottom = 0.925573
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Materia" type="Label" parent="PanelHorario"]
-anchor_left = 0.0886571
-anchor_top = 0.0784314
-anchor_right = 0.28292
-anchor_bottom = 0.154556
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 7 )
-text = "Materia"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Comision" type="Label" parent="PanelHorario"]
-anchor_left = 0.283572
-anchor_top = 0.0784314
-anchor_right = 0.539765
-anchor_bottom = 0.154556
-margin_left = 3.05176e-05
-margin_right = 6.10352e-05
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 9 )
-text = "Comision"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Horario" type="Label" parent="PanelHorario"]
-anchor_left = 0.726858
-anchor_top = 0.0784314
-anchor_right = 0.925033
-anchor_bottom = 0.154556
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 11 )
-text = "Horario"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Aula" type="Label" parent="PanelHorario"]
-anchor_left = 0.540417
-anchor_top = 0.0784314
-anchor_right = 0.726858
-anchor_bottom = 0.154556
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 11 )
-text = "Aula"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="VSeparator" type="VSeparator" parent="PanelHorario"]
-anchor_left = 0.0864198
-anchor_top = 0.0782443
-anchor_right = 0.0909091
-anchor_bottom = 0.921756
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="VSeparator5" type="VSeparator" parent="PanelHorario"]
-anchor_left = 0.538462
-anchor_top = 0.0784314
-anchor_right = 0.54295
-anchor_bottom = 0.918126
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="VSeparator4" type="VSeparator" parent="PanelHorario"]
-anchor_left = 0.281617
-anchor_top = 0.0784314
-anchor_right = 0.286106
-anchor_bottom = 0.920035
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="VSeparator6" type="VSeparator" parent="PanelHorario"]
-anchor_left = 0.724902
-anchor_top = 0.0784314
-anchor_right = 0.729391
-anchor_bottom = 0.920035
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="VSeparator2" type="VSeparator" parent="PanelHorario"]
-anchor_left = 0.923681
-anchor_top = 0.0782443
-anchor_right = 0.928171
-anchor_bottom = 0.921756
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="TablaHorariosDocente" parent="PanelHorario" instance=ExtResource( 7 )]
 
 [node name="PanelMateriaEspecifica" type="Panel" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 193.0
@@ -447,6 +319,10 @@ anchor_left = 0.893742
 anchor_top = -0.077278
 anchor_right = 1.00076
 anchor_bottom = -0.0149942
+custom_fonts/font = SubResource( 52 )
+custom_styles/hover = SubResource( 53 )
+custom_styles/pressed = SubResource( 54 )
+custom_styles/normal = SubResource( 55 )
 text = "ImprimirPDF"
 icon = ExtResource( 6 )
 __meta__ = {

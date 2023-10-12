@@ -1,5 +1,6 @@
 extends Node
 
+
 var nombreCompleto : String = ""
 var username : String = ""
 var userId : int = 0

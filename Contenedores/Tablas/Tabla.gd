@@ -45,14 +45,17 @@ func rellenar_tabla():
 
 
 func obtener_numero_columnas():
+	
 	return get_node("VBoxContainer/PanelContainer/HBoxContainer").get_child_count()
 
 
 func set_data(data_externa:Array):
+	
 	data = data_externa
 	emit_signal("data_recibida")
 
 
 func data_a_completar():
+	
 	crear_filas()
 	rellenar_tabla()

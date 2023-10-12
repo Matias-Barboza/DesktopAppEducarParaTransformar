@@ -1,5 +1,6 @@
 extends Control
 
+
 var division = 1
 var desplegado = false
 var paneles = []
@@ -11,7 +12,6 @@ var listaDivisiones = {}
 var arreglo_alumnos = []
 var datos_alumno = []
 var students
-
 
 
 onready var request = $HTTPRequest
@@ -29,7 +29,9 @@ onready var tabla_alumno = $PanelMateriaEspecifica/TablaAlumnos
 
 
 func _ready():
+	
 	request.request(endpoint)
+	
 	panel_bienvenida.visible = true
 	panel_horario.visible = false
 	panel_notas.visible = false
@@ -38,9 +40,10 @@ func _ready():
 	label_bienvenida.text = "Bienvenido " + Globals.nombreCompleto
 	
 	paneles = [panel_bienvenida, panel_horario, panel_notas, panel_materias, panel_materias_especificas]
-	
+
 
 func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
+	
 	if response_code == 200:
 		var i = 0
 		var json = JSON.parse(body.get_string_from_utf8())
@@ -54,6 +57,7 @@ func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
 
 
 func _on_GetAlumnos_request_completed(_result, response_code, _headers, body):
+	
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
 		students = json
@@ -72,6 +76,7 @@ func _on_GetAlumnos_request_completed(_result, response_code, _headers, body):
 
 
 func _on_ButtonMenuDesplegable_pressed():
+	
 	if not desplegado:
 		animation_player.play("despliegue_menu_lateral")
 	else:
@@ -80,6 +85,7 @@ func _on_ButtonMenuDesplegable_pressed():
 
 
 func activar_panel(panel_a_visibilizar):
+	
 	for panel in paneles:
 		if panel != panel_a_visibilizar:
 			panel.visible = false
@@ -90,26 +96,31 @@ func activar_panel(panel_a_visibilizar):
 
 
 func _on_ButtonHorarios_pressed():
+	
 	activar_panel(panel_horario)
 
+
 func _on_ButtonNotas_pressed():
+	
 	activar_panel(panel_notas)
 
 
 func _on_ButtonMaterias_pressed():
-	activar_panel(panel_materias)
 	
+	activar_panel(panel_materias)
+
 
 func _on_OptionButton_item_selected(index):
+	
 	label_nombre_materias.text = listaMaterias[index]
 	division = listaDivisiones[index]
 	requestAlumnos.request(endpointAlumnos)
 	activar_panel(panel_materias_especificas)
 	menu_materias.selected = -1
-	
 
 
 func _on_ButtonSalir_pressed():
+	
 	Globals.userId = 0
 	Globals.jwt = ""
 	Globals.password = ""
@@ -117,9 +128,8 @@ func _on_ButtonSalir_pressed():
 	get_tree().change_scene("res://Pantallas/PantallaInicioDeSesion.tscn")
 
 
-
-
 func _on_Button_pressed():
+	
 	var header = [ "content-type: application/json" , "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMThiZWVhMjdmZDgxMzA5ZWFhZTA5NGFkMmU1NjQyOTU4NmMwNzBmMGY5MDdmYzM1ZTI0NWI3NjEwYTY4ODgzIiwic3ViIjoiYWxlam9vY3p0d2l0Y2hAZ21haWwuY29tIiwiZXhwIjo5OTk5OTk5OTk5fQ._-fbaWRNvua_SmCWQ48U2apGTdc_2_PW-Nga9IG1qxQ" ]
 	var URL = "https://us1.pdfgeneratorapi.com/api/v4/documents/generate"
 	
@@ -139,6 +149,7 @@ func _on_Button_pressed():
 
 
 func _on_Imprimir_PDF_request_completed(_result, response_code, _headers, body):
+	
 	if response_code == 201:
 		var json = JSON.parse(body.get_string_from_utf8())
 		OS.shell_open(json.result.response)

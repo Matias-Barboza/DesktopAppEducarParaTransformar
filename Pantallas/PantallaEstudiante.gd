@@ -7,7 +7,6 @@ var datos_materia = []
 var arreglo_materias = []
 var datos_horario = []
 var arreglo_horarios = []
-
 var endpoint_notas = Globals.URL + "/api/notes/student/" + str(Globals.userId)
 
 
@@ -18,7 +17,6 @@ onready var tabla_horarios = $PanelHorarios/TablaHorarios
 onready var tabla_notas = $PanelNotas/TablaNotasBoletin
 onready var animation_player = $AnimationPlayer
 onready var label_bienvenida = $PanelBienvenida/LabelBienvenida
-
 onready var http_request = $HTTPRequestNotas
 #onready var http_request_horarios = $HTTPRequestHorarios
 
@@ -100,6 +98,7 @@ func _on_HTTPRequestNotas_request_completed(_result, response_code, _headers, bo
 
 
 #func _on_HTTPRequestHorarios_request_completed(result, response_code, headers, body):
+#	
 #	if response_code == 200:
 #		var json = JSON.parse(body.get_string_from_utf8())
 #		for horario in json.result:
@@ -111,6 +110,7 @@ func _on_HTTPRequestNotas_request_completed(_result, response_code, _headers, bo
 
 
 func _on_ButtonSalir_pressed():
+	
 	Globals.userId = 0
 	Globals.jwt = ""
 	Globals.password = ""

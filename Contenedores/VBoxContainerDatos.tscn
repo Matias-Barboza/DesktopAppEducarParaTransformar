@@ -44,7 +44,7 @@ border_width_bottom = 1
 border_color = Color( 0.603922, 0.564706, 0.564706, 1 )
 
 [sub_resource type="DynamicFont" id=18]
-size = 20
+size = 25
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=8]
@@ -111,8 +111,8 @@ margin_bottom = 226.0
 [node name="ButtonIS" type="Button" parent="."]
 margin_top = 246.0
 margin_right = 444.0
-margin_bottom = 286.0
-rect_min_size = Vector2( 0, 40 )
+margin_bottom = 306.0
+rect_min_size = Vector2( 0, 60 )
 custom_fonts/font = SubResource( 18 )
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 10 )

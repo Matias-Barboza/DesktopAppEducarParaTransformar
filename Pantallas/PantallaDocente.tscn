@@ -1,16 +1,17 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Contenedores/Tablas/TablaAlumnos.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Recursos/IconoMenuDesplegable9.png" type="Texture" id=3]
+[ext_resource path="res://Recursos/Iconos/bxs-spreadsheet-icon2.png" type="Texture" id=3]
 [ext_resource path="res://Pantallas/PantallaDocente.gd" type="Script" id=4]
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Recursos/Iconos/bxs-file-pdf-icon.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="StyleBoxFlat" id=41]
-bg_color = Color( 1, 0.945098, 0.909804, 1 )
+bg_color = Color( 1, 1, 1, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -23,7 +24,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id=42]
-bg_color = Color( 1, 0.945098, 0.909804, 1 )
+bg_color = Color( 1, 1, 1, 1 )
 border_width_left = 6
 border_width_top = 4
 border_width_right = 4
@@ -36,7 +37,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id=43]
-bg_color = Color( 1, 0.945098, 0.909804, 1 )
+bg_color = Color( 1, 1, 1, 1 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -218,18 +219,15 @@ grow_vertical = 2
 custom_styles/panel = SubResource( 1 )
 
 [node name="ButtonMenuDesplegable" type="Button" parent="Panel"]
-anchor_left = 0.0104167
-anchor_top = 0.0394737
-anchor_right = 0.05
-anchor_bottom = 0.960526
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 78.0
+margin_bottom = 68.0
 custom_styles/hover = SubResource( 41 )
 custom_styles/pressed = SubResource( 42 )
 custom_styles/normal = SubResource( 43 )
 icon = ExtResource( 3 )
 icon_align = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="HSeparator" type="HSeparator" parent="Panel"]
 anchor_top = 1.0
@@ -445,11 +443,12 @@ valign = 1
 [node name="TablaAlumnos" parent="PanelMateriaEspecifica" instance=ExtResource( 2 )]
 
 [node name="Button" type="Button" parent="PanelMateriaEspecifica"]
-anchor_left = 1.00847
-anchor_top = 0.94925
-anchor_right = 1.11549
-anchor_bottom = 0.997693
+anchor_left = 0.893742
+anchor_top = -0.077278
+anchor_right = 1.00076
+anchor_bottom = -0.0149942
 text = "ImprimirPDF"
+icon = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": true
 }

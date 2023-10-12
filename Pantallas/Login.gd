@@ -6,37 +6,61 @@ var endpointrole = Globals.URL + "/api/role/"
 var endpointFullname = Globals.URL + "/api/fullname/"
 var headers = ["Content-Type: application/json"]
 var rol = ""
+var viene_de_error
 
 export var escenaDocente : PackedScene
 export var escenaEstudiante : PackedScene
 
 onready var request = $LoginRequest
 onready var correo = $PanelInicioDeSesion/VBoxContainerDatos/TextEditCE
+onready var vboxcontainer_datos = $PanelInicioDeSesion/VBoxContainerDatos
 onready var label_datos_invalidos = $PanelInicioDeSesion/LabelInvalido
+onready var spinner_carga = $PanelInicioDeSesion/Spinner
+onready var animation_player = $AnimationPlayer
 
 
 func _ready():
 	label_datos_invalidos.visible = false
+	spinner_carga.visible = false
+	viene_de_error = false
 
 
 func _on_LoginRequest_request_completed(result, response_code, headers, body):
 	if response_code == 200:
+		animation_player.play("repligue_movimiento_error")
 		var json = JSON.parse(body.get_string_from_utf8())
 		decodeJWT(json.result.token)
 		getRole()
 	else:
-		label_datos_invalidos.visible = not label_datos_invalidos.visible
-		print("error")
+		
+		label_datos_invalidos.text = "Correo electrónico o contraseña inválido"
+		
+		if vboxcontainer_datos.rect_position.y == 125.5 and not viene_de_error:
+			animation_player.play("movimiento_error")
+			viene_de_error = true
+		elif vboxcontainer_datos.rect_position.y == 204 and viene_de_error:
+			animation_player.play("parpadeo_invalido")
+		
+		print("error de datos")
 
 
 func _on_ButtonIS_pressed():
 	
-	label_datos_invalidos.visible = false
-	
 	if(mail_valido(correo.text)):
+		spinner_carga.visible = true
+		spinner_carga.get_node("AnimationPlayer").play("girar")
+		if vboxcontainer_datos.rect_position.y == 204 and not viene_de_error:
+			animation_player.play("repligue_movimiento_error")
 		loginRequest()
 	else:
-		label_datos_invalidos.visible = not label_datos_invalidos.visible
+		
+		label_datos_invalidos.text = "Datos faltantes o correo electrónico inválido"
+		
+		if vboxcontainer_datos.rect_position.y == 125.5:
+			animation_player.play("movimiento_error")
+		elif vboxcontainer_datos.rect_position.y == 204:
+			animation_player.play("parpadeo_invalido")
+		
 		print("Flaco, tas equivocado")
 
 
@@ -76,7 +100,7 @@ func _on_GetRole_request_completed(result, response_code, headers, body):
 		rol = json.result
 		cambiarEscena()
 	else:
-		print("error")
+		print("error de rol")
 	
 func getRole():
 	endpointrole += "%s" % Globals.userId
@@ -99,4 +123,4 @@ func _on_GetFullName_request_completed(result, response_code, headers, body):
 		print("Re cheto")
 		Globals.nombreCompleto = json.result.firstname + ", " + json.result.lastname
 	else:
-		print("error")
+		print("error de nombre")

@@ -25,9 +25,10 @@ func _ready():
 	viene_de_error = false
 
 
-func _on_LoginRequest_request_completed(result, response_code, headers, body):
+func _on_LoginRequest_request_completed(_result, response_code, _headers, body):
 	if response_code == 200:
-		animation_player.play("repligue_movimiento_error")
+		if vboxcontainer_datos.rect_position.y == 204 and viene_de_error:
+			animation_player.play("repligue_movimiento_error")
 		var json = JSON.parse(body.get_string_from_utf8())
 		decodeJWT(json.result.token)
 		getRole()
@@ -94,7 +95,7 @@ func mail_valido(correo):
 	return regex.search(correo, 0, correo.length() - 1) != null
 
 
-func _on_GetRole_request_completed(result, response_code, headers, body):
+func _on_GetRole_request_completed(_result, response_code, _headers, body):
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
 		rol = json.result
@@ -117,7 +118,7 @@ func cambiarEscena():
 		print("Ni idea pibe")
 
 
-func _on_GetFullName_request_completed(result, response_code, headers, body):
+func _on_GetFullName_request_completed(_result, response_code, _headers, body):
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
 		print("Re cheto")

@@ -1,9 +1,6 @@
 extends Control
 
 
-signal rellenar_tabla
-
-
 var desplegado = false
 var paneles = []
 var datos_materia = []
@@ -84,7 +81,7 @@ func replegar_panel():
 		desplegado = not desplegado
 
 
-func _on_HTTPRequestNotas_request_completed(result, response_code, headers, body):
+func _on_HTTPRequestNotas_request_completed(_result, response_code, _headers, body):
 	
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())

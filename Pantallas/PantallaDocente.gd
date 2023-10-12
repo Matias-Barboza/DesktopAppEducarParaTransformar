@@ -40,7 +40,7 @@ func _ready():
 	paneles = [panel_bienvenida, panel_horario, panel_notas, panel_materias, panel_materias_especificas]
 	
 
-func _on_HTTPRequest_request_completed(result, response_code, headers, body):
+func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
 	if response_code == 200:
 		var i = 0
 		var json = JSON.parse(body.get_string_from_utf8())
@@ -53,7 +53,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		print("Error en el primer request")
 
 
-func _on_GetAlumnos_request_completed(result, response_code, headers, body):
+func _on_GetAlumnos_request_completed(_result, response_code, _headers, body):
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
 		students = json
@@ -138,7 +138,7 @@ func _on_Button_pressed():
 	$"Imprimir PDF".request(URL, header, true, HTTPClient.METHOD_POST, JSON.print(json_data))
 
 
-func _on_Imprimir_PDF_request_completed(result, response_code, headers, body):
+func _on_Imprimir_PDF_request_completed(_result, response_code, _headers, body):
 	if response_code == 201:
 		var json = JSON.parse(body.get_string_from_utf8())
 		OS.shell_open(json.result.response)

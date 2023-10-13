@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Contenedores/Tablas/TablaAlumnos.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Recursos/Iconos/bxs-file-pdf-icon.png" type="Texture" id=6]
 [ext_resource path="res://Contenedores/Tablas/TablaHorariosDocente.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Recursos/Iconos/bxs-medal-icon.png" type="Texture" id=8]
+[ext_resource path="res://Recursos/Iconos/bxs-calendar-icon.png" type="Texture" id=9]
+[ext_resource path="res://Recursos/Iconos/bxs-log-out-icon.png" type="Texture" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -379,7 +382,6 @@ __meta__ = {
 }
 
 [node name="PanelNotas" type="Panel" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 449.0
@@ -394,13 +396,52 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -260.0
-margin_top = -49.0
+margin_top = -257.0
 margin_right = 260.0
-margin_bottom = -11.0
+margin_bottom = -219.0
 custom_fonts/font = SubResource( 36 )
-text = "Aca van a estar las notas"
+text = "Seleccione una materia"
 align = 1
 valign = 1
+
+[node name="OptionButtonMaterias" type="OptionButton" parent="PanelNotas"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -197.0
+margin_top = -213.0
+margin_right = 197.0
+margin_bottom = -172.0
+text = "Seleccione una materia"
+
+[node name="LabelNotas2" type="Label" parent="PanelNotas"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -134.0
+margin_right = 260.0
+margin_bottom = -96.0
+custom_fonts/font = SubResource( 36 )
+text = "Seleccione un alumno"
+align = 1
+valign = 1
+
+[node name="OptionButtonAlumnos" type="OptionButton" parent="PanelNotas"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -197.0
+margin_top = -90.0
+margin_right = 197.0
+margin_bottom = -45.0
+disabled = true
+text = "Elemento 0"
+items = [ "Elemento 0", null, false, 0, null, "Elemento 1", null, false, 1, null ]
+selected = 0
 
 [node name="PanelLateral" type="Panel" parent="."]
 anchor_right = 0.132
@@ -420,7 +461,7 @@ custom_constants/separation = 5
 
 [node name="ButtonHorarios" type="Button" parent="PanelLateral/VBoxContainer"]
 margin_right = 246.0
-margin_bottom = 40.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
@@ -430,12 +471,13 @@ custom_styles/hover = SubResource( 37 )
 custom_styles/pressed = SubResource( 19 )
 custom_styles/normal = SubResource( 30 )
 text = " Horarios"
+icon = ExtResource( 9 )
 align = 0
 
 [node name="ButtonNotas" type="Button" parent="PanelLateral/VBoxContainer"]
-margin_top = 45.0
+margin_top = 53.0
 margin_right = 246.0
-margin_bottom = 85.0
+margin_bottom = 101.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
@@ -445,12 +487,13 @@ custom_styles/hover = SubResource( 38 )
 custom_styles/pressed = SubResource( 20 )
 custom_styles/normal = SubResource( 31 )
 text = " Cargar notas"
+icon = ExtResource( 8 )
 align = 0
 
 [node name="ButtonMaterias" type="Button" parent="PanelLateral/VBoxContainer"]
-margin_top = 90.0
+margin_top = 106.0
 margin_right = 246.0
-margin_bottom = 130.0
+margin_bottom = 154.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.996078, 0.996078, 0.996078, 1 )
@@ -460,17 +503,18 @@ custom_styles/hover = SubResource( 39 )
 custom_styles/pressed = SubResource( 21 )
 custom_styles/normal = SubResource( 32 )
 text = " Materias"
+icon = ExtResource( 3 )
 align = 0
 
 [node name="HSeparator" type="HSeparator" parent="PanelLateral/VBoxContainer"]
-margin_top = 135.0
+margin_top = 159.0
 margin_right = 246.0
-margin_bottom = 139.0
+margin_bottom = 163.0
 
 [node name="ButtonSalir" type="Button" parent="PanelLateral/VBoxContainer"]
-margin_top = 144.0
+margin_top = 168.0
 margin_right = 246.0
-margin_bottom = 184.0
+margin_bottom = 216.0
 rect_min_size = Vector2( 0, 40 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
@@ -480,6 +524,7 @@ custom_styles/hover = SubResource( 40 )
 custom_styles/pressed = SubResource( 22 )
 custom_styles/normal = SubResource( 14 )
 text = "Salir"
+icon = ExtResource( 10 )
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
@@ -490,6 +535,7 @@ text = "Salir"
 [connection signal="pressed" from="Panel/ButtonMenuDesplegable" to="." method="_on_ButtonMenuDesplegable_pressed"]
 [connection signal="pressed" from="PanelMateriaEspecifica/Button" to="." method="_on_Button_pressed"]
 [connection signal="item_selected" from="PanelMaterias/Panel/OptionButton" to="." method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="PanelNotas/OptionButtonMaterias" to="." method="_on_OptionButtonMaterias_item_selected"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonHorarios" to="." method="_on_ButtonHorarios_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonNotas" to="." method="_on_ButtonNotas_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonMaterias" to="." method="_on_ButtonMaterias_pressed"]

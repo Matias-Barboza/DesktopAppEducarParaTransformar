@@ -9,6 +9,7 @@ var endpoint = Globals.URL + "/api/teachers/classes/" + str(Globals.userId)
 var endpointAlumnos = Globals.URL + "/api/divisions/students/" + str(division)
 var listaMaterias = {}
 var listaDivisiones = {}
+var listaAlumnos = {}
 var arreglo_alumnos = []
 var datos_alumno = []
 var arreglo_materias = []
@@ -29,11 +30,15 @@ onready var label_nombre_materias = $PanelMateriaEspecifica/NombreMateria
 onready var label_bienvenida = $PanelBienvenida/LabelBienvenida
 onready var tabla_alumno = $PanelMateriaEspecifica/TablaAlumnos
 onready var tabla_materias = $PanelHorario/TablaHorariosDocente
+onready var menu_notas_materia = $PanelNotas/OptionButtonMaterias
+onready var menu_notas_alumnos = $PanelNotas/OptionButtonAlumnos
 
 
 func _ready():
 	
 	request.request(endpoint)
+	
+	menu_notas_alumnos.text = "Seleccione alumno"
 	
 	panel_bienvenida.visible = true
 	panel_horario.visible = false
@@ -54,6 +59,7 @@ func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
 			listaMaterias[i] = materia["class_name"] + " ("+ materia.division.division_name + ")"
 			listaDivisiones[i] = materia.division.id
 			menu_materias.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")", i)
+			menu_notas_materia.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")", i)
 			i += 1
 			datos_materia.insert(0, materia["class_name"])
 			datos_materia.insert(1, materia.division.division_name)
@@ -70,8 +76,12 @@ func _on_GetAlumnos_request_completed(_result, response_code, _headers, body):
 	
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
+		var i = 0
 		students = json
+		listaAlumnos = {}
 		for alumno in json.result:
+			#listaAlumnos[i] = str(alumno.lastname) + " " + str(alumno.firstname)
+			#i+= 1
 			datos_alumno.insert(0,alumno.file_number)
 			datos_alumno.insert(1,alumno.lastname)
 			datos_alumno.insert(2,alumno.firstname)
@@ -165,3 +175,17 @@ func _on_Imprimir_PDF_request_completed(_result, response_code, _headers, body):
 		OS.shell_open(json.result.response)
 	else:
 		print("Error en la solicitud. Código de respuesta:", response_code)
+
+
+func _on_OptionButtonMaterias_item_selected(index):
+	menu_notas_alumnos.disabled = false
+	menu_notas_alumnos.text = "Seleccione alumno"
+	division = listaDivisiones[index]
+	#requestAlumnos.request(endpointAlumnos)
+	#var i = 0
+	#for items in menu_notas_alumnos.get_popup().items:
+		#menu_notas_alumnos.get_popup().remove_item(0)
+	#for alumnos in listaAlumnos:
+		#menu_notas_alumnos.get_popup().add_item(listaAlumnos[i])
+		#i+= 1
+	

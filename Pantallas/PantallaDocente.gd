@@ -1,92 +1,106 @@
 extends Control
 
+var endpointMaterias = Globals.URL + "/api/teachers/classes/" + str(Globals.userId)
+var endpointAlumnos = Globals.URL + "/api/divisions/students/"
 
-var division = 1
 var desplegado = false
 var paneles = []
-var headers = ["Content-Type: application/json"]
-var endpoint = Globals.URL + "/api/teachers/classes/" + str(Globals.userId)
-var endpointAlumnos = Globals.URL + "/api/divisions/students/" + str(division)
-var listaMaterias = {}
-var listaDivisiones = {}
-var listaAlumnos = {}
+var listaMaterias = []
+var listaAlumnos = []
 var arreglo_alumnos = []
 var datos_alumno = []
 var arreglo_materias = []
 var datos_materia = []
-var students
-var materiaPDF
-var divisionPDF
-var nombreDivisionesPDF = {}
+var alumnos
+var materia_seleccionada
 
 
-onready var request = $HTTPRequest
+onready var requestMaterias = $GetMaterias
 onready var requestAlumnos = $GetAlumnos
+onready var request_alumnos_nota = $GetAlumnosNota
+
+
 onready var animation_player = $AnimationPlayer
+onready var label_bienvenida = $PanelBienvenida/LabelBienvenida
+onready var tabla_alumno = $PanelMateria/TablaAlumnos
+onready var tabla_materias = $PanelHorario/TablaHorariosDocente
+
 onready var panel_horario = $PanelHorario
 onready var panel_bienvenida = $PanelBienvenida
-onready var panel_notas = $PanelNotas
-onready var panel_materias = $PanelMaterias
-onready var menu_materias = $PanelMaterias/Panel/OptionButton
-onready var panel_materias_especificas = $PanelMateriaEspecifica
-onready var label_nombre_materias = $PanelMateriaEspecifica/NombreMateria
-onready var label_bienvenida = $PanelBienvenida/LabelBienvenida
-onready var tabla_alumno = $PanelMateriaEspecifica/TablaAlumnos
-onready var tabla_materias = $PanelHorario/TablaHorariosDocente
-onready var menu_notas_materia = $PanelNotas/OptionButtonMaterias
-onready var menu_notas_alumnos = $PanelNotas/OptionButtonAlumnos
+
+onready var panel_nota = $PanelNota
+onready var panel_seleccion_notas = $PanelSeleccionNota
+onready var seleccion_materia_nota = $PanelSeleccionNota/OptionButtonMaterias
+onready var seleccion_alumno_nota = $PanelSeleccionNota/OptionButtonAlumnos
+
+onready var panel_materia = $PanelMateria
+onready var panel_seleccion_materia = $PanelSeleccionMaterias
+onready var seleccion_materia = $PanelSeleccionMaterias/Panel/OptionButton
+
+onready var label_nombre_materias = $PanelMateria/NombreMateria
 
 
 func _ready():
 	
-	request.request(endpoint)
-	
-	menu_notas_alumnos.text = "Seleccione alumno"
+	requestMaterias.request(endpointMaterias)
 	
 	panel_bienvenida.visible = true
 	panel_horario.visible = false
-	panel_notas.visible = false
-	panel_materias.visible = false
-	panel_materias_especificas.visible = false
+	panel_seleccion_notas.visible = false
+	panel_materia.visible = false
+	panel_seleccion_materia.visible = false
 	label_bienvenida.text = "Bienvenido " + Globals.nombreCompleto
 	
-	paneles = [panel_bienvenida, panel_horario, panel_notas, panel_materias, panel_materias_especificas]
+	paneles = [panel_bienvenida, panel_horario, panel_seleccion_notas, panel_materia, panel_seleccion_materia, panel_nota]
 
 
 func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
 	
 	if response_code == 200:
-		var i = 0
 		var json = JSON.parse(body.get_string_from_utf8())
+		
 		for materia in json.result:
-			listaMaterias[i] = materia["class_name"] + " ("+ materia.division.division_name + ")"
-			listaDivisiones[i] = materia.division.id
-			nombreDivisionesPDF[i] = materia.division.division_name
+			listaMaterias.append(materia)
 			
-			menu_materias.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")", i)
-			menu_notas_materia.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")", i)
-			i += 1
-			datos_materia.insert(0, materia["class_name"])
-			datos_materia.insert(1, materia.division.division_name)
-			datos_materia.insert(2, materia.classroom.room_type)
-			datos_materia.insert(3, "Horario XD")
-			arreglo_materias.append(datos_materia)
-			datos_materia = []
+			seleccion_materia.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")")
+			seleccion_materia_nota.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")")
+			
+			for horario in materia.schedules:
+				
+				datos_materia.insert(0, materia["class_name"])
+				datos_materia.insert(1, materia["division"]["division_name"])
+				datos_materia.insert(2, materia["classroom"]["room_type"])
+				datos_materia.insert(3, convertir_dia_a_espanol(horario["day"]))
+				datos_materia.insert(4, horario["startingTime"] + " - " + horario["endTime"])
+				arreglo_materias.append(datos_materia)
+				datos_materia = []
+			
 		tabla_materias.set_data(arreglo_materias)
 	else:
-		print("Error en el primer request")
+		print("Error al obtener los horarios")
 
+func convertir_dia_a_espanol(dia_en_ingles: String) -> String:
+	var dias = {
+		"MONDAY": "Lunes",
+		"TUESDAY": "Martes",
+		"WEDNESDAY": "Miércoles",
+		"THURSDAY": "Jueves",
+		"FRIDAY": "Viernes",
+		"SATURDAY": "Sábado",
+		"SUNDAY": "Domingo"
+	}
+	
+	if dias.has(dia_en_ingles):
+		return dias[dia_en_ingles]
+	else:
+		return "Día no válido"
 
 func _on_GetAlumnos_request_completed(_result, response_code, _headers, body):
 	
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
-		var i = 0
-		students = json
-		listaAlumnos = {}
+		alumnos = json
 		for alumno in json.result:
-			#listaAlumnos[i] = str(alumno.lastname) + " " + str(alumno.firstname)
-			#i+= 1
 			datos_alumno.insert(0,alumno.file_number)
 			datos_alumno.insert(1,alumno.lastname)
 			datos_alumno.insert(2,alumno.firstname)
@@ -94,7 +108,6 @@ func _on_GetAlumnos_request_completed(_result, response_code, _headers, body):
 			datos_alumno = []
 		tabla_alumno.set_data(arreglo_alumnos)
 		
-		print("Mostrando alumnos de la division " + str(division))
 	else:
 		print("Error en la request alumnos")
 
@@ -110,7 +123,6 @@ func _on_ButtonMenuDesplegable_pressed():
 
 
 func activar_panel(panel_a_visibilizar):
-	
 	for panel in paneles:
 		if panel != panel_a_visibilizar:
 			panel.visible = false
@@ -121,31 +133,21 @@ func activar_panel(panel_a_visibilizar):
 
 
 func _on_ButtonHorarios_pressed():
-	
 	activar_panel(panel_horario)
 
-
 func _on_ButtonNotas_pressed():
-	
-	activar_panel(panel_notas)
-
+	activar_panel(panel_seleccion_notas)
 
 func _on_ButtonMaterias_pressed():
-	
-	activar_panel(panel_materias)
-
+	activar_panel(panel_seleccion_materia)
 
 func _on_OptionButton_item_selected(index):
+	materia_seleccionada = listaMaterias[index]
 	
-	label_nombre_materias.text = listaMaterias[index]
-	materiaPDF = listaMaterias[index]
+	requestAlumnos.request('{URL}{id}'.format({"URL" : endpointAlumnos, "id" : materia_seleccionada["division"]["id"]}))
+	activar_panel(panel_materia)
 	
-	division = listaDivisiones[index]
-	divisionPDF = nombreDivisionesPDF[index]
-	
-	requestAlumnos.request(endpointAlumnos)
-	activar_panel(panel_materias_especificas)
-	menu_materias.selected = -1
+	seleccion_materia.selected = -1
 
 
 func _on_ButtonSalir_pressed():
@@ -166,12 +168,12 @@ func _on_Button_pressed():
 		"template": {
 			"id": 808188,
 			"data": {
-				"class_name": materiaPDF,
+				"class_name": materia_seleccionada["class_name"],
 				"teacher": Globals.nombreCompleto,
-				"cant": students.result.size(),
-				"division": divisionPDF,
+				"cant": alumnos.result.size(),
+				"division": materia_seleccionada["division"]["division_name"],
 				"date": Time.get_date_string_from_system(),
-				"students": students.result
+				"students": alumnos.result
 			}
 		},
 		"format": "pdf",
@@ -191,14 +193,25 @@ func _on_Imprimir_PDF_request_completed(_result, response_code, _headers, body):
 
 
 func _on_OptionButtonMaterias_item_selected(index):
-	menu_notas_alumnos.disabled = false
-	menu_notas_alumnos.text = "Seleccione alumno"
-	division = listaDivisiones[index]
-	#requestAlumnos.request(endpointAlumnos)
-	#var i = 0
-	#for items in menu_notas_alumnos.get_popup().items:
-		#menu_notas_alumnos.get_popup().remove_item(0)
-	#for alumnos in listaAlumnos:
-		#menu_notas_alumnos.get_popup().add_item(listaAlumnos[i])
-		#i+= 1
+	seleccion_alumno_nota.clear()
+	
+	seleccion_alumno_nota.disabled = false
+	seleccion_alumno_nota.text = "Seleccione un Alumno"
+	
+	materia_seleccionada = listaMaterias[index]
+	
+	request_alumnos_nota.request('{URL}{id}'.format({"URL" : endpointAlumnos, "id" : materia_seleccionada["division"]["id"]}))
+
+
+func _on_GetAlumnosNota_request_completed(_result, response_code, _headers, body):
+	if response_code == 200:
+		var json = JSON.parse(body.get_string_from_utf8())
+		
+		for alumno in json.result:
+			listaAlumnos.append(alumno)
+			seleccion_alumno_nota.get_popup().add_item(alumno["firstname"] + " " + alumno["lastname"])
+
+
+func _on_alumnoNota_item_selected(index):
+	var alumno = listaAlumnos[index]
 	

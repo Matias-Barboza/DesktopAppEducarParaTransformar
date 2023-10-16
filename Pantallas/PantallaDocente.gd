@@ -15,6 +15,9 @@ var datos_alumno = []
 var arreglo_materias = []
 var datos_materia = []
 var students
+var materiaPDF
+var divisionPDF
+var nombreDivisionesPDF = {}
 
 
 onready var request = $HTTPRequest
@@ -58,6 +61,8 @@ func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
 		for materia in json.result:
 			listaMaterias[i] = materia["class_name"] + " ("+ materia.division.division_name + ")"
 			listaDivisiones[i] = materia.division.id
+			nombreDivisionesPDF[i] = materia.division.division_name
+			
 			menu_materias.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")", i)
 			menu_notas_materia.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")", i)
 			i += 1
@@ -133,7 +138,11 @@ func _on_ButtonMaterias_pressed():
 func _on_OptionButton_item_selected(index):
 	
 	label_nombre_materias.text = listaMaterias[index]
+	materiaPDF = listaMaterias[index]
+	
 	division = listaDivisiones[index]
+	divisionPDF = nombreDivisionesPDF[index]
+	
 	requestAlumnos.request(endpointAlumnos)
 	activar_panel(panel_materias_especificas)
 	menu_materias.selected = -1
@@ -157,6 +166,11 @@ func _on_Button_pressed():
 		"template": {
 			"id": 808188,
 			"data": {
+				"class_name": materiaPDF,
+				"teacher": Globals.nombreCompleto,
+				"cant": students.result.size(),
+				"division": divisionPDF,
+				"date": Time.get_date_string_from_system(),
 				"students": students.result
 			}
 		},
@@ -164,7 +178,6 @@ func _on_Button_pressed():
 		"output": "url",
 		"name": "Listado Alumnos"
 	}
-	print(JSON.print(json_data))
 	$"Imprimir PDF".request(URL, header, true, HTTPClient.METHOD_POST, JSON.print(json_data))
 
 

@@ -84,9 +84,9 @@ func _on_HTTPRequestNotas_request_completed(_result, response_code, _headers, bo
 		for nota in json.result:
 			datos_materia.insert(0, nota["class_name"])
 			datos_materia.insert(1, asignarNota(nota.numeric_note_1))
-			datos_materia.insert(2, asignarNota(nota.numeric_note_2)
-			datos_materia.insert(3, nota.numeric_note_3)
-			datos_materia.insert(4, (nota.numeric_note_1 + nota.numeric_note_2 + nota.numeric_note_3) / 3)
+			datos_materia.insert(2, asignarNota(nota.numeric_note_2))
+			datos_materia.insert(3, asignarNota(nota.numeric_note_3))
+			datos_materia.insert(4, asignarNota((nota.numeric_note_1 + nota.numeric_note_2 + nota.numeric_note_3) / 3))
 			arreglo_materias.append(datos_materia)
 			datos_materia= []
 		
@@ -112,9 +112,12 @@ func _on_HTTPRequestHorarios_request_completed(result, response_code, headers, b
 				datos_horario.insert(3, horario["startingTime"] + " - " + horario["endTime"])
 				arreglo_horarios.append(datos_horario)
 				datos_horario = []
+		
+		arreglo_horarios.sort_custom(DayOfWeekSorter, "sort_by_day_of_week")
 		tabla_horarios.set_data(arreglo_horarios)
 	else:
 		print("Error en al carga de horarios")
+
 
 func convertir_dia_a_espanol(dia_en_ingles: String) -> String:
 	var dias = {
@@ -139,3 +142,31 @@ func _on_ButtonSalir_pressed():
 	Globals.password = ""
 	Globals.nombreCompleto = ""
 	get_tree().change_scene("res://Pantallas/PantallaInicioDeSesion.tscn")
+
+
+#ESTO ES PARA ORDENAR LOS HORARIOS POR DIA
+
+class DayOfWeekSorter:
+	static func sort_by_day_of_week(a, b):
+		var dias_de_semana = {
+			"Lunes": 1,
+			"Martes": 2,
+			"Miércoles": 3,
+			"Jueves": 4,
+			"Viernes": 5,
+			"Sábado": 6,
+			"Domingo": 7
+		}
+		
+		var day_a = dias_de_semana[a[2]]
+		var day_b = dias_de_semana[b[2]]
+		
+		if day_a < day_b:
+			return true
+		elif day_a > day_b:
+			return false
+		else:
+			# Si los días son iguales, compara las horas
+			var time_a = a[3]
+			var time_b = b[3]
+			return time_a < time_b

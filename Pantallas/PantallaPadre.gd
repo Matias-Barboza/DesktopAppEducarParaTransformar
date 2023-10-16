@@ -121,7 +121,8 @@ func _on_Horarios_request_completed(result, response_code, headers, body):
 				datos_horario.insert(3, horario["startingTime"] + " - " + horario["endTime"])
 				arreglo_horarios.append(datos_horario)
 				datos_horario = []
-			
+		
+		arreglo_horarios.sort_custom(DayOfWeekSorter, "sort_by_day_of_week")
 		tabla_horarios.set_data(arreglo_horarios)
 	else:
 		print("Error en al carga de horarios")
@@ -166,3 +167,30 @@ func _on_Notas_request_completed(result, response_code, headers, body):
 		tabla_notas.set_data(arreglo_materias)
 	else:
 		print("Error en la carga de notas")
+
+#ESTO ES PARA ORDENAR LOS HORARIOS POR DIA
+
+class DayOfWeekSorter:
+	static func sort_by_day_of_week(a, b):
+		var dias_de_semana = {
+			"Lunes": 1,
+			"Martes": 2,
+			"Miércoles": 3,
+			"Jueves": 4,
+			"Viernes": 5,
+			"Sábado": 6,
+			"Domingo": 7
+		}
+		
+		var day_a = dias_de_semana[a[2]]
+		var day_b = dias_de_semana[b[2]]
+		
+		if day_a < day_b:
+			return true
+		elif day_a > day_b:
+			return false
+		else:
+			# Si los días son iguales, compara las horas
+			var time_a = a[3]
+			var time_b = b[3]
+			return time_a < time_b

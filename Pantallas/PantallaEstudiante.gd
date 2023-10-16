@@ -7,6 +7,7 @@ var datos_materia = []
 var arreglo_materias = []
 var datos_horario = []
 var arreglo_horarios = []
+
 var endpoint_notas = Globals.URL + "/api/notes/student/" + str(Globals.userId)
 var endpoint_horario = Globals.URL + "/api/students/classes/" + str(Globals.userId)
 
@@ -41,7 +42,6 @@ func _ready():
 
 
 func _on_ButtonMenuDesplegable_pressed():
-	
 	if not desplegado:
 		animation_player.play("despliegue_menu_lateral")
 	else:
@@ -51,12 +51,10 @@ func _on_ButtonMenuDesplegable_pressed():
 
 
 func _on_ButtonHorarios_pressed():
-	
 	activar_panel(panel_horarios)
 
 
 func _on_ButtonNotas_pressed():
-	
 	activar_panel(panel_notas)
 
 
@@ -74,7 +72,6 @@ func activar_panel(panel_a_visibilizar):
 
 
 func replegar_panel():
-	
 	if desplegado:
 		animation_player.play("repliegue_menu_lateral")
 		desplegado = not desplegado
@@ -86,8 +83,8 @@ func _on_HTTPRequestNotas_request_completed(_result, response_code, _headers, bo
 		var json = JSON.parse(body.get_string_from_utf8())
 		for nota in json.result:
 			datos_materia.insert(0, nota["class_name"])
-			datos_materia.insert(1, nota.numeric_note_1)
-			datos_materia.insert(2, nota.numeric_note_2)
+			datos_materia.insert(1, asignarNota(nota.numeric_note_1))
+			datos_materia.insert(2, asignarNota(nota.numeric_note_2)
 			datos_materia.insert(3, nota.numeric_note_3)
 			datos_materia.insert(4, (nota.numeric_note_1 + nota.numeric_note_2 + nota.numeric_note_3) / 3)
 			arreglo_materias.append(datos_materia)
@@ -96,6 +93,11 @@ func _on_HTTPRequestNotas_request_completed(_result, response_code, _headers, bo
 		tabla_notas.set_data(arreglo_materias)
 	else:
 		print("error")
+
+func asignarNota(nota):
+	if nota == 0:
+		return ""
+	return nota
 
 
 func _on_HTTPRequestHorarios_request_completed(result, response_code, headers, body):
@@ -110,10 +112,9 @@ func _on_HTTPRequestHorarios_request_completed(result, response_code, headers, b
 				datos_horario.insert(3, horario["startingTime"] + " - " + horario["endTime"])
 				arreglo_horarios.append(datos_horario)
 				datos_horario = []
-		print(arreglo_horarios)
 		tabla_horarios.set_data(arreglo_horarios)
 	else:
-		print("error")
+		print("Error en al carga de horarios")
 
 func convertir_dia_a_espanol(dia_en_ingles: String) -> String:
 	var dias = {

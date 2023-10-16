@@ -45,8 +45,7 @@ func _on_LoginRequest_request_completed(_result, response_code, _headers, body):
 			viene_de_error = true
 		elif vboxcontainer_datos.rect_position.y == 204 and viene_de_error:
 			animation_player.play("parpadeo_invalido")
-		
-		print("error de datos")
+
 
 
 func _on_ButtonIS_pressed():
@@ -65,8 +64,6 @@ func _on_ButtonIS_pressed():
 			animation_player.play("movimiento_error")
 		elif vboxcontainer_datos.rect_position.y == 204:
 			animation_player.play("parpadeo_invalido")
-		
-		print("Flaco, tas equivocado")
 
 
 func loginRequest() -> void:
@@ -110,7 +107,7 @@ func _on_GetRole_request_completed(_result, response_code, _headers, body):
 		yield(get_tree().create_timer(0.5), "timeout")
 		cambiarEscena()
 	else:
-		print("error de rol")
+		print("Error en la obtencion del rol")
 	
 func getRole():
 	
@@ -126,14 +123,13 @@ func cambiarEscena():
 	elif rol == "Estudiante":
 		get_tree().change_scene_to(escenaEstudiante)
 	else:
-		print("Ni idea pibe")
+		print("Error en la obtencion del rol")
 
 
 func _on_GetFullName_request_completed(_result, response_code, _headers, body):
 	
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
-		print("Re cheto")
 		Globals.nombreCompleto = json.result.firstname + ", " + json.result.lastname
 	else:
-		print("error de nombre")
+		print("Error en la obtencion del nombre")

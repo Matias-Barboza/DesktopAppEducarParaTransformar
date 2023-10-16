@@ -8,6 +8,7 @@ var arreglo_materias = []
 var datos_horario = []
 var arreglo_horarios = []
 var endpoint_notas = Globals.URL + "/api/notes/student/" + str(Globals.userId)
+var endpoint_horario = Globals.URL + "/api/students/classes/" + str(Globals.userId)
 
 
 onready var panel_bienvenida = $PanelBienvenida
@@ -18,13 +19,13 @@ onready var tabla_notas = $PanelNotas/TablaNotasBoletin
 onready var animation_player = $AnimationPlayer
 onready var label_bienvenida = $PanelBienvenida/LabelBienvenida
 onready var http_request = $HTTPRequestNotas
-#onready var http_request_horarios = $HTTPRequestHorarios
+onready var http_request_horarios = $HTTPRequestHorarios
 
 
 func _ready():
 	
 	http_request.request(endpoint_notas)
-	#http_request_horarios.request()
+	http_request_horarios.request(endpoint_horario)
 	
 	
 	panel_bienvenida.visible = true
@@ -85,10 +86,10 @@ func _on_HTTPRequestNotas_request_completed(_result, response_code, _headers, bo
 		var json = JSON.parse(body.get_string_from_utf8())
 		for nota in json.result:
 			datos_materia.insert(0, nota["class_name"])
-			datos_materia.insert(1, nota.numeric_note)
-			datos_materia.insert(2, "1")
-			datos_materia.insert(3, "1")
-			datos_materia.insert(4, "1")
+			datos_materia.insert(1, nota.numeric_note_1)
+			datos_materia.insert(2, nota.numeric_note_2)
+			datos_materia.insert(3, nota.numeric_note_3)
+			datos_materia.insert(4, (nota.numeric_note_1 + nota.numeric_note_2 + nota.numeric_note_3) / 3)
 			arreglo_materias.append(datos_materia)
 			datos_materia= []
 		
@@ -97,17 +98,38 @@ func _on_HTTPRequestNotas_request_completed(_result, response_code, _headers, bo
 		print("error")
 
 
-#func _on_HTTPRequestHorarios_request_completed(result, response_code, headers, body):
-#	
-#	if response_code == 200:
-#		var json = JSON.parse(body.get_string_from_utf8())
-#		for horario in json.result:
-#
-#
-#		tabla_horarios.set_data(arreglo_horarios)
-#	else:
-#		print("error")
+func _on_HTTPRequestHorarios_request_completed(result, response_code, headers, body):
+	
+	if response_code == 200:
+		var json = JSON.parse(body.get_string_from_utf8())
+		for materia in json.result:
+			for horario in materia.schedules:
+				datos_horario.insert(0, materia["class_name"])
+				datos_horario.insert(1, materia["classroom"]["room_type"])
+				datos_horario.insert(2, convertir_dia_a_espanol(horario["day"]))
+				datos_horario.insert(3, horario["startingTime"] + " - " + horario["endTime"])
+				arreglo_horarios.append(datos_horario)
+				datos_horario = []
+		print(arreglo_horarios)
+		tabla_horarios.set_data(arreglo_horarios)
+	else:
+		print("error")
 
+func convertir_dia_a_espanol(dia_en_ingles: String) -> String:
+	var dias = {
+		"MONDAY": "Lunes",
+		"TUESDAY": "Martes",
+		"WEDNESDAY": "Miércoles",
+		"THURSDAY": "Jueves",
+		"FRIDAY": "Viernes",
+		"SATURDAY": "Sábado",
+		"SUNDAY": "Domingo"
+	}
+	
+	if dias.has(dia_en_ingles):
+		return dias[dia_en_ingles]
+	else:
+		return "Día no válido"
 
 func _on_ButtonSalir_pressed():
 	

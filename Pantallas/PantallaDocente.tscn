@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Contenedores/Tablas/TablaAlumnos.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Recursos/Iconos/bxs-medal-icon.png" type="Texture" id=8]
 [ext_resource path="res://Recursos/Iconos/bxs-calendar-icon.png" type="Texture" id=9]
 [ext_resource path="res://Recursos/Iconos/bxs-log-out-icon.png" type="Texture" id=10]
+[ext_resource path="res://Recursos/Iconos/bxs-spreadsheet-icon1.png" type="Texture" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -212,6 +213,9 @@ script = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.184314, 0.823529, 1, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -219,16 +223,19 @@ margin_bottom = 76.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ButtonMenuDesplegable" type="Button" parent="Panel"]
-margin_left = 20.0
-margin_top = 10.0
-margin_right = 78.0
-margin_bottom = 68.0
+margin_left = 11.0
+margin_top = 2.0
+margin_right = 83.0
+margin_bottom = 74.0
 custom_styles/hover = SubResource( 41 )
 custom_styles/pressed = SubResource( 42 )
 custom_styles/normal = SubResource( 43 )
-icon = ExtResource( 3 )
+icon = ExtResource( 11 )
 icon_align = 1
 
 [node name="HSeparator" type="HSeparator" parent="Panel"]

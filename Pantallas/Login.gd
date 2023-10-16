@@ -15,7 +15,7 @@ export var escenaPadre : PackedScene
 
 
 onready var request = $LoginRequest
-onready var correo = $PanelInicioDeSesion/VBoxContainerDatos/TextEditCE
+onready var correo = $PanelInicioDeSesion/VBoxContainerDatos/LineEdit
 onready var vboxcontainer_datos = $PanelInicioDeSesion/VBoxContainerDatos
 onready var label_datos_invalidos = $PanelInicioDeSesion/LabelInvalido
 onready var spinner_carga = $PanelInicioDeSesion/Spinner

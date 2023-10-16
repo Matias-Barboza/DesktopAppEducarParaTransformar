@@ -93,7 +93,6 @@ func _on_RequestHijos_request_completed(result, response_code, headers, body):
 		for hijo in json.result.childrens:
 			listaHijos.append(hijo)
 			
-			print("hay un hijo")
 			
 			#Carga de los nombres de los hijos en la seleccion de hijos para notas y horarios
 			seleccion_hijos_horarios.get_popup().add_item(hijo["firstname"] + " " + hijo["lastname"])
@@ -111,7 +110,9 @@ func _on_horarios_item_selected(index):
 func _on_Horarios_request_completed(result, response_code, headers, body):
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
-		
+		tabla_horarios.reiniciar_tabla()
+		arreglo_horarios = []
+		yield(get_tree().create_timer(0.5), "timeout")
 		for materia in json.result:
 			for horario in materia.schedules:
 				
@@ -154,7 +155,9 @@ func _on_notas_item_selected(index):
 func _on_Notas_request_completed(result, response_code, headers, body):
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
-		
+		tabla_notas.reiniciar_tabla()
+		arreglo_materias = []
+		yield(get_tree().create_timer(0.5), "timeout")
 		for nota in json.result:
 			datos_materia.insert(0, nota["class_name"])
 			datos_materia.insert(1, nota.numeric_note_1)

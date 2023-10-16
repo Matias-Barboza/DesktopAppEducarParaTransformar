@@ -242,7 +242,7 @@ margin_bottom = 154.5
 [node name="LabelCE" parent="PanelInicioDeSesion/VBoxContainerDatos" index="0"]
 margin_right = 752.0
 
-[node name="TextEditCE" parent="PanelInicioDeSesion/VBoxContainerDatos" index="1"]
+[node name="LineEdit" parent="PanelInicioDeSesion/VBoxContainerDatos" index="1"]
 margin_right = 752.0
 
 [node name="LabelContraseña" parent="PanelInicioDeSesion/VBoxContainerDatos" index="2"]

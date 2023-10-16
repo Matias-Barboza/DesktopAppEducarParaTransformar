@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Contenedores/TextEditContrasenha.gd" type="Script" id=3]
@@ -7,9 +7,12 @@
 size = 25
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFontData" id=46]
+font_path = "res://Recursos/Montserrat-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=47]
 size = 18
-font_data = ExtResource( 1 )
+font_data = SubResource( 46 )
 
 [sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 5.0
@@ -75,44 +78,47 @@ custom_fonts/font = SubResource( 1 )
 text = "Correo electrónico:"
 valign = 1
 
-[node name="TextEditCE" type="TextEdit" parent="."]
+[node name="LineEdit" type="LineEdit" parent="."]
 margin_top = 52.0
 margin_right = 444.0
-margin_bottom = 91.0
-rect_min_size = Vector2( 0, 39 )
+margin_bottom = 87.0
+custom_colors/cursor_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 47 )
 custom_styles/normal = SubResource( 5 )
+caret_blink = true
 
 [node name="LabelContraseña" type="Label" parent="."]
-margin_top = 111.0
+margin_top = 107.0
 margin_right = 444.0
-margin_bottom = 143.0
+margin_bottom = 139.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Contraseña:"
 valign = 1
 
 [node name="TextEditContrasenha" type="TextEdit" parent="."]
-margin_top = 163.0
+margin_top = 159.0
 margin_right = 444.0
-margin_bottom = 202.0
+margin_bottom = 198.0
 rect_min_size = Vector2( 0, 39 )
+focus_next = NodePath("../ButtonIS")
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 6 )
 custom_styles/normal = SubResource( 7 )
 script = ExtResource( 3 )
 
 [node name="HSeparator" type="HSeparator" parent="."]
-margin_top = 222.0
+margin_top = 218.0
 margin_right = 444.0
-margin_bottom = 226.0
+margin_bottom = 222.0
 
 [node name="ButtonIS" type="Button" parent="."]
-margin_top = 246.0
+margin_top = 242.0
 margin_right = 444.0
-margin_bottom = 306.0
+margin_bottom = 302.0
 rect_min_size = Vector2( 0, 60 )
+focus_previous = NodePath("../TextEditContrasenha")
 custom_fonts/font = SubResource( 18 )
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 10 )

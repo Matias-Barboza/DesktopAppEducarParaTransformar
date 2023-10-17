@@ -238,6 +238,7 @@ func _on_alumnoNota_item_selected(index):
 	
 	label_nota_nombre.text = "Notas de " + alumno["lastname"] + ", " + alumno["firstname"]
 	label_nota_materia.text = str(materia_seleccionada["class_name"] + " ("+ str(materia_seleccionada["division"]["division_name"]) + ")") 
+	seleccion_alumno_nota.clear()
 	activar_panel(panel_nota)
 
 
@@ -262,8 +263,7 @@ func _on_ButtonIS_pressed():
 		"numeric_note_2" : $PanelNota/Nota_2.text,
 		"numeric_note_3" : $PanelNota/Nota_3.text
 	}
-	print(JSON.print(json_data))
-	#request_modificar_notas.request(endpointModificarNota, header, true, HTTPClient.METHOD_PUT, JSON.print(json_data))
+	request_modificar_notas.request(endpointModificarNota, header, true, HTTPClient.METHOD_PUT, JSON.print(json_data))
 
 
 func _on_ModificarNota_request_completed(result, response_code, headers, body):

@@ -40,7 +40,6 @@ size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Materia"
-align = 1
 valign = 1
 
 [node name="2" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
@@ -51,7 +50,6 @@ size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Aula asignada"
-align = 1
 valign = 1
 
 [node name="3" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
@@ -61,8 +59,7 @@ margin_bottom = 38.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "Dia"
-align = 1
+text = "Día"
 valign = 1
 
 [node name="4" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
@@ -73,7 +70,6 @@ size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Horario"
-align = 1
 valign = 1
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]

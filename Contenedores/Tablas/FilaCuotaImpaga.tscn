@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 5.0
+bg_color = Color( 1, 1, 1, 1 )
+
+[node name="FilaCuotaImpaga" type="HBoxContainer"]
+margin_right = 1921.0
+margin_bottom = 52.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1921.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1921.0
+margin_bottom = 26.0
+
+[node name="1" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_right = 477.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Legajo"
+
+[node name="2" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 481.0
+margin_right = 958.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Apellido"
+
+[node name="3" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 962.0
+margin_right = 1439.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Nombre"
+
+[node name="4" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 1443.0
+margin_right = 1921.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Mes"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 30.0
+margin_right = 1921.0
+margin_bottom = 34.0

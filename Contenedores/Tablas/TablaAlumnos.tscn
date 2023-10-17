@@ -40,7 +40,6 @@ size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Legajo"
-align = 1
 valign = 1
 
 [node name="2" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
@@ -51,7 +50,6 @@ size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Apellido"
-align = 1
 valign = 1
 
 [node name="3" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
@@ -62,7 +60,6 @@ size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Nombre"
-align = 1
 valign = 1
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]

@@ -7,6 +7,7 @@ var endpoint_division_0 = Globals.URL + "/api/students/classes/30"
 var endpoint_division_1 = Globals.URL + "/api/students/classes/45"
 var endpoint_division_2 = Globals.URL + "/api/students/classes/65"
 var endpoint_division_3 = Globals.URL + "/api/students/classes/68"
+var endpoint_cuotas_impagas = Globals.URL + "/api/fees/students"
 
 onready var request_divisiones = $GetDivisiones
 onready var request_alumnos = $GetAlumnosDivision
@@ -31,6 +32,12 @@ onready var panel_horario = $PanelHorario
 onready var panel_seleccion_horario = $PanelSeleccionHorario
 onready var menu_seleccion_horario = $PanelSeleccionHorario/Panel/OptionButton
 
+onready var request_cuotas_impagas = $HTTPRequestCuotasImpagas
+onready var panel_cuotas = $PanelCuotas
+onready var panel_seleccion_cuotas = $PanelSeleccionCuotasImpagas
+onready var tabla_cuotas_impagas = $PanelCuotas/TablaCuotasImpagas
+onready var menu_seleccion_cuotas = $PanelSeleccionCuotasImpagas/Panel/OptionButton
+
 var paneles = []
 var listaDivisiones = []
 var division_seleccionada
@@ -39,6 +46,7 @@ var desplegado = false
 
 func _ready():
 	request_divisiones.request(endpoint_division)
+	request_cuotas_impagas.request(endpoint_cuotas_impagas)
 	
 	panel_bienvenida.visible = true
 	panel_division.visible = false
@@ -47,9 +55,7 @@ func _ready():
 	panel_seleccion_horario.visible = false
 	label_bienvenida.text = "Bienvenido " + Globals.nombreCompleto
 	
-	paneles = [panel_bienvenida, panel_division, panel_seleccion_division, panel_horario, panel_seleccion_horario]
-
-
+	paneles = [panel_bienvenida, panel_division, panel_seleccion_division, panel_horario, panel_seleccion_horario, panel_cuotas]
 
 
 func activar_panel(panel_a_visibilizar):
@@ -68,6 +74,8 @@ func _on_ButtonHorarios_pressed():
 func _on_ButtonAlumnos_pressed():
 	activar_panel(panel_seleccion_division)
 
+func _on_ButtonCuotasImpagas_pressed():
+	activar_panel(panel_cuotas)
 
 func _on_ButtonSalir_pressed():
 	Globals.userId = 0
@@ -213,3 +221,49 @@ func _on_ButtonMenuDesplegable_pressed():
 	else:
 		animation_player.play("repliegue_menu_lateral")
 	desplegado = not desplegado
+
+
+func _on_HTTPRequestCuotasImpagas_request_completed(result, response_code, headers, body):
+	var datos_alumno = []
+	var arreglo_alumnos = []
+	
+	
+	if response_code == 200:
+		
+		var json = JSON.parse(body.get_string_from_utf8())
+
+		tabla_cuotas_impagas.reiniciar_tabla()
+		yield(get_tree().create_timer(0.5), "timeout")
+
+		for alumno in json.result:
+			datos_alumno.insert(0, alumno.file_number)
+			datos_alumno.insert(1, alumno.lastname)
+			datos_alumno.insert(2, alumno.firstname)
+			for mes in alumno.unpaidMonthlyFees:
+				datos_alumno.insert(3, convertir_mes_a_espanol(mes["month"]))
+			arreglo_alumnos.append(datos_alumno)
+			datos_alumno = []
+		
+		tabla_cuotas_impagas.set_data(arreglo_alumnos)
+	else:
+		print("Error al obtener las cuotas impagas")
+
+
+func convertir_mes_a_espanol(mes_en_ingles: String) -> String:
+	var meses = {
+		"JANUARY": "Enero",
+		"FEBRUARY": "Febrero",
+		"MARCH": "Marzo",
+		"APRIL": "Abril",
+		"MAY": "Mayo",
+		"JUNE": "Junio",
+		"JULY": "Julio",
+		"AUGUST": "Agosto",
+		"SEPTEMBER": "Septiembre",
+		"OCTOBER": "Octubre"
+	}
+	
+	if meses.has(mes_en_ingles):
+		return meses[mes_en_ingles]
+	else:
+		return "Día no válido"

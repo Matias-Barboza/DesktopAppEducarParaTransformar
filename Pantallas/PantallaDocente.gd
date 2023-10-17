@@ -25,6 +25,7 @@ onready var request_alumnos_nota = $GetAlumnosNota
 onready var request_notas = $GetNota
 onready var request_modificar_notas = $ModificarNota
 
+onready var label_nombre_materia = $PanelMateria/NombreMateria
 
 onready var animation_player = $AnimationPlayer
 onready var label_bienvenida = $PanelBienvenida/LabelBienvenida
@@ -159,6 +160,8 @@ func _on_ButtonMaterias_pressed():
 
 func _on_OptionButton_item_selected(index):
 	materia_seleccionada = listaMaterias[index]
+	
+	label_nombre_materia.text = materia_seleccionada["class_name"]
 	
 	requestAlumnos.request('{URL}{id}'.format({"URL" : endpointAlumnos, "id" : materia_seleccionada["division"]["id"]}))
 	activar_panel(panel_materia)

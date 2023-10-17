@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Recursos/Iconos/bxs-spreadsheet-icon1.png" type="Texture" id=1]
 [ext_resource path="res://Pantallas/PantallaEstudiante.gd" type="Script" id=2]
@@ -92,6 +92,13 @@ bg_color = Color( 0.184314, 0.823529, 1, 1 )
 [sub_resource type="DynamicFont" id=9]
 size = 30
 font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFontData" id=34]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=35]
+size = 50
+font_data = SubResource( 34 )
 
 [sub_resource type="StyleBoxFlat" id=33]
 bg_color = Color( 0.184314, 0.823529, 1, 1 )
@@ -239,6 +246,19 @@ margin_top = 76.0
 custom_styles/panel = SubResource( 8 )
 script = ExtResource( 6 )
 
+[node name="NombreHorario" type="Label" parent="PanelHorarios"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -134.0
+margin_top = 28.0
+margin_right = 137.0
+margin_bottom = 94.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "Horarios"
+align = 1
+valign = 1
+
 [node name="TablaHorarios" parent="PanelHorarios" instance=ExtResource( 7 )]
 margin_left = 263.0
 margin_top = 119.0
@@ -252,6 +272,19 @@ anchor_bottom = 1.0
 margin_top = 76.0
 custom_styles/panel = SubResource( 33 )
 script = ExtResource( 6 )
+
+[node name="Titulo" type="Label" parent="PanelNotas"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -134.0
+margin_top = 28.0
+margin_right = 137.0
+margin_bottom = 94.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "Boletin"
+align = 1
+valign = 1
 
 [node name="TablaNotasBoletin" parent="PanelNotas" instance=ExtResource( 8 )]
 margin_left = 263.0

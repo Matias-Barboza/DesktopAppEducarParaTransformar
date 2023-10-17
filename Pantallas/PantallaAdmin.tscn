@@ -1,0 +1,550 @@
+[gd_scene load_steps=49 format=2]
+
+[ext_resource path="res://Recursos/Iconos/bxs-calendar-icon.png" type="Texture" id=1]
+[ext_resource path="res://Recursos/Iconos/bxs-medal-icon.png" type="Texture" id=2]
+[ext_resource path="res://Recursos/Iconos/bxs-log-out-icon.png" type="Texture" id=3]
+[ext_resource path="res://Recursos/Iconos/bxs-spreadsheet-icon1.png" type="Texture" id=4]
+[ext_resource path="res://Recursos/Iconos/bxs-spreadsheet-icon2.png" type="Texture" id=5]
+[ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Pantallas/PantallaAdmin.gd" type="Script" id=8]
+[ext_resource path="res://Recursos/Iconos/bxs-file-pdf-icon.png" type="Texture" id=10]
+[ext_resource path="res://Contenedores/Tablas/TablaAlumnos.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Contenedores/Tablas/TablaHorariosDocente.tscn" type="PackedScene" id=12]
+
+[sub_resource type="Animation" id=33]
+resource_name = "despliegue_menu_lateral"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelLateral:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -260, 76 ), Vector2( 0, 76 ) ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "repliegue_menu_lateral"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelLateral:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.01, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 76 ), Vector2( -260, 76 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=41]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.196078, 0.211765, 0.980392, 1 )
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=42]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 6
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.223529, 0.223529, 1 )
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=43]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0.184314, 0.823529, 1, 1 )
+
+[sub_resource type="DynamicFont" id=52]
+size = 30
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=67]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://Recursos/Montserrat-SemiBold.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+size = 50
+font_data = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=56]
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=53]
+bg_color = Color( 0.0431373, 0.368627, 0.843137, 1 )
+
+[sub_resource type="StyleBoxFlat" id=54]
+bg_color = Color( 0.0392157, 0.345098, 0.792157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=55]
+bg_color = Color( 0.0509804, 0.431373, 0.992157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=35]
+bg_color = Color( 0.184314, 0.823529, 1, 1 )
+
+[sub_resource type="DynamicFont" id=68]
+size = 30
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFontData" id=49]
+font_path = "res://Recursos/Montserrat-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=50]
+size = 20
+font_data = SubResource( 49 )
+
+[sub_resource type="StyleBoxFlat" id=51]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=29]
+bg_color = Color( 0.0666667, 0.376471, 0.439216, 0.823529 )
+
+[sub_resource type="DynamicFont" id=23]
+size = 20
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=37]
+bg_color = Color( 0.054902, 0.294118, 0.341176, 0.823529 )
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.0392157, 0.211765, 0.25098, 0.823529 )
+border_width_left = 5
+border_width_top = 6
+border_width_right = 5
+border_width_bottom = 3
+border_color = Color( 0.0666667, 0.376471, 0.439216, 0.823529 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 0.0666667, 0.376471, 0.439216, 0.823529 )
+
+[sub_resource type="StyleBoxFlat" id=38]
+bg_color = Color( 0.054902, 0.294118, 0.341176, 0.823529 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.0392157, 0.211765, 0.25098, 0.823529 )
+border_width_left = 5
+border_width_top = 6
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.054902, 0.294118, 0.341176, 0.823529 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=31]
+bg_color = Color( 0.0666667, 0.376471, 0.439216, 0.823529 )
+
+[sub_resource type="StyleBoxFlat" id=39]
+bg_color = Color( 0.0392157, 0.211765, 0.25098, 0.823529 )
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0.0392157, 0.211765, 0.25098, 0.823529 )
+border_width_left = 5
+border_width_top = 6
+border_width_right = 5
+border_width_bottom = 3
+border_color = Color( 0.054902, 0.294118, 0.341176, 0.823529 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=32]
+bg_color = Color( 0.0666667, 0.376471, 0.439216, 0.823529 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 20
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=40]
+bg_color = Color( 0.670588, 0.121569, 0.121569, 1 )
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.670588, 0.121569, 0.121569, 1 )
+border_width_left = 5
+border_width_top = 6
+border_width_right = 5
+border_width_bottom = 3
+border_color = Color( 0.968627, 0.160784, 0.160784, 1 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.827451, 0.141176, 0.141176, 1 )
+
+[node name="PantallaAdmin" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 8 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.184314, 0.823529, 1, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/despliegue_menu_lateral = SubResource( 33 )
+anims/repliegue_menu_lateral = SubResource( 34 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+margin_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ButtonMenuDesplegable" type="Button" parent="Panel"]
+margin_left = 11.0
+margin_top = 2.0
+margin_right = 83.0
+margin_bottom = 74.0
+custom_styles/hover = SubResource( 41 )
+custom_styles/pressed = SubResource( 42 )
+custom_styles/normal = SubResource( 43 )
+icon = ExtResource( 4 )
+icon_align = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_bottom = 2.0
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -960.0
+margin_top = -38.0
+margin_right = 960.0
+margin_bottom = 38.0
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Educar para Transformar"
+align = 1
+valign = 1
+
+[node name="PanelBienvenida" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 449.0
+margin_top = 316.0
+margin_right = -449.0
+margin_bottom = -240.0
+custom_styles/panel = SubResource( 47 )
+
+[node name="LabelBienvenida" type="Label" parent="PanelBienvenida"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -49.0
+margin_right = 260.0
+margin_bottom = -11.0
+custom_fonts/font = SubResource( 52 )
+text = "Bienvenido, @Nombre @Apellido"
+align = 1
+valign = 1
+
+[node name="PanelDivision" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 193.0
+margin_top = 172.0
+margin_right = -193.0
+margin_bottom = -41.0
+custom_styles/panel = SubResource( 67 )
+
+[node name="NombreDivision" type="Label" parent="PanelDivision"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -134.0
+margin_top = -84.0
+margin_right = 137.0
+margin_bottom = -18.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Materia"
+align = 1
+valign = 1
+
+[node name="TablaAlumnos" parent="PanelDivision" instance=ExtResource( 11 )]
+
+[node name="Button" type="Button" parent="PanelDivision"]
+anchor_left = 0.893742
+anchor_top = -0.077278
+anchor_right = 1.00076
+anchor_bottom = -0.0149942
+custom_fonts/font = SubResource( 56 )
+custom_styles/hover = SubResource( 53 )
+custom_styles/pressed = SubResource( 54 )
+custom_styles/normal = SubResource( 55 )
+text = "Imprimir PDF"
+icon = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PanelSeleccionDivision" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 449.0
+margin_top = 316.0
+margin_right = -449.0
+margin_bottom = -240.0
+custom_styles/panel = SubResource( 35 )
+
+[node name="LabelMaterias" type="Label" parent="PanelSeleccionDivision"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -310.0
+margin_top = -241.0
+margin_right = 292.0
+margin_bottom = -179.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 68 )
+text = "Seleccione una division"
+align = 1
+valign = 1
+
+[node name="Panel" type="Panel" parent="PanelSeleccionDivision"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -219.0
+margin_top = -178.0
+margin_right = 203.0
+margin_bottom = -107.0
+
+[node name="OptionButton" type="OptionButton" parent="PanelSeleccionDivision/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 50 )
+custom_styles/normal = SubResource( 51 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PanelHorario" type="Panel" parent="."]
+visible = false
+anchor_left = 0.068
+anchor_top = 0.127
+anchor_right = 0.938
+anchor_bottom = 1.0
+margin_left = 62.44
+margin_top = 34.84
+margin_right = -73.9601
+margin_bottom = -41.0
+custom_styles/panel = SubResource( 67 )
+
+[node name="NombreDivision" type="Label" parent="PanelHorario"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -134.0
+margin_top = -84.0
+margin_right = 137.0
+margin_bottom = -18.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Materia"
+align = 1
+valign = 1
+
+[node name="TablaHorariosDocente" parent="PanelHorario" instance=ExtResource( 12 )]
+
+[node name="PanelSeleccionHorario" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 449.0
+margin_top = 316.0
+margin_right = -449.0
+margin_bottom = -240.0
+custom_styles/panel = SubResource( 35 )
+
+[node name="LabelMaterias" type="Label" parent="PanelSeleccionHorario"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -310.0
+margin_top = -241.0
+margin_right = 292.0
+margin_bottom = -179.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 68 )
+text = "Seleccione una division"
+align = 1
+valign = 1
+
+[node name="Panel" type="Panel" parent="PanelSeleccionHorario"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -219.0
+margin_top = -178.0
+margin_right = 203.0
+margin_bottom = -107.0
+
+[node name="OptionButton" type="OptionButton" parent="PanelSeleccionHorario/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 50 )
+custom_styles/normal = SubResource( 51 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PanelLateral" type="Panel" parent="."]
+anchor_right = 0.132
+anchor_bottom = 1.0
+margin_left = -260.0
+margin_top = 76.0
+margin_right = -259.44
+custom_styles/panel = SubResource( 29 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelLateral"]
+anchor_right = 0.988
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_right = 0.0479889
+margin_bottom = -222.0
+custom_constants/separation = 5
+
+[node name="ButtonHorarios" type="Button" parent="PanelLateral/VBoxContainer"]
+margin_right = 246.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 0, 40 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 23 )
+custom_styles/hover = SubResource( 37 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/normal = SubResource( 30 )
+text = " Horarios"
+icon = ExtResource( 1 )
+align = 0
+
+[node name="ButtonAlumnos" type="Button" parent="PanelLateral/VBoxContainer"]
+margin_top = 53.0
+margin_right = 246.0
+margin_bottom = 101.0
+rect_min_size = Vector2( 0, 40 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 23 )
+custom_styles/hover = SubResource( 38 )
+custom_styles/pressed = SubResource( 20 )
+custom_styles/normal = SubResource( 31 )
+text = "Alumnos"
+icon = ExtResource( 2 )
+align = 0
+
+[node name="ButtonMaterias" type="Button" parent="PanelLateral/VBoxContainer"]
+margin_top = 106.0
+margin_right = 246.0
+margin_bottom = 154.0
+rect_min_size = Vector2( 0, 40 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.996078, 0.996078, 0.996078, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 23 )
+custom_styles/hover = SubResource( 39 )
+custom_styles/pressed = SubResource( 21 )
+custom_styles/normal = SubResource( 32 )
+text = " "
+icon = ExtResource( 5 )
+align = 0
+
+[node name="HSeparator" type="HSeparator" parent="PanelLateral/VBoxContainer"]
+margin_top = 159.0
+margin_right = 246.0
+margin_bottom = 163.0
+
+[node name="ButtonSalir" type="Button" parent="PanelLateral/VBoxContainer"]
+margin_top = 168.0
+margin_right = 246.0
+margin_bottom = 216.0
+rect_min_size = Vector2( 0, 40 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 24 )
+custom_styles/hover = SubResource( 40 )
+custom_styles/pressed = SubResource( 22 )
+custom_styles/normal = SubResource( 14 )
+text = "Salir"
+icon = ExtResource( 3 )
+
+[node name="GetDivisiones" type="HTTPRequest" parent="."]
+
+[node name="GetAlumnosDivision" type="HTTPRequest" parent="."]
+
+[node name="GetHorariosDivision" type="HTTPRequest" parent="."]
+
+[node name="ImprimirPDF" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="Panel/ButtonMenuDesplegable" to="." method="_on_ButtonMenuDesplegable_pressed"]
+[connection signal="pressed" from="PanelDivision/Button" to="." method="_on_imprimirPDF_pressed"]
+[connection signal="item_selected" from="PanelSeleccionDivision/Panel/OptionButton" to="." method="_on_SeleccionDivision_item_selected"]
+[connection signal="item_selected" from="PanelSeleccionHorario/Panel/OptionButton" to="." method="_on_SeleccionHorario_item_selected"]
+[connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonHorarios" to="." method="_on_ButtonHorarios_pressed"]
+[connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonAlumnos" to="." method="_on_ButtonAlumnos_pressed"]
+[connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonSalir" to="." method="_on_ButtonSalir_pressed"]
+[connection signal="request_completed" from="GetDivisiones" to="." method="_on_GetDivisiones_request_completed"]
+[connection signal="request_completed" from="GetAlumnosDivision" to="." method="_on_GetAlumnosDivision_request_completed"]
+[connection signal="request_completed" from="GetHorariosDivision" to="." method="_on_GetHorariosDivision_request_completed"]
+[connection signal="request_completed" from="ImprimirPDF" to="." method="_on_ImprimirPDF_request_completed"]

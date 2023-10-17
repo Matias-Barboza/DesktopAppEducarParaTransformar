@@ -69,6 +69,9 @@ func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
 		
+		tabla_materias.reiniciar_tabla()
+		yield(get_tree().create_timer(0.5), "timeout")
+		
 		for materia in json.result:
 			listaMaterias.append(materia)
 			

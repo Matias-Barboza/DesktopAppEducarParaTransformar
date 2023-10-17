@@ -12,6 +12,7 @@ var viene_de_error
 export var escenaDocente : PackedScene
 export var escenaEstudiante : PackedScene
 export var escenaPadre : PackedScene
+export var escenaAdmin : PackedScene
 
 
 onready var request = $LoginRequest
@@ -124,6 +125,8 @@ func cambiarEscena():
 	elif rol == "Estudiante":
 		get_tree().change_scene_to(escenaEstudiante)
 	elif rol == "Padre":
+		get_tree().change_scene_to(escenaPadre)
+	elif rol == "Admin":
 		get_tree().change_scene_to(escenaPadre)
 	else:
 		print("Error en la obtencion del rol")

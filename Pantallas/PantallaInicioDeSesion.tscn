@@ -239,7 +239,7 @@ valign = 1
 margin_left = -376.0
 margin_top = -136.5
 margin_right = 376.0
-margin_bottom = 154.5
+margin_bottom = 161.5
 
 [node name="LabelCE" parent="PanelInicioDeSesion/VBoxContainerDatos" index="0"]
 margin_right = 752.0
@@ -253,13 +253,10 @@ margin_right = 752.0
 [node name="LineEditContrasenha" parent="PanelInicioDeSesion/VBoxContainerDatos" index="3"]
 margin_right = 752.0
 
-[node name="TextEditContrasenha" parent="PanelInicioDeSesion/VBoxContainerDatos" index="4"]
+[node name="HSeparator" parent="PanelInicioDeSesion/VBoxContainerDatos" index="4"]
 margin_right = 752.0
 
-[node name="HSeparator" parent="PanelInicioDeSesion/VBoxContainerDatos" index="5"]
-margin_right = 752.0
-
-[node name="ButtonIS" parent="PanelInicioDeSesion/VBoxContainerDatos" index="6"]
+[node name="ButtonIS" parent="PanelInicioDeSesion/VBoxContainerDatos" index="5"]
 margin_right = 752.0
 
 [node name="LabelInvalido" type="Label" parent="PanelInicioDeSesion"]

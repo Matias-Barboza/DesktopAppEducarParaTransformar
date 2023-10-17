@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Contenedores/Tablas/TablaAlumnos.tscn" type="PackedScene" id=2]
@@ -95,6 +95,14 @@ bg_color = Color( 0.184314, 0.823529, 1, 1 )
 size = 30
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=70]
+size = 45
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=71]
+size = 45
+font_data = ExtResource( 1 )
+
 [sub_resource type="DynamicFontData" id=46]
 font_path = "res://Recursos/Montserrat-Regular.ttf"
 
@@ -158,6 +166,18 @@ bg_color = Color( 0.0392157, 0.345098, 0.792157, 1 )
 
 [sub_resource type="StyleBoxFlat" id=66]
 bg_color = Color( 0.0509804, 0.431373, 0.992157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=72]
+bg_color = Color( 0.184314, 1, 0.313726, 0 )
+
+[sub_resource type="StyleBoxFlat" id=69]
+bg_color = Color( 0.184314, 1, 0.313726, 1 )
+
+[sub_resource type="StyleBoxFlat" id=73]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=74]
+bg_color = Color( 1, 0.184314, 0.184314, 1 )
 
 [sub_resource type="StyleBoxFlat" id=67]
 bg_color = Color( 1, 1, 1, 1 )
@@ -354,21 +374,22 @@ align = 1
 valign = 1
 
 [node name="PanelNota" type="Panel" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 449.0
-margin_top = 316.0
-margin_right = -449.0
-margin_bottom = -240.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -511.0
+margin_top = -262.0
+margin_right = 511.0
+margin_bottom = 262.0
 custom_styles/panel = SubResource( 47 )
 
 [node name="LabelNotaAlumno" type="Label" parent="PanelNota"]
 anchor_left = 0.0283757
-anchor_top = 0.019084
+anchor_top = -0.0362595
 anchor_right = 0.97456
-anchor_bottom = 0.0916031
-custom_fonts/font = SubResource( 52 )
+anchor_bottom = 0.0362596
+custom_fonts/font = SubResource( 70 )
 text = "Notas de"
 align = 1
 valign = 1
@@ -378,10 +399,10 @@ __meta__ = {
 
 [node name="LabelNotaMateria" type="Label" parent="PanelNota"]
 anchor_left = 0.245597
-anchor_top = 0.177481
+anchor_top = 0.120229
 anchor_right = 0.754403
-anchor_bottom = 0.25
-custom_fonts/font = SubResource( 52 )
+anchor_bottom = 0.227099
+custom_fonts/font = SubResource( 71 )
 text = "Materia"
 align = 1
 valign = 1
@@ -489,6 +510,73 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
+[node name="PanelEfecto" type="Panel" parent="PanelNota"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -424.0
+margin_top = 127.0
+margin_right = 424.0
+margin_bottom = 167.0
+custom_styles/panel = SubResource( 47 )
+
+[node name="PanelExito" type="Panel" parent="PanelNota/PanelEfecto"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -424.0
+margin_top = -20.0
+margin_right = 424.0
+margin_bottom = 20.0
+custom_styles/panel = SubResource( 72 )
+
+[node name="LabelExito" type="Label" parent="PanelNota/PanelEfecto/PanelExito"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -309.0
+margin_top = -19.0
+margin_right = 309.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 52 )
+custom_styles/normal = SubResource( 69 )
+text = "Se han modificado las notas con exito"
+align = 1
+valign = 1
+
+[node name="PanelError" type="Panel" parent="PanelNota/PanelEfecto"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -424.0
+margin_top = -20.0
+margin_right = 424.0
+margin_bottom = 20.0
+custom_styles/panel = SubResource( 73 )
+
+[node name="LabelError" type="Label" parent="PanelNota/PanelEfecto/PanelError"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -296.5
+margin_top = -19.0
+margin_right = 296.5
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 52 )
+custom_styles/normal = SubResource( 74 )
+text = "No se han podido modificar las notas"
+align = 1
+valign = 1
+
 [node name="PanelHorario" type="Panel" parent="."]
 visible = false
 anchor_left = 0.068
@@ -562,6 +650,7 @@ __meta__ = {
 }
 
 [node name="PanelMateria" type="Panel" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 193.0
@@ -664,9 +753,9 @@ text = "Seleccione alumno"
 [node name="PanelLateral" type="Panel" parent="."]
 anchor_right = 0.132
 anchor_bottom = 1.0
-margin_left = -251.333
+margin_left = -260.0
 margin_top = 76.0
-margin_right = -250.773
+margin_right = -259.44
 custom_styles/panel = SubResource( 29 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelLateral"]

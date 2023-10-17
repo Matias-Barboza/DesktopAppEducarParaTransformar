@@ -38,6 +38,8 @@ onready var panel_bienvenida = $PanelBienvenida
 onready var panel_nota = $PanelNota
 onready var label_nota_nombre = $PanelNota/LabelNotaAlumno
 onready var label_nota_materia = $PanelNota/LabelNotaMateria
+onready var panel_nota_exitoso = $PanelNota/PanelEfecto/PanelExito
+onready var panel_nota_fallido = $PanelNota/PanelEfecto/PanelError
 
 onready var panel_seleccion_notas = $PanelSeleccionNota
 onready var seleccion_materia_nota = $PanelSeleccionNota/OptionButtonMaterias
@@ -60,6 +62,8 @@ func _ready():
 	panel_materia.visible = false
 	panel_seleccion_materia.visible = false
 	panel_nota.visible = false
+	panel_nota_exitoso.visible = false
+	panel_nota_fallido.visible = false
 	label_bienvenida.text = "Bienvenido " + Globals.nombreCompleto
 	
 	paneles = [panel_bienvenida, panel_horario, panel_seleccion_notas, panel_materia, panel_seleccion_materia, panel_nota]
@@ -268,6 +272,8 @@ func _on_ButtonIS_pressed():
 
 func _on_ModificarNota_request_completed(result, response_code, headers, body):
 	if response_code == 200:
-		print("Nota modificada con exito")
+		panel_nota_exitoso.visible = true
+		panel_nota_fallido.visible = false
 	else:
-		print("No modificaste un carajo la nota flaco")
+		panel_nota_exitoso.visible = false
+		panel_nota_fallido.visible = true

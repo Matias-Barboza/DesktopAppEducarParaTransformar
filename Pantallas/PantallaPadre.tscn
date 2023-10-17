@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Contenedores/Tablas/TablaHorarios.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Pantallas/PantallaPadre.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Recursos/Iconos/bxs-medal-icon.png" type="Texture" id=9]
 [ext_resource path="res://Recursos/Iconos/bxs-spreadsheet-icon2.png" type="Texture" id=10]
 [ext_resource path="res://Recursos/Iconos/bxs-log-out-icon.png" type="Texture" id=11]
+[ext_resource path="res://Contenedores/Tablas/TablaCuotas.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=5]
 resource_name = "despliegue_menu_lateral"
@@ -93,7 +94,7 @@ bg_color = Color( 1, 1, 1, 1 )
 bg_color = Color( 0.184314, 0.823529, 1, 1 )
 
 [sub_resource type="DynamicFont" id=36]
-size = 30
+size = 45
 font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=35]
@@ -269,7 +270,6 @@ custom_styles/panel = SubResource( 47 )
 [node name="TablaNotasBoletin" parent="PanelNotas" instance=ExtResource( 7 )]
 
 [node name="PanelCuotas" type="Panel" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 449.0
@@ -284,13 +284,21 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -260.0
-margin_top = -49.0
+margin_top = -415.0
 margin_right = 260.0
-margin_bottom = -11.0
+margin_bottom = -359.0
 custom_fonts/font = SubResource( 36 )
-text = "Aca van a estar las Cuotas"
+text = "Cuotas de:"
 align = 1
 valign = 1
+
+[node name="Panel" type="Panel" parent="PanelCuotas"]
+anchor_right = 1.0
+anchor_bottom = 1.263
+margin_top = -52.0
+margin_bottom = 0.187988
+
+[node name="TablaCuotas" parent="PanelCuotas/Panel" instance=ExtResource( 12 )]
 
 [node name="PanelSeleccionHorario" type="Panel" parent="."]
 visible = false
@@ -373,6 +381,51 @@ margin_right = 203.0
 margin_bottom = -107.0
 
 [node name="OptionButton" type="OptionButton" parent="PanelSeleccionNotas/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 50 )
+custom_styles/normal = SubResource( 51 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PanelSeleccionCuotas" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 449.0
+margin_top = 316.0
+margin_right = -449.0
+margin_bottom = -240.0
+custom_styles/panel = SubResource( 35 )
+
+[node name="LabelMaterias" type="Label" parent="PanelSeleccionCuotas"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -310.0
+margin_top = -241.0
+margin_right = 292.0
+margin_bottom = -179.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 52 )
+text = "Seleccione hijo"
+align = 1
+valign = 1
+
+[node name="Panel" type="Panel" parent="PanelSeleccionCuotas"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -219.0
+margin_top = -178.0
+margin_right = 203.0
+margin_bottom = -107.0
+
+[node name="OptionButton" type="OptionButton" parent="PanelSeleccionCuotas/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 50 )
@@ -472,9 +525,12 @@ icon = ExtResource( 11 )
 
 [node name="HTTPRequestHorarios" type="HTTPRequest" parent="."]
 
+[node name="HTTPRequestCuotas" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="PanelSuperior/ButtonMenuDesplegable" to="." method="_on_ButtonMenuDesplegable_pressed"]
 [connection signal="item_selected" from="PanelSeleccionHorario/Panel/OptionButton" to="." method="_on_horarios_item_selected"]
 [connection signal="item_selected" from="PanelSeleccionNotas/Panel/OptionButton" to="." method="_on_notas_item_selected"]
+[connection signal="item_selected" from="PanelSeleccionCuotas/Panel/OptionButton" to="." method="_on_OptionButtonCuotas_item_selected"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonHorarios" to="." method="_on_ButtonHorarios_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonNotas" to="." method="_on_ButtonNotas_pressed"]
 [connection signal="pressed" from="PanelLateral/VBoxContainer/ButtonCuotas" to="." method="_on_ButtonCuotas_pressed"]
@@ -482,3 +538,4 @@ icon = ExtResource( 11 )
 [connection signal="request_completed" from="HTTPRequestNotas" to="." method="_on_Notas_request_completed"]
 [connection signal="request_completed" from="HTTPRequestHijos" to="." method="_on_RequestHijos_request_completed"]
 [connection signal="request_completed" from="HTTPRequestHorarios" to="." method="_on_Horarios_request_completed"]
+[connection signal="request_completed" from="HTTPRequestCuotas" to="." method="_on_HTTPRequestCuotas_request_completed"]

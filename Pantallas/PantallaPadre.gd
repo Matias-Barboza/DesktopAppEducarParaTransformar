@@ -7,10 +7,12 @@ var arreglo_materias = []
 var datos_horario = []
 var arreglo_horarios = []
 var desplegado = false
+var hijo_seleccionado
 
 var endpoint_hijos = Globals.URL + "/api/parents/" + str(Globals.userId)
 var endpoint_horarios = Globals.URL + "/api/students/classes/"
 var endpoint_notas = Globals.URL + "/api/notes/student/"
+var endpoint_cuotas = Globals.URL + "/api/parents/fees/"
 
 
 onready var panel_bienvenida = $PanelBienvenida
@@ -27,11 +29,16 @@ onready var panel_notas = $PanelNotas
 onready var tabla_notas = $PanelNotas/TablaNotasBoletin
 onready var seleccion_hijos_notas = $PanelSeleccionNotas/Panel/OptionButton
 
+onready var panel_seleccion_cuotas = $PanelSeleccionCuotas
 onready var panel_cuotas = $PanelCuotas
+onready var tabla_cuotas = $PanelCuotas/Panel/TablaCuotas
+onready var seleccion_hijos_cuotas = $PanelSeleccionCuotas/Panel/OptionButton
+onready var label_cuotas = $PanelCuotas/LabelCuotas
 
 onready var request_hijos = $HTTPRequestHijos
 onready var request_horarios = $HTTPRequestHorarios
 onready var request_notas = $HTTPRequestNotas
+onready var request_cuotas = $HTTPRequestCuotas
 
 
 func _ready():
@@ -45,7 +52,7 @@ func _ready():
 	panel_cuotas.visible = false
 	label_bienvenida.text = "Bienvenido " + Globals.nombreCompleto
 	
-	paneles = [panel_bienvenida, panel_horario, panel_notas, panel_cuotas, panel_seleccion_horario, panel_seleccion_notas]
+	paneles = [panel_bienvenida, panel_horario, panel_notas, panel_cuotas, panel_seleccion_horario, panel_seleccion_notas, panel_seleccion_cuotas]
 
 
 func _on_ButtonMenuDesplegable_pressed():
@@ -75,7 +82,7 @@ func _on_ButtonNotas_pressed():
 
 
 func _on_ButtonCuotas_pressed():
-	activar_panel(panel_cuotas)
+	activar_panel(panel_seleccion_cuotas)
 
 
 func _on_ButtonSalir_pressed():
@@ -84,6 +91,31 @@ func _on_ButtonSalir_pressed():
 	Globals.password = ""
 	Globals.nombreCompleto = ""
 	get_tree().change_scene("res://Pantallas/PantallaInicioDeSesion.tscn")
+
+
+func _on_horarios_item_selected(index):
+	var hijo = listaHijos[index]
+	
+	request_horarios.request('{endpoint}{id}'.format({"endpoint" : endpoint_horarios, "id" : hijo["id"]}))
+	activar_panel(panel_horario)
+	seleccion_hijos_horarios.selected = -1
+
+
+func _on_notas_item_selected(index):
+	var hijo = listaHijos[index]
+	
+	request_notas.request('{endpoint}{id}'.format({"endpoint" : endpoint_notas, "id" : hijo["id"]}))
+	activar_panel(panel_notas)
+	seleccion_hijos_notas.selected = -1
+
+
+func _on_OptionButtonCuotas_item_selected(index):
+	hijo_seleccionado = listaHijos[index]
+	label_cuotas.text = "Cuotas correspondientes a: " + hijo_seleccionado.firstname + " " + hijo_seleccionado.lastname
+	
+	request_cuotas.request('{endpoint}{id}'.format({"endpoint" : endpoint_cuotas, "id" : Globals.userId}))
+	activar_panel(panel_cuotas)
+	seleccion_hijos_cuotas.selected = -1
 
 
 func _on_RequestHijos_request_completed(result, response_code, headers, body):
@@ -97,15 +129,8 @@ func _on_RequestHijos_request_completed(result, response_code, headers, body):
 			#Carga de los nombres de los hijos en la seleccion de hijos para notas y horarios
 			seleccion_hijos_horarios.get_popup().add_item(hijo["firstname"] + " " + hijo["lastname"])
 			seleccion_hijos_notas.get_popup().add_item(hijo["firstname"] + " " + hijo["lastname"])
-		
+			seleccion_hijos_cuotas.get_popup().add_item(hijo["firstname"] + " " + hijo["lastname"])
 
-
-func _on_horarios_item_selected(index):
-	var hijo = listaHijos[index]
-	
-	request_horarios.request('{endpoint}{id}'.format({"endpoint" : endpoint_horarios, "id" : hijo["id"]}))
-	activar_panel(panel_horario)
-	seleccion_hijos_horarios.selected = -1
 
 func _on_Horarios_request_completed(result, response_code, headers, body):
 	if response_code == 200:
@@ -128,29 +153,6 @@ func _on_Horarios_request_completed(result, response_code, headers, body):
 	else:
 		print("Error en al carga de horarios")
 
-func convertir_dia_a_espanol(dia_en_ingles: String) -> String:
-	var dias = {
-		"MONDAY": "Lunes",
-		"TUESDAY": "Martes",
-		"WEDNESDAY": "Miércoles",
-		"THURSDAY": "Jueves",
-		"FRIDAY": "Viernes",
-		"SATURDAY": "Sábado",
-		"SUNDAY": "Domingo"
-	}
-	
-	if dias.has(dia_en_ingles):
-		return dias[dia_en_ingles]
-	else:
-		return "Día no válido"
-
-
-func _on_notas_item_selected(index):
-	var hijo = listaHijos[index]
-	
-	request_notas.request('{endpoint}{id}'.format({"endpoint" : endpoint_notas, "id" : hijo["id"]}))
-	activar_panel(panel_notas)
-	seleccion_hijos_notas.selected = -1
 
 func _on_Notas_request_completed(result, response_code, headers, body):
 	if response_code == 200:
@@ -171,8 +173,33 @@ func _on_Notas_request_completed(result, response_code, headers, body):
 	else:
 		print("Error en la carga de notas")
 
-#ESTO ES PARA ORDENAR LOS HORARIOS POR DIA
 
+func _on_HTTPRequestCuotas_request_completed(result, response_code, headers, body):
+	var arreglo_cuotas
+	var datos_cuota = []
+	
+	if response_code == 200:
+		var json = JSON.parse(body.get_string_from_utf8())
+		tabla_cuotas.reiniciar_tabla()
+		arreglo_cuotas = []
+		yield(get_tree().create_timer(0.5), "timeout")
+		for cuota in json.result:
+			if cuota.student.id == hijo_seleccionado.id:
+				for mes in cuota.monthlyFees:
+					datos_cuota.insert(0, convertir_mes_a_espanol(mes["month"]))
+					if mes.paid:
+						datos_cuota.insert(1, "No")
+					else:
+						datos_cuota.insert(1, "Si")
+					arreglo_cuotas.append(datos_cuota)
+					datos_cuota = []
+
+		tabla_cuotas.set_data(arreglo_cuotas)
+	else:
+		print("Error en la carga de cuotas")
+
+
+#ESTO ES PARA ORDENAR LOS HORARIOS POR DIA
 class DayOfWeekSorter:
 	static func sort_by_day_of_week(a, b):
 		var dias_de_semana = {
@@ -197,3 +224,40 @@ class DayOfWeekSorter:
 			var time_a = a[3]
 			var time_b = b[3]
 			return time_a < time_b
+
+
+func convertir_dia_a_espanol(dia_en_ingles: String) -> String:
+	var dias = {
+		"MONDAY": "Lunes",
+		"TUESDAY": "Martes",
+		"WEDNESDAY": "Miércoles",
+		"THURSDAY": "Jueves",
+		"FRIDAY": "Viernes",
+		"SATURDAY": "Sábado",
+		"SUNDAY": "Domingo"
+	}
+	
+	if dias.has(dia_en_ingles):
+		return dias[dia_en_ingles]
+	else:
+		return "Día no válido"
+
+
+func convertir_mes_a_espanol(mes_en_ingles: String) -> String:
+	var meses = {
+		"JANUARY": "Enero",
+		"FEBRUARY": "Febrero",
+		"MARCH": "Marzo",
+		"APRIL": "Abril",
+		"MAY": "Mayo",
+		"JUNE": "Junio",
+		"JULY": "Julio",
+		"AUGUST": "Agosto",
+		"SEPTEMBER": "Septiembre",
+		"OCTOBER": "Octubre"
+	}
+	
+	if meses.has(mes_en_ingles):
+		return meses[mes_en_ingles]
+	else:
+		return "Día no válido"

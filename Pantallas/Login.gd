@@ -18,6 +18,7 @@ export var escenaAdmin : PackedScene
 onready var request = $LoginRequest
 onready var correo = $PanelInicioDeSesion/VBoxContainerDatos/LineEdit
 onready var vboxcontainer_datos = $PanelInicioDeSesion/VBoxContainerDatos
+onready var line_contrasenha = $PanelInicioDeSesion/VBoxContainerDatos/LineEditContrasenha
 onready var label_datos_invalidos = $PanelInicioDeSesion/LabelInvalido
 onready var spinner_carga = $PanelInicioDeSesion/Spinner
 onready var animation_player = $AnimationPlayer

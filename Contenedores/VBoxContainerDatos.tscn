@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Contenedores/TextEditContrasenha.gd" type="Script" id=3]
+[ext_resource path="res://Contenedores/VBoxLogin.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -30,22 +30,6 @@ border_color = Color( 0.603922, 0.564706, 0.564706, 1 )
 size = 25
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 18
-font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxFlat" id=7]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 6.0
-content_margin_bottom = 6.0
-bg_color = Color( 1, 1, 1, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.603922, 0.564706, 0.564706, 1 )
-
 [sub_resource type="DynamicFont" id=18]
 size = 25
 font_data = ExtResource( 1 )
@@ -69,6 +53,7 @@ margin_top = -115.5
 margin_right = 222.0
 margin_bottom = 115.5
 custom_constants/separation = 20
+script = ExtResource( 2 )
 
 [node name="LabelCE" type="Label" parent="."]
 margin_right = 444.0
@@ -97,32 +82,32 @@ custom_fonts/font = SubResource( 2 )
 text = "Contraseña:"
 valign = 1
 
-[node name="TextEditContrasenha" type="TextEdit" parent="."]
+[node name="LineEditContrasenha" type="LineEdit" parent="."]
 margin_top = 159.0
 margin_right = 444.0
-margin_bottom = 198.0
-rect_min_size = Vector2( 0, 39 )
-focus_next = NodePath("../ButtonIS")
+margin_bottom = 194.0
+custom_colors/cursor_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
-script = ExtResource( 3 )
+custom_fonts/font = SubResource( 47 )
+custom_styles/normal = SubResource( 5 )
+secret = true
+caret_blink = true
 
 [node name="HSeparator" type="HSeparator" parent="."]
-margin_top = 218.0
+margin_top = 214.0
 margin_right = 444.0
-margin_bottom = 222.0
+margin_bottom = 218.0
 
 [node name="ButtonIS" type="Button" parent="."]
-margin_top = 242.0
+margin_top = 238.0
 margin_right = 444.0
-margin_bottom = 302.0
+margin_bottom = 298.0
 rect_min_size = Vector2( 0, 60 )
-focus_previous = NodePath("../TextEditContrasenha")
 custom_fonts/font = SubResource( 18 )
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/normal = SubResource( 45 )
 text = "Iniciar sesión"
 
-[connection signal="text_changed" from="TextEditContrasenha" to="TextEditContrasenha" method="_on_text_changed"]
+[connection signal="text_changed" from="LineEditContrasenha" to="." method="_on_LineEditContrasenha_text_changed"]
+[connection signal="text_entered" from="LineEditContrasenha" to="." method="_on_LineEditContrasenha_text_entered"]

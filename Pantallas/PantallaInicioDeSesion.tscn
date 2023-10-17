@@ -250,13 +250,16 @@ margin_right = 752.0
 [node name="LabelContraseña" parent="PanelInicioDeSesion/VBoxContainerDatos" index="2"]
 margin_right = 752.0
 
-[node name="TextEditContrasenha" parent="PanelInicioDeSesion/VBoxContainerDatos" index="3"]
+[node name="LineEditContrasenha" parent="PanelInicioDeSesion/VBoxContainerDatos" index="3"]
 margin_right = 752.0
 
-[node name="HSeparator" parent="PanelInicioDeSesion/VBoxContainerDatos" index="4"]
+[node name="TextEditContrasenha" parent="PanelInicioDeSesion/VBoxContainerDatos" index="4"]
 margin_right = 752.0
 
-[node name="ButtonIS" parent="PanelInicioDeSesion/VBoxContainerDatos" index="5"]
+[node name="HSeparator" parent="PanelInicioDeSesion/VBoxContainerDatos" index="5"]
+margin_right = 752.0
+
+[node name="ButtonIS" parent="PanelInicioDeSesion/VBoxContainerDatos" index="6"]
 margin_right = 752.0
 
 [node name="LabelInvalido" type="Label" parent="PanelInicioDeSesion"]

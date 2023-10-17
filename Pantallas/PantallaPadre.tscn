@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Contenedores/Tablas/TablaHorarios.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Pantallas/PantallaPadre.gd" type="Script" id=2]
@@ -96,6 +96,26 @@ bg_color = Color( 0.184314, 0.823529, 1, 1 )
 [sub_resource type="DynamicFont" id=36]
 size = 30
 font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=67]
+size = 40
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=68]
+size = 25
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=69]
+size = 22
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=70]
+size = 22
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=71]
+size = 22
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=63]
 size = 25
@@ -247,7 +267,6 @@ custom_styles/panel = SubResource( 46 )
 [node name="TablaHorarios" parent="PanelHorario" instance=ExtResource( 1 )]
 
 [node name="PanelBienvenida" type="Panel" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 449.0
@@ -270,6 +289,109 @@ text = "Bienvenido, @Nombre @Apellido"
 align = 1
 valign = 1
 
+[node name="PanelPagarCuota" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 449.0
+margin_top = 316.0
+margin_right = -449.0
+margin_bottom = -240.0
+custom_styles/panel = SubResource( 47 )
+
+[node name="ColorRect" type="ColorRect" parent="PanelPagarCuota"]
+anchor_top = -0.101145
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LabelBienvenida" type="Label" parent="PanelPagarCuota"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -341.0
+margin_top = -235.0
+margin_right = 347.0
+margin_bottom = -185.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 67 )
+text = "Pago de Cuota"
+align = 1
+valign = 1
+
+[node name="LabelBienvenida2" type="Label" parent="PanelPagarCuota"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -341.0
+margin_top = -173.0
+margin_right = 347.0
+margin_bottom = -123.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 68 )
+text = "Seleccione metodo de pago"
+align = 1
+valign = 1
+
+[node name="OptionButton" type="OptionButton" parent="PanelPagarCuota"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -142.0
+margin_top = -107.0
+margin_right = 143.0
+margin_bottom = -70.0
+custom_fonts/font = SubResource( 69 )
+text = "Debito/Credito"
+align = 1
+items = [ "Debito/Credito", null, false, 0, null, "Transferencia", null, false, 1, null ]
+selected = 0
+
+[node name="LineEdit" type="LineEdit" parent="PanelPagarCuota"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -203.0
+margin_top = -39.0
+margin_right = 203.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 70 )
+placeholder_text = "N° de Comprobante"
+
+[node name="LineEdit2" type="LineEdit" parent="PanelPagarCuota"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -203.0
+margin_top = 44.0
+margin_right = 203.0
+margin_bottom = 106.0
+custom_fonts/font = SubResource( 71 )
+placeholder_text = "Monto"
+
+[node name="ButtonIS2" type="Button" parent="PanelPagarCuota"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -161.0
+margin_top = 150.0
+margin_right = 157.0
+margin_bottom = 210.0
+rect_min_size = Vector2( 0, 60 )
+focus_previous = NodePath("../TextEditContrasenha")
+custom_fonts/font = SubResource( 63 )
+custom_styles/hover = SubResource( 64 )
+custom_styles/pressed = SubResource( 65 )
+custom_styles/normal = SubResource( 66 )
+text = "Pagar"
+
 [node name="PanelNotas" type="Panel" parent="."]
 visible = false
 anchor_right = 1.0
@@ -283,6 +405,7 @@ custom_styles/panel = SubResource( 47 )
 [node name="TablaNotasBoletin" parent="PanelNotas" instance=ExtResource( 7 )]
 
 [node name="PanelCuotas" type="Panel" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 449.0
@@ -315,7 +438,6 @@ margin_bottom = -0.252014
 [node name="TablaCuotas" parent="PanelCuotas/Panel" instance=ExtResource( 12 )]
 
 [node name="ButtonIS" type="Button" parent="PanelCuotas/Panel"]
-visible = false
 anchor_left = 0.857143
 anchor_top = 0.871634
 anchor_right = 0.98728
@@ -562,7 +684,11 @@ icon = ExtResource( 11 )
 
 [node name="HTTPRequestCuotas" type="HTTPRequest" parent="."]
 
+[node name="ImprimirPDF" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="PanelSuperior/ButtonMenuDesplegable" to="." method="_on_ButtonMenuDesplegable_pressed"]
+[connection signal="pressed" from="PanelPagarCuota/ButtonIS2" to="." method="_on_ButtonIS2_pressed"]
+[connection signal="pressed" from="PanelCuotas/Panel/ButtonIS" to="." method="_on_PagarCuota_pressed"]
 [connection signal="item_selected" from="PanelSeleccionHorario/Panel/OptionButton" to="." method="_on_horarios_item_selected"]
 [connection signal="item_selected" from="PanelSeleccionNotas/Panel/OptionButton" to="." method="_on_notas_item_selected"]
 [connection signal="item_selected" from="PanelSeleccionCuotas/Panel/OptionButton" to="." method="_on_OptionButtonCuotas_item_selected"]
@@ -574,3 +700,4 @@ icon = ExtResource( 11 )
 [connection signal="request_completed" from="HTTPRequestHijos" to="." method="_on_RequestHijos_request_completed"]
 [connection signal="request_completed" from="HTTPRequestHorarios" to="." method="_on_Horarios_request_completed"]
 [connection signal="request_completed" from="HTTPRequestCuotas" to="." method="_on_HTTPRequestCuotas_request_completed"]
+[connection signal="request_completed" from="ImprimirPDF" to="." method="_on_ImprimirPDF_request_completed"]

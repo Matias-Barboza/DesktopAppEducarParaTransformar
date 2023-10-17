@@ -36,6 +36,8 @@ onready var seleccion_hijos_cuotas = $PanelSeleccionCuotas/Panel/OptionButton
 onready var label_cuotas = $PanelCuotas/LabelCuotas
 onready var boton_pagar = $PanelCuotas/Panel/ButtonIS
 
+onready var panel_pagar_cuota = $PanelPagarCuota
+
 onready var request_hijos = $HTTPRequestHijos
 onready var request_horarios = $HTTPRequestHorarios
 onready var request_notas = $HTTPRequestNotas
@@ -51,9 +53,10 @@ func _ready():
 	panel_seleccion_notas.visible = false
 	panel_seleccion_notas.visible = false
 	panel_cuotas.visible = false
+	panel_pagar_cuota.visible = false
 	label_bienvenida.text = "Bienvenido " + Globals.nombreCompleto
 	
-	paneles = [panel_bienvenida, panel_horario, panel_notas, panel_cuotas, panel_seleccion_horario, panel_seleccion_notas, panel_seleccion_cuotas]
+	paneles = [panel_bienvenida, panel_horario, panel_notas, panel_cuotas, panel_seleccion_horario, panel_seleccion_notas, panel_seleccion_cuotas,panel_pagar_cuota]
 
 
 func _on_ButtonMenuDesplegable_pressed():
@@ -263,3 +266,36 @@ func convertir_mes_a_espanol(mes_en_ingles: String) -> String:
 		return meses[mes_en_ingles]
 	else:
 		return "Día no válido"
+
+
+func _on_PagarCuota_pressed():
+	activar_panel(panel_pagar_cuota)
+
+
+func _on_ImprimirPDF_request_completed(_result, response_code, _headers, body):
+	if response_code == 201:
+		var json = JSON.parse(body.get_string_from_utf8())
+		OS.shell_open(json.result.response)
+	else:
+		print("Error en la solicitud. Código de respuesta:", response_code)
+
+
+func _on_ButtonIS2_pressed():
+	
+	var headers = [ "content-type: application/json" , "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMThiZWVhMjdmZDgxMzA5ZWFhZTA5NGFkMmU1NjQyOTU4NmMwNzBmMGY5MDdmYzM1ZTI0NWI3NjEwYTY4ODgzIiwic3ViIjoiYWxlam9vY3p0d2l0Y2hAZ21haWwuY29tIiwiZXhwIjo5OTk5OTk5OTk5fQ._-fbaWRNvua_SmCWQ48U2apGTdc_2_PW-Nga9IG1qxQ" ]
+	var URL = "https://us1.pdfgeneratorapi.com/api/v4/documents/generate"
+	
+	var json_data = {
+		"template": {
+			"id": 814573,
+			"data": {
+				"fullname" : Globals.nombreCompleto,
+				"tipo_pago" : $PanelPagarCuota/OptionButton.text,
+				"monto" : $PanelPagarCuota/LineEdit2.text
+			}
+		},
+		"format": "pdf",
+		"output": "url",
+		"name": "Listado Alumnos"
+	}
+	$ImprimirPDF.request(URL, headers, true, HTTPClient.METHOD_POST, JSON.print(json_data))

@@ -76,7 +76,7 @@ _global_script_class_icons={
 
 config/name="Sistema de autogestion de educar para transformar"
 run/main_scene="res://Pantallas/PantallaInicioDeSesion.tscn"
-config/icon="res://icon.png"
+config/icon="res://Recursos/Imágenes/Logo esquina EPT.png"
 
 [autoload]
 
@@ -86,9 +86,8 @@ Globals="*res://autoload/Globals.gd"
 
 window/size/width=1920
 window/size/height=1080
-window/size/always_on_top=true
-window/size/test_width=1280
-window/size/test_height=720
+window/size/test_width=1920
+window/size/test_height=1080
 
 [gui]
 

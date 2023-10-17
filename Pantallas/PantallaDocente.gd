@@ -29,6 +29,9 @@ onready var panel_horario = $PanelHorario
 onready var panel_bienvenida = $PanelBienvenida
 
 onready var panel_nota = $PanelNota
+onready var label_nota_nombre = $PanelNota/LabelNotaAlumno
+onready var label_nota_materia = $PanelNota/LabelNotaMateria
+
 onready var panel_seleccion_notas = $PanelSeleccionNota
 onready var seleccion_materia_nota = $PanelSeleccionNota/OptionButtonMaterias
 onready var seleccion_alumno_nota = $PanelSeleccionNota/OptionButtonAlumnos
@@ -49,6 +52,7 @@ func _ready():
 	panel_seleccion_notas.visible = false
 	panel_materia.visible = false
 	panel_seleccion_materia.visible = false
+	panel_nota.visible = false
 	label_bienvenida.text = "Bienvenido " + Globals.nombreCompleto
 	
 	paneles = [panel_bienvenida, panel_horario, panel_seleccion_notas, panel_materia, panel_seleccion_materia, panel_nota]
@@ -100,6 +104,9 @@ func _on_GetAlumnos_request_completed(_result, response_code, _headers, body):
 	if response_code == 200:
 		var json = JSON.parse(body.get_string_from_utf8())
 		alumnos = json
+		tabla_alumno.reiniciar_tabla()
+		arreglo_alumnos = []
+		yield(get_tree().create_timer(0.5), "timeout")
 		for alumno in json.result:
 			datos_alumno.insert(0,alumno.file_number)
 			datos_alumno.insert(1,alumno.lastname)
@@ -214,4 +221,7 @@ func _on_GetAlumnosNota_request_completed(_result, response_code, _headers, body
 
 func _on_alumnoNota_item_selected(index):
 	var alumno = listaAlumnos[index]
+	label_nota_nombre.text = "Notas de " + str(alumno["lastname"]) + ", " + str(alumno["firstname"])
+	label_nota_materia.text = str(materia_seleccionada["class_name"] + " ("+ str(materia_seleccionada["division"]["division_name"]) + ")") 
+	activar_panel(panel_nota)
 	

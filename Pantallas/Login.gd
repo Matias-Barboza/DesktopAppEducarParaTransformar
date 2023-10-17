@@ -23,7 +23,7 @@ onready var animation_player = $AnimationPlayer
 
 
 func _ready():
-	
+	correo.grab_focus()
 	label_datos_invalidos.visible = false
 	spinner_carga.visible = false
 	viene_de_error = false

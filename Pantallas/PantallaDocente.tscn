@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Recursos/Montserrat-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Contenedores/Tablas/TablaAlumnos.tscn" type="PackedScene" id=2]
@@ -95,7 +95,71 @@ bg_color = Color( 0.184314, 0.823529, 1, 1 )
 size = 30
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=46]
+[sub_resource type="DynamicFontData" id=46]
+font_path = "res://Recursos/Montserrat-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=57]
+size = 18
+font_data = SubResource( 46 )
+
+[sub_resource type="StyleBoxFlat" id=58]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.603922, 0.564706, 0.564706, 1 )
+
+[sub_resource type="DynamicFont" id=59]
+size = 18
+font_data = SubResource( 46 )
+
+[sub_resource type="StyleBoxFlat" id=60]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.603922, 0.564706, 0.564706, 1 )
+
+[sub_resource type="DynamicFont" id=61]
+size = 18
+font_data = SubResource( 46 )
+
+[sub_resource type="StyleBoxFlat" id=62]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.603922, 0.564706, 0.564706, 1 )
+
+[sub_resource type="DynamicFont" id=63]
+size = 25
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=64]
+bg_color = Color( 0.0431373, 0.368627, 0.843137, 1 )
+
+[sub_resource type="StyleBoxFlat" id=65]
+bg_color = Color( 0.0392157, 0.345098, 0.792157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=66]
+bg_color = Color( 0.0509804, 0.431373, 0.992157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=67]
 bg_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="StyleBoxFlat" id=35]
@@ -289,6 +353,138 @@ text = "Bienvenido, @Nombre @Apellido"
 align = 1
 valign = 1
 
+[node name="PanelNota" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 449.0
+margin_top = 316.0
+margin_right = -449.0
+margin_bottom = -240.0
+custom_styles/panel = SubResource( 47 )
+
+[node name="LabelNotaAlumno" type="Label" parent="PanelNota"]
+anchor_left = 0.0283757
+anchor_top = 0.019084
+anchor_right = 0.97456
+anchor_bottom = 0.0916031
+custom_fonts/font = SubResource( 52 )
+text = "Notas de"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LabelNotaMateria" type="Label" parent="PanelNota"]
+anchor_left = 0.245597
+anchor_top = 0.177481
+anchor_right = 0.754403
+anchor_bottom = 0.25
+custom_fonts/font = SubResource( 52 )
+text = "Materia"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LabelNota1" type="Label" parent="PanelNota"]
+anchor_left = 0.0166341
+anchor_top = 0.343511
+anchor_right = 0.277887
+anchor_bottom = 0.416031
+custom_fonts/font = SubResource( 52 )
+text = "Primer Trimestre"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LabelNota2" type="Label" parent="PanelNota"]
+anchor_left = 0.354207
+anchor_top = 0.34542
+anchor_right = 0.646771
+anchor_bottom = 0.417939
+custom_fonts/font = SubResource( 52 )
+text = "Segundo Trimestre"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LabelNota3" type="Label" parent="PanelNota"]
+anchor_left = 0.7182
+anchor_top = 0.343511
+anchor_right = 0.979452
+anchor_bottom = 0.416031
+custom_fonts/font = SubResource( 52 )
+text = "Tercer Trimestre"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LineEdit" type="LineEdit" parent="PanelNota"]
+anchor_left = 0.104697
+anchor_top = 0.437023
+anchor_right = 0.17319
+anchor_bottom = 0.503817
+custom_colors/cursor_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 57 )
+custom_styles/normal = SubResource( 58 )
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LineEdit2" type="LineEdit" parent="PanelNota"]
+anchor_left = 0.465753
+anchor_top = 0.437023
+anchor_right = 0.534247
+anchor_bottom = 0.503817
+custom_colors/cursor_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 59 )
+custom_styles/normal = SubResource( 60 )
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LineEdit3" type="LineEdit" parent="PanelNota"]
+anchor_left = 0.803327
+anchor_top = 0.437023
+anchor_right = 0.87182
+anchor_bottom = 0.503817
+custom_colors/cursor_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 61 )
+custom_styles/normal = SubResource( 62 )
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ButtonIS" type="Button" parent="PanelNota"]
+anchor_left = 0.393836
+anchor_top = 0.568702
+anchor_right = 0.606164
+anchor_bottom = 0.683206
+rect_min_size = Vector2( 0, 60 )
+focus_previous = NodePath("../TextEditContrasenha")
+custom_fonts/font = SubResource( 63 )
+custom_styles/hover = SubResource( 64 )
+custom_styles/pressed = SubResource( 65 )
+custom_styles/normal = SubResource( 66 )
+text = "Aceptar"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [node name="PanelHorario" type="Panel" parent="."]
 visible = false
 anchor_left = 0.068
@@ -299,7 +495,7 @@ margin_left = 62.44
 margin_top = 34.84
 margin_right = -73.9601
 margin_bottom = -41.0
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 67 )
 
 [node name="TablaHorariosDocente" parent="PanelHorario" instance=ExtResource( 7 )]
 
@@ -356,7 +552,7 @@ margin_left = 193.0
 margin_top = 172.0
 margin_right = -193.0
 margin_bottom = -41.0
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 67 )
 
 [node name="NombreMateria" type="Label" parent="PanelMateria"]
 anchor_left = 0.5
@@ -448,10 +644,6 @@ margin_right = 197.0
 margin_bottom = -45.0
 disabled = true
 text = "Seleccione alumno"
-
-[node name="PanelNota" type="Panel" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
 
 [node name="PanelLateral" type="Panel" parent="."]
 anchor_right = 0.132

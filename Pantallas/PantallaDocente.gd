@@ -1,7 +1,10 @@
 extends Control
 
+var header = [ "content-type: application/json"]
 var endpointMaterias = Globals.URL + "/api/teachers/classes/" + str(Globals.userId)
 var endpointAlumnos = Globals.URL + "/api/divisions/students/"
+var endpointNota = Globals.URL + "/api/notes/student/"
+var endpointModificarNota = Globals.URL + "/api/notes"
 
 var desplegado = false
 var paneles = []
@@ -13,11 +16,14 @@ var arreglo_materias = []
 var datos_materia = []
 var alumnos
 var materia_seleccionada
+var nota_Seleccionada
 
 
 onready var requestMaterias = $GetMaterias
 onready var requestAlumnos = $GetAlumnos
 onready var request_alumnos_nota = $GetAlumnosNota
+onready var request_notas = $GetNota
+onready var request_modificar_notas = $ModificarNota
 
 
 onready var animation_player = $AnimationPlayer
@@ -168,7 +174,7 @@ func _on_ButtonSalir_pressed():
 
 func _on_Button_pressed():
 	
-	var header = [ "content-type: application/json" , "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMThiZWVhMjdmZDgxMzA5ZWFhZTA5NGFkMmU1NjQyOTU4NmMwNzBmMGY5MDdmYzM1ZTI0NWI3NjEwYTY4ODgzIiwic3ViIjoiYWxlam9vY3p0d2l0Y2hAZ21haWwuY29tIiwiZXhwIjo5OTk5OTk5OTk5fQ._-fbaWRNvua_SmCWQ48U2apGTdc_2_PW-Nga9IG1qxQ" ]
+	var headers = [ "content-type: application/json" , "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMThiZWVhMjdmZDgxMzA5ZWFhZTA5NGFkMmU1NjQyOTU4NmMwNzBmMGY5MDdmYzM1ZTI0NWI3NjEwYTY4ODgzIiwic3ViIjoiYWxlam9vY3p0d2l0Y2hAZ21haWwuY29tIiwiZXhwIjo5OTk5OTk5OTk5fQ._-fbaWRNvua_SmCWQ48U2apGTdc_2_PW-Nga9IG1qxQ" ]
 	var URL = "https://us1.pdfgeneratorapi.com/api/v4/documents/generate"
 	
 	var json_data = {
@@ -187,7 +193,7 @@ func _on_Button_pressed():
 		"output": "url",
 		"name": "Listado Alumnos"
 	}
-	$"Imprimir PDF".request(URL, header, true, HTTPClient.METHOD_POST, JSON.print(json_data))
+	$"Imprimir PDF".request(URL, headers, true, HTTPClient.METHOD_POST, JSON.print(json_data))
 
 
 func _on_Imprimir_PDF_request_completed(_result, response_code, _headers, body):
@@ -221,7 +227,41 @@ func _on_GetAlumnosNota_request_completed(_result, response_code, _headers, body
 
 func _on_alumnoNota_item_selected(index):
 	var alumno = listaAlumnos[index]
-	label_nota_nombre.text = "Notas de " + str(alumno["lastname"]) + ", " + str(alumno["firstname"])
+	
+	request_notas.request('{URL}{id}'.format({"URL" : endpointNota, "id" : alumno["id"]}))
+	
+	label_nota_nombre.text = "Notas de " + alumno["lastname"] + ", " + alumno["firstname"]
 	label_nota_materia.text = str(materia_seleccionada["class_name"] + " ("+ str(materia_seleccionada["division"]["division_name"]) + ")") 
 	activar_panel(panel_nota)
-	
+
+
+func _on_GetNota_request_completed(_result, response_code, _headers, body):
+	if response_code == 200:
+		var json = JSON.parse(body.get_string_from_utf8())
+		
+		for nota in json.result:
+			
+			if nota["class_name"] == materia_seleccionada["class_name"]:
+				nota_Seleccionada = nota
+				
+				$PanelNota/Nota_1.text = str(nota["numeric_note_1"])
+				$PanelNota/Nota_2.text = str(nota["numeric_note_2"])
+				$PanelNota/Nota_3.text = str(nota["numeric_note_3"])
+
+
+func _on_ButtonIS_pressed():
+	var json_data = {
+		"id" : nota_Seleccionada["id"],
+		"numeric_note_1" : $PanelNota/Nota_1.text,
+		"numeric_note_2" : $PanelNota/Nota_2.text,
+		"numeric_note_3" : $PanelNota/Nota_3.text
+	}
+	print(JSON.print(json_data))
+	#request_modificar_notas.request(endpointModificarNota, header, true, HTTPClient.METHOD_PUT, JSON.print(json_data))
+
+
+func _on_ModificarNota_request_completed(result, response_code, headers, body):
+	if response_code == 200:
+		print("Nota modificada con exito")
+	else:
+		print("No modificaste un carajo la nota flaco")

@@ -427,7 +427,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="LineEdit" type="LineEdit" parent="PanelNota"]
+[node name="Nota_1" type="LineEdit" parent="PanelNota"]
 anchor_left = 0.104697
 anchor_top = 0.437023
 anchor_right = 0.17319
@@ -436,12 +436,13 @@ custom_colors/cursor_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 57 )
 custom_styles/normal = SubResource( 58 )
+align = 1
 caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="LineEdit2" type="LineEdit" parent="PanelNota"]
+[node name="Nota_2" type="LineEdit" parent="PanelNota"]
 anchor_left = 0.465753
 anchor_top = 0.437023
 anchor_right = 0.534247
@@ -450,12 +451,13 @@ custom_colors/cursor_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 59 )
 custom_styles/normal = SubResource( 60 )
+align = 1
 caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="LineEdit3" type="LineEdit" parent="PanelNota"]
+[node name="Nota_3" type="LineEdit" parent="PanelNota"]
 anchor_left = 0.803327
 anchor_top = 0.437023
 anchor_right = 0.87182
@@ -464,6 +466,7 @@ custom_colors/cursor_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 61 )
 custom_styles/normal = SubResource( 62 )
+align = 1
 caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -736,7 +739,12 @@ icon = ExtResource( 10 )
 
 [node name="GetAlumnosNota" type="HTTPRequest" parent="."]
 
+[node name="GetNota" type="HTTPRequest" parent="."]
+
+[node name="ModificarNota" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="Panel/ButtonMenuDesplegable" to="." method="_on_ButtonMenuDesplegable_pressed"]
+[connection signal="pressed" from="PanelNota/ButtonIS" to="." method="_on_ButtonIS_pressed"]
 [connection signal="item_selected" from="PanelSeleccionMaterias/Panel/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="PanelMateria/Button" to="." method="_on_Button_pressed"]
 [connection signal="item_selected" from="PanelSeleccionNota/OptionButtonMaterias" to="." method="_on_OptionButtonMaterias_item_selected"]
@@ -749,3 +757,5 @@ icon = ExtResource( 10 )
 [connection signal="request_completed" from="GetAlumnos" to="." method="_on_GetAlumnos_request_completed"]
 [connection signal="request_completed" from="Imprimir PDF" to="." method="_on_Imprimir_PDF_request_completed"]
 [connection signal="request_completed" from="GetAlumnosNota" to="." method="_on_GetAlumnosNota_request_completed"]
+[connection signal="request_completed" from="GetNota" to="." method="_on_GetNota_request_completed"]
+[connection signal="request_completed" from="ModificarNota" to="." method="_on_ModificarNota_request_completed"]

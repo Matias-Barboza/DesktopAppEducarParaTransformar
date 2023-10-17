@@ -19,7 +19,7 @@ onready var animation_player = $AnimationPlayer
 
 onready var panel_seleccion_horario = $PanelSeleccionHorario
 onready var panel_horario = $PanelHorario
-onready var tabla_horarios = $PanelHorario/TablaHorariosDocente
+onready var tabla_horarios = $PanelHorario/TablaHorarios
 onready var seleccion_hijos_horarios = $PanelSeleccionHorario/Panel/OptionButton
 
 onready var panel_seleccion_notas = $PanelSeleccionNotas

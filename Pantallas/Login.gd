@@ -127,7 +127,7 @@ func cambiarEscena():
 	elif rol == "Padre":
 		get_tree().change_scene_to(escenaPadre)
 	elif rol == "Admin":
-		get_tree().change_scene_to(escenaPadre)
+		get_tree().change_scene_to(escenaAdmin)
 	else:
 		print("Error en la obtencion del rol")
 

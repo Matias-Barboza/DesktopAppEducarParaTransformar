@@ -34,6 +34,7 @@ onready var panel_cuotas = $PanelCuotas
 onready var tabla_cuotas = $PanelCuotas/Panel/TablaCuotas
 onready var seleccion_hijos_cuotas = $PanelSeleccionCuotas/Panel/OptionButton
 onready var label_cuotas = $PanelCuotas/LabelCuotas
+onready var boton_pagar = $PanelCuotas/Panel/ButtonIS
 
 onready var request_hijos = $HTTPRequestHijos
 onready var request_horarios = $HTTPRequestHorarios
@@ -191,6 +192,7 @@ func _on_HTTPRequestCuotas_request_completed(result, response_code, headers, bod
 						datos_cuota.insert(1, "No")
 					else:
 						datos_cuota.insert(1, "Si")
+						boton_pagar.visible = true
 					arreglo_cuotas.append(datos_cuota)
 					datos_cuota = []
 

@@ -34,7 +34,7 @@ margin_right = 1920.0
 margin_bottom = 50.0
 
 [node name="1" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
-margin_right = 477.0
+margin_right = 380.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -44,8 +44,8 @@ align = 1
 valign = 1
 
 [node name="2" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
-margin_left = 481.0
-margin_right = 958.0
+margin_left = 384.0
+margin_right = 765.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -55,8 +55,8 @@ align = 1
 valign = 1
 
 [node name="3" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
-margin_left = 962.0
-margin_right = 1439.0
+margin_left = 769.0
+margin_right = 1150.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -66,7 +66,18 @@ align = 1
 valign = 1
 
 [node name="4" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
-margin_left = 1443.0
+margin_left = 1154.0
+margin_right = 1535.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Día"
+align = 1
+valign = 1
+
+[node name="5" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+margin_left = 1539.0
 margin_right = 1920.0
 margin_bottom = 50.0
 size_flags_horizontal = 3

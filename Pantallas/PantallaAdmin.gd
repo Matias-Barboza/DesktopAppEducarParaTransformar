@@ -84,7 +84,7 @@ func _on_GetDivisiones_request_completed(_result, response_code, _headers, body)
 
 func _on_SeleccionHorario_item_selected(index):
 	var division = listaDivisiones[index]
-	label_horario.text = division["division_name"]
+	label_horario.text = "Division: " + division["division_name"]
 	request_horarios.request('{url}{id}'.format({"url" : endpoint_horarios_division, "id" : division["id"]}))
 
 func _on_GetHorariosDivision_request_completed(_result, response_code, _headers, body):
@@ -130,7 +130,7 @@ func convertir_dia_a_espanol(dia_en_ingles: String) -> String:
 
 func _on_SeleccionDivision_item_selected(index):
 	division_seleccionada = listaDivisiones[index]
-	label_division.text = division_seleccionada["division_name"]
+	label_division.text = "Division: " + division_seleccionada["division_name"]
 	request_alumnos.request('{url}{id}'.format({"url" : endpoint_alumnos_division, "id" : division_seleccionada["id"]}))
 
 func _on_GetAlumnosDivision_request_completed(_result, response_code, _headers, body):

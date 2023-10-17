@@ -2,7 +2,11 @@ extends Control
 
 var endpoint_division = Globals.URL + "/api/divisions"
 var endpoint_alumnos_division = Globals.URL + "/api/divisions/students/"
-var endpoint_horarios_division = Globals.URL + "/api/divisions/classes/"
+
+var endpoint_division_0 = Globals.URL + "/api/students/classes/30"
+var endpoint_division_1 = Globals.URL + "/api/students/classes/45"
+var endpoint_division_2 = Globals.URL + "/api/students/classes/65"
+var endpoint_division_3 = Globals.URL + "/api/students/classes/68"
 
 onready var request_divisiones = $GetDivisiones
 onready var request_alumnos = $GetAlumnosDivision
@@ -13,7 +17,7 @@ onready var tabla_alumno = $PanelDivision/TablaAlumnos
 onready var tabla_horario = $PanelHorario/TablaHorariosDocente
 
 onready var animation_player = $AnimationPlayer
-onready var panel_bienvenida = $PanelBienvenida
+onready var panel_bienvenida = $PanelBienvenida/LabelBienvenida
 
 onready var label_bienvenida = $PanelBienvenida/LabelBienvenida
 onready var label_division = $PanelDivision/NombreDivision
@@ -78,14 +82,30 @@ func _on_GetDivisiones_request_completed(_result, response_code, _headers, body)
 		var json = JSON.parse(body.get_string_from_utf8())
 		for division in json.result:
 			listaDivisiones.append(division)
-			menu_seleccion_division.get_popup().add_item(division["division_name"])
-			menu_seleccion_horario.get_popup().add_item(division["division_name"])
+			menu_seleccion_division.get_popup().add_item(division["division_name"] + " " + educacion(division["education"]))
+			menu_seleccion_horario.get_popup().add_item(division["division_name"] + " " + educacion(division["education"]))
 
+func educacion(division):
+	if division == "Primary":
+		return "Primaria"
+	elif division == "Secondary":
+		return "Secuandaria"
 
 func _on_SeleccionHorario_item_selected(index):
 	var division = listaDivisiones[index]
 	label_horario.text = "Division: " + division["division_name"]
-	request_horarios.request('{url}{id}'.format({"url" : endpoint_horarios_division, "id" : division["id"]}))
+	
+	if index == 0:
+		request_horarios.request(endpoint_division_0)
+	elif index == 1:
+		request_horarios.request(endpoint_division_1)
+	elif index == 2:
+		request_horarios.request(endpoint_division_2)
+	elif index == 3:
+		request_horarios.request(endpoint_division_3)
+	
+	activar_panel(panel_horario)
+
 
 func _on_GetHorariosDivision_request_completed(_result, response_code, _headers, body):
 	var arreglo_materias = []
@@ -132,6 +152,7 @@ func _on_SeleccionDivision_item_selected(index):
 	division_seleccionada = listaDivisiones[index]
 	label_division.text = "Division: " + division_seleccionada["division_name"]
 	request_alumnos.request('{url}{id}'.format({"url" : endpoint_alumnos_division, "id" : division_seleccionada["id"]}))
+	activar_panel(panel_division)
 
 func _on_GetAlumnosDivision_request_completed(_result, response_code, _headers, body):
 	var arreglo_alumnos = []
@@ -184,3 +205,11 @@ func _on_ImprimirPDF_request_completed(_result, response_code, _headers, body):
 		OS.shell_open(json.result.response)
 	else:
 		print("Error al generar el PDF")
+
+
+func _on_ButtonMenuDesplegable_pressed():
+	if not desplegado:
+		animation_player.play("despliegue_menu_lateral")
+	else:
+		animation_player.play("repliegue_menu_lateral")
+	desplegado = not desplegado

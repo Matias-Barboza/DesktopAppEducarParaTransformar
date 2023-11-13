@@ -166,10 +166,10 @@ func _on_Notas_request_completed(result, response_code, headers, body):
 		yield(get_tree().create_timer(0.5), "timeout")
 		for nota in json.result:
 			datos_materia.insert(0, nota["class_name"])
-			datos_materia.insert(1, nota.numeric_note_1)
-			datos_materia.insert(2, nota.numeric_note_2)
-			datos_materia.insert(3, nota.numeric_note_3)
-			datos_materia.insert(4, (nota.numeric_note_1 + nota.numeric_note_2 + nota.numeric_note_3) / 3)
+			datos_materia.insert(1, asignarNota(nota.numeric_note_1))
+			datos_materia.insert(2, asignarNota(nota.numeric_note_2))
+			datos_materia.insert(3, asignarNota(nota.numeric_note_3))
+			datos_materia.insert(4, asignarNota((nota.numeric_note_1 + nota.numeric_note_2 + nota.numeric_note_3) / 3))
 			arreglo_materias.append(datos_materia)
 			datos_materia= []
 		
@@ -177,6 +177,10 @@ func _on_Notas_request_completed(result, response_code, headers, body):
 	else:
 		print("Error en la carga de notas")
 
+func asignarNota(nota):
+	if nota == 0:
+		return ""
+	return nota
 
 func _on_HTTPRequestCuotas_request_completed(result, response_code, headers, body):
 	var arreglo_cuotas

@@ -268,7 +268,6 @@ align = 1
 valign = 1
 
 [node name="PanelBienvenida" type="Panel" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 449.0
@@ -332,6 +331,7 @@ __meta__ = {
 }
 
 [node name="PanelCuotas" type="Panel" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 193.0

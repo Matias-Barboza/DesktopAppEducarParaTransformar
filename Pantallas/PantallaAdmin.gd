@@ -53,6 +53,7 @@ func _ready():
 	panel_seleccion_division.visible = false
 	panel_horario.visible = false
 	panel_seleccion_horario.visible = false
+	panel_cuotas.visible = false
 	label_bienvenida.text = "Bienvenido " + Globals.nombreCompleto
 	
 	paneles = [panel_bienvenida, panel_division, panel_seleccion_division, panel_horario, panel_seleccion_horario, panel_cuotas]

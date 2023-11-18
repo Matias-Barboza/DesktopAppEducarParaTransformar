@@ -184,12 +184,12 @@ func _on_ButtonSalir_pressed():
 
 func _on_Button_pressed():
 	
-	var headers = [ "content-type: application/json" , "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMThiZWVhMjdmZDgxMzA5ZWFhZTA5NGFkMmU1NjQyOTU4NmMwNzBmMGY5MDdmYzM1ZTI0NWI3NjEwYTY4ODgzIiwic3ViIjoiYWxlam9vY3p0d2l0Y2hAZ21haWwuY29tIiwiZXhwIjo5OTk5OTk5OTk5fQ._-fbaWRNvua_SmCWQ48U2apGTdc_2_PW-Nga9IG1qxQ" ]
+	var headers = [ "content-type: application/json" , "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmZWJlMjNhYjBiYmNlMTI2NzQ0NTgwODUxNzIzZTZlMDYyM2VmZjA5NTMwZGVjMDg2NjE4NTI2NzAzZDRkOWUyIiwic3ViIjoiYWxlam9jem9tYm9zQGdtYWlsLmNvbSIsImV4cCI6OTk5OTk5OTk5OX0.C56uSBRKnsVO9MYBlN7dfFtGvXV0JhA1gveiNIp2lXE" ]
 	var URL = "https://us1.pdfgeneratorapi.com/api/v4/documents/generate"
 	
 	var json_data = {
 		"template": {
-			"id": 808188,
+			"id": 856150,
 			"data": {
 				"class_name": materia_seleccionada["class_name"],
 				"teacher": Globals.nombreCompleto,

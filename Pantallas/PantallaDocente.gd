@@ -2,7 +2,7 @@ extends Control
 
 var header = [ "content-type: application/json"]
 var endpointMaterias = Globals.URL + "/api/teachers/classes/" + str(Globals.userId)
-var endpointAlumnos = Globals.URL + "/api/divisions/students/"
+var endpointAlumnos = Globals.URL + "/api/classes/"
 var endpointNota = Globals.URL + "/api/notes/student/"
 var endpointModificarNota = Globals.URL + "/api/notes"
 
@@ -14,6 +14,7 @@ var arreglo_alumnos = []
 var datos_alumno = []
 var arreglo_materias = []
 var datos_materia = []
+var alumnos_por_materia = []
 var alumnos
 var materia_seleccionada
 var nota_Seleccionada
@@ -80,6 +81,11 @@ func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
 		for materia in json.result:
 			listaMaterias.append(materia)
 			
+			var request = HTTPRequest.new()
+			request.connect("request_completed", self, "_on_request_alumnos_completed", [materia])
+			add_child(request)
+			request.request('{URL}{id}/students'.format({"URL" : endpointAlumnos, "id" : materia["id"]}))
+			
 			seleccion_materia.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")")
 			seleccion_materia_nota.get_popup().add_item(materia["class_name"] + " ("+ materia.division.division_name + ")")
 			
@@ -96,6 +102,17 @@ func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
 		tabla_materias.set_data(arreglo_materias)
 	else:
 		print("Error al obtener los horarios")
+
+func _on_request_alumnos_completed(_result, response_code, _headers, body, params):
+	var materia = params["class_name"] + params["division"]["division_name"]
+	if response_code == 200:
+		var json = JSON.parse(body.get_string_from_utf8())
+		var datos_materia = {"materia": materia, "alumnos": json.result}
+		alumnos_por_materia.append(datos_materia)
+		print("alumnos de materia: ", materia)
+		
+	else:
+		print("Error al obtener los alumnos de la materia", materia, ". Código de respuesta:", response_code)
 
 func convertir_dia_a_espanol(dia_en_ingles: String) -> String:
 	var dias = {
@@ -167,11 +184,34 @@ func _on_OptionButton_item_selected(index):
 	
 	label_nombre_materia.text = materia_seleccionada["class_name"]
 	
-	requestAlumnos.request('{URL}{id}'.format({"URL" : endpointAlumnos, "id" : materia_seleccionada["division"]["id"]}))
+	var alumnos_de_la_materia = obtener_alumnos_de_materia(materia_seleccionada["class_name"] + materia_seleccionada["division"]["division_name"])
+	
+	if alumnos_de_la_materia.empty():
+		seleccion_materia.selected = -1
+		return
+	
+	alumnos = alumnos_de_la_materia
+	tabla_alumno.reiniciar_tabla()
+	arreglo_alumnos = []
+	
+	yield(get_tree().create_timer(0.2), "timeout")
+	for alumno in alumnos_de_la_materia:
+		datos_alumno.insert(0,alumno.file_number)
+		datos_alumno.insert(1,alumno.lastname)
+		datos_alumno.insert(2,alumno.firstname)
+		arreglo_alumnos.append(datos_alumno)
+		datos_alumno = []
+	tabla_alumno.set_data(arreglo_alumnos)
+	
 	activar_panel(panel_materia)
 	
 	seleccion_materia.selected = -1
 
+func obtener_alumnos_de_materia(materia):
+	for datos_materia in alumnos_por_materia:
+		if datos_materia["materia"] == materia:
+			return datos_materia["alumnos"]
+	return []
 
 func _on_ButtonSalir_pressed():
 	
@@ -222,17 +262,11 @@ func _on_OptionButtonMaterias_item_selected(index):
 	seleccion_alumno_nota.text = "Seleccione un Alumno"
 	
 	materia_seleccionada = listaMaterias[index]
+	var alumnos_de_la_materia = obtener_alumnos_de_materia(materia_seleccionada["class_name"] + materia_seleccionada["division"]["division_name"])
 	
-	request_alumnos_nota.request('{URL}{id}'.format({"URL" : endpointAlumnos, "id" : materia_seleccionada["division"]["id"]}))
-
-
-func _on_GetAlumnosNota_request_completed(_result, response_code, _headers, body):
-	if response_code == 200:
-		var json = JSON.parse(body.get_string_from_utf8())
-		
-		for alumno in json.result:
-			listaAlumnos.append(alumno)
-			seleccion_alumno_nota.get_popup().add_item(alumno["firstname"] + " " + alumno["lastname"])
+	for alumno in alumnos_de_la_materia:
+		listaAlumnos.append(alumno)
+		seleccion_alumno_nota.get_popup().add_item(alumno["firstname"] + " " + alumno["lastname"])
 
 
 func _on_alumnoNota_item_selected(index):
@@ -242,8 +276,13 @@ func _on_alumnoNota_item_selected(index):
 	
 	label_nota_nombre.text = "Notas de " + alumno["lastname"] + ", " + alumno["firstname"]
 	label_nota_materia.text = str(materia_seleccionada["class_name"] + " ("+ str(materia_seleccionada["division"]["division_name"]) + ")") 
-	seleccion_alumno_nota.clear()
+	
 	activar_panel(panel_nota)
+	
+	seleccion_alumno_nota.clear()
+	seleccion_alumno_nota.selected = -1
+	seleccion_materia_nota.clear()
+	seleccion_materia_nota.selected = -1
 
 
 func _on_GetNota_request_completed(_result, response_code, _headers, body):
